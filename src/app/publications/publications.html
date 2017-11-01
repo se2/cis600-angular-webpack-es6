@@ -1,0 +1,113 @@
+<div id="publicationsContainer">
+    <div id="sideNavContainer">
+        <div id="sideNav">
+            <h4>In Page Navigation</h4>
+            <ul>
+                <a href="#JPH2" class="scroller-link">
+                    <li>> Journal Papers</li>
+                </a>
+                <ul class="subUL">
+                    <a href="#JPH31" class="scroller-link">
+                        <li>2009-2017 (UMassD)</li>
+                    </a>
+                    <a href="#JPH32" class="scroller-link">
+                        <li>2003-2009 (UMassD)</li>
+                        <a href="#JPH33" class="scroller-link">
+                            <li>1990-2003 (Others)</li>
+                        </a>
+                </ul>
+                <a href="#BCh2" class="scroller-link">
+                    <li>> Books / Book Chapters</li>
+                </a>
+                <a href="#Bh2" class="scroller-link">
+                    <li>> Proceedings / Special Issues</li>
+                </a>
+                <a href="#CPH2" class="scroller-link">
+                    <li>> Conference Papers</li>
+                </a>
+                <ul class="subUL">
+                    <a href="#CPH31" class="scroller-link">
+                        <li>2009-2017 (UMassD)</li>
+                    </a>
+                    <a href="#CPH32" class="scroller-link">
+                        <li>2003-2009 (UMassD)</li>
+                        <a href="#CPH33" class="scroller-link">
+                            <li>1991-2003 (Others)</li>
+                        </a>
+                </ul>
+                <a href="#TRh2" class="scroller-link">
+                    <li>> Technical Reports</li>
+                </a>
+                <a href="#TPh2" class="scroller-link">
+                    <li>> Thesis and Project</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <div id="publicationsContent">
+        <h2 id="JPH2">Journal Papers (1990-2017) [30]</h2>
+        <div id="JPContainer">
+            <h3 id="JPH31">At UMass Dartmouth (2009-2017) [11]</h3>
+            <div style="list-style: none;" ng-repeat="publication in publications.umd09JP">
+                <li class="umdCard" ng-bind-html="publication.point"></li>
+            </div>
+            <h3 id="JPH32">At UMass Dartmouth (2003-2009) [11]</h3>
+            <div style="list-style: none;" ng-repeat="publication in publications.umd03JP">
+                <li class="umdCard" ng-bind-html="publication.point"></li>
+            </div>
+            <h3 id="JPH33">Before Joining UMass Dartmouth (1990-2003) [8]</h3>
+            <div style="list-style: none;" ng-repeat="publication in publications.umd91JP">
+                <li class="umdCard" ng-bind-html="publication.point"></li>
+            </div>
+        </div>
+        <h2 id="BCh2">Books / Book Chapters (2009-2016)</h2>
+        <div class="paddingTop" id="BCContainer">
+            <div style="list-style: none;" ng-repeat="publication in publications.books">
+                <li class="cardNoTitle" ng-bind-html="publication.point"></li>
+            </div>
+        </div>
+        <h2 id="Bh2">Proceedings / Special Issues (2008-2017)</h2>
+        <div class="paddingTop" id="BContainer">
+            <div style="list-style: none;" ng-repeat="publication in publications.proceedings">
+                <li class="cardNoTitle" ng-bind-html="publication.point"></li>
+            </div>
+        </div>
+        <h2 id="CPH2">Conference Papers (1991-2017) [35]</h2>
+        <div id="CPContainer">
+            <h3 id="CPH31">At UMass Dartmouth (2009-2017) [16]</h3>
+            <div style="list-style: none;" ng-repeat="publication in publications.umd09CP">
+                <li class="umdCard" ng-bind-html="publication.point"></li>
+            </div>
+            <h3 id="CPH32">At UMass Dartmouth (2003-2009) [12]</h3>
+            <div style="list-style: none;" ng-repeat="publication in publications.umd03CP">
+                <li class="umdCard" ng-bind-html="publication.point"></li>
+            </div>
+            <h3 id="CPH33">Before Joining UMass Dartmouth (1991-2003) [7]</h3>
+            <div style="list-style: none;" ng-repeat="publication in publications.umd91CP">
+                <li class="umdCard" ng-bind-html="publication.point"></li>
+            </div>
+        </div>
+        <h2 id="TRh2">Technical Reports (1999-2008)</h2>
+        <div class="paddingTop" id="TRContainer">
+            <div style="list-style: none;" ng-repeat="publication in publications.techReports">
+                <li class="cardNoTitle" ng-bind-html="publication.point"></li>
+            </div>
+        </div>
+        <h2 id="TPh2">Thesis and Project</h2>
+        <div class="paddingTop" id="TPContainer">
+            <div style="list-style: none;" ng-repeat="publication in publications.thesisProject">
+                <li class="cardNoTitle" ng-bind-html="publication.point"></li>
+            </div>
+        </div>
+        <hr> Note: Links to papers are provided to ensure timely dissemination of scholarly and technical work. Copyright and
+        all rights therein are retained by authors or by other copyright holders. All persons accessing this information
+        are expected to adhere to the terms and constraints invoked by each author's copyright. In most cases, these works
+        may not be reposted without the explicit permission of the copyright holder.
+        <hr>
+        <br> © 2002-2016 IEEE. Personal use of this material is permitted. However, permission to reprint/republish this material
+        for advertising or promotional purposes or for creating new collective works for resale or redistribution to servers
+        or lists, or to reuse any copyrighted component of this work in other works must be obtained from the IEEE.
+        <br>
+        <br>
+    </div>
+</div>

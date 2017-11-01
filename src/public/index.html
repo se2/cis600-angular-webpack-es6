@@ -1,0 +1,84 @@
+<!doctype html>
+<html ng-app="csel" lang="en" ng-strict-di>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CSEL</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="shortcut icon" href="images/csel.ico" type="image/x-icon">
+  <link rel="icon" href="images/csel.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <base href="/" />
+  <!-- <base href="/~dluong1/csel/" /> -->
+
+</head>
+
+<body ng-app="csel">
+  <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+  <header>
+    <div id="headerRow1">
+      <div class="container">
+        <div class="info">
+          Computer & Information Sciences, UMass Dartmouth
+        </div>
+        <md-button class="md-raised" ui-sref="profile">{{loggedIn ? 'Profile' : 'Login'}}</md-button>
+      </div>
+    </div>
+    <div id="headerRow2">
+      <div id="title">
+        Concurrent Software Engineering Laboratory
+      </div>
+      <div id="directorInfo">
+        Director : Dr. Haiping Xu
+      </div>
+    </div>
+
+    <div ng-controller="AppCtrl">
+      <div id="mobileMenuContainer">
+        <img ng-click="mobileMenu()" src="images/menu.png">
+      </div>
+      <ul id="navTabs">
+        <li class="inline-list home">
+          <a ui-sref="home">Home</a>
+        </li>
+        <li class="inline-list people">
+          <a ui-sref="people">People</a>
+        </li>
+        <li class="inline-list research">
+          <a ui-sref="research">Research</a>
+        </li>
+        <li class="inline-list publications">
+          <a ui-sref="publications">Publications</a>
+        </li>
+        <li class="inline-list grantActivities">
+          <a ui-sref="grantActivities">Grant Activities</a>
+        </li>
+        <li class="inline-list contactInfo">
+          <a ui-sref="contactInfo">Contact Info</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <div id="viewMainContainer">
+    <div id="viewContainer">
+      <div ui-view></div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    © 2015 Concurrent Software Engineering Laboratory. All Rights Reserved.
+    <br> Developed by Surya K. Juthuka, continued by Duc Tu Luong.
+    <br> University of Massachusetts Dartmouth • 285 Old Westport Road • Dartmouth, MA 02747-2300
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<div id="accountContainer">
+  <div class="xuInfoCard" ng-if="$root.loggedIn && isEdit">
+    <div class="xuImg profile-page">
+      <img src="{{formdata.avatar}}">
+    </div>
+    <div class="name">{{formdata.firstname}} {{formdata.lastname}}</div>
+    <div class="dept">
+      <form name="forms.avatarForm" id="avatarForm">
+        <label>Upload avatar (max: 5MB, square)</label>
+        <md-button class="md-primary md-no-ink" ngf-select ng-model="formdata.file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'"
+          ngf-max-size="5MB" ngf-multiple="false">Browse</md-button>
+        <div ng-if="msg.uploadProgress">Uploaded: {{msg.uploadProgress}}%</div>
+        <div>
+          <i ng-show="forms.avatarForm.file.$error.maxSize">File too large max 5MB</i>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="changeAvatar()">Update Avatar</md-button>
+      </form>
+    </div>
+    <div class="dept" ng-if="$root.loggedIn">
+      <h4>Department:</h4>
+      <p>Computer & Information Sciences</p>
+    </div>
+    <div class="univ" ng-if="$root.loggedIn">
+      <h4>University:</h4>
+      <p>University of Massachusetts Dartmouth</p>
+    </div>
+  </div>
+  <!-- Login section -->
+  <div id="researchScope" ng-if="!$root.loggedIn" flex="50" flex-xs="100" style="margin:0 auto;">
+    <form ng-submit="submit()" role="form" class="csel-form" id="loginForm" name="forms.loginForm" ng-if="!$root.loggedIn">
+      <h1>Login</h1>
+      <md-input-container class="md-block">
+        <label>Username</label>
+        <input ng-model="credentials.username" required type="text">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input ng-model="credentials.password" required type="password">
+      </md-input-container>
+      <md-button class="md-raised md-primary" type="submit" ng-disabled="forms.loginForm.$invalid">Login</md-button>
+      <md-button class="md-warn" ng-if="msg.error">{{msg.error}}</md-button>
+    </form>
+  </div>
+
+  <div id="researchScope" ng-if="$root.loggedIn">
+    <!-- Listing section -->
+    <div ng-cloak ng-if="$root.loggedIn && !isEdit">
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="Users List" md-on-select="resetMsg()">
+            <md-content class="md-padding">
+              <div layout="row" layout-xs="column">
+                <md-input-container flex="66" flex-xs="0"></md-input-container>
+                <md-input-container flex="33" flex-xs="100">
+                  <label>Type to search your name</label>
+                  <input type="text" name="search" id="search" ng-model="searchInput">
+                </md-input-container>
+              </div>
+              <md-list layout="row" layout-wrap layout-xs="column">
+                <md-tooltip md-direction="top">Select to edit</md-tooltip>
+                <md-list-item flex="50" flex-xs="100" ng-repeat="user in users | toArray:false | filter: searchInput | orderBy:['firstname', 'lastname']"
+                  ng-click="editUser(user.id)">
+                  <img alt="{{user.email}}" ng-src="{{user.avatar ? user.avatar : defaultAvatar}}" err-src="{{defaultAvatar}}" class="md-avatar"
+                  />
+                  <div class="md-list-item-text">
+                    <h3>{{user.firstname}} {{user.lastname}}</h3>
+                    <p>{{user.email}}</p>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab>
+          <md-tab label="Register" md-on-select="resetMsg()">
+            <md-content class="md-padding">
+              <form role="form" class="csel-form" id="registerForm" name="forms.registerForm">
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="33" flex-xs="100">
+                    <label>First Name</label>
+                    <input ng-model="formdata.firstname" required type="text" name="firstname">
+                    <div ng-messages="infoForm.firstname.$error">
+                      <div ng-message="required">First name is required.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container flex="33" flex-xs="100">
+                    <label>Last Name</label>
+                    <input ng-model="formdata.lastname" required type="text" name="lastname">
+                    <div ng-messages="infoForm.lastname.$error">
+                      <div ng-message="required">Last name is required.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container flex="33" flex-xs="100">
+                    <label>Student Type</label>
+                    <md-select name="type" ng-model="formdata.type" required>
+                      <md-option value="scholar">Visiting Scholar</md-option>
+                      <md-option value="graduate" selected>Graduate</md-option>
+                      <md-option value="alumni">Alumni</md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Primary Email</label>
+                    <input ng-model="formdata.email" required type="email">
+                  </md-input-container>
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Secondary Email</label>
+                    <input ng-model="formdata.email2" type="email">
+                  </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Facebook Profile</label>
+                    <input type="text" ng-model="formdata.facebook" name="facebook" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/">
+                    <div ng-messages="registerForm.facebook.$error">
+                      <div ng-message-exp="['pattern']">Invalid URL.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>LinkedIn Profile</label>
+                    <input type="text" ng-model="formdata.linkedin" name="linkedin" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/">
+                    <div ng-messages="registerForm.linkedin.$error">
+                      <div ng-message-exp="['pattern']">Invalid URL.</div>
+                    </div>
+                  </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Current Employer</label>
+                    <input ng-model="formdata.employer" type="text">
+                  </md-input-container>
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Current Position</label>
+                    <input ng-model="formdata.position" type="text">
+                  </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                  <label>Biography</label>
+                  <textarea ng-model="formdata.bio" rows="5" maxlength="500">{{formdata.bio}}</textarea>
+                  <br>
+                  <span class="float-right">{{500 - formdata.bio.length}}/500</span>
+                </md-input-container>
+                <md-button class="md-raised md-primary" ng-click="register()" ng-disabled="forms.registerForm.$invalid">Register</md-button>
+                <md-button class="md-primary" md-no-ink ng-if="msg.successRegister">{{msg.successRegister}}</md-button>
+                <md-button class="md-warn" md-no-ink ng-if="msg.errorRegister">{{msg.errorRegister}}</md-button>
+              </form>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
+    <!-- Profile section -->
+    <div class="ng-cloak" ng-if="$root.loggedIn && isEdit">
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="General" md-on-select="resetMsg()">
+            <md-content class="md-padding">
+              <form role="form" class="csel-form" id="infoForm" name="infoForm">
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="33" flex-xs="100">
+                    <label>First Name</label>
+                    <input ng-model="formdata.firstname" required type="text" name="firstname">
+                    <div ng-messages="infoForm.firstname.$error">
+                      <div ng-message="required">First name is required.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container flex="33" flex-xs="100">
+                    <label>Last Name</label>
+                    <input ng-model="formdata.lastname" required type="text" name="lastname">
+                    <div ng-messages="infoForm.lastname.$error">
+                      <div ng-message="required">Last name is required.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container flex="33" flex-xs="100">
+                    <label>Student Type</label>
+                    <md-select name="type" ng-model="formdata.type" required>
+                      <md-option value="scholar">Visiting Scholar</md-option>
+                      <md-option value="graduate">Graduate</md-option>
+                      <md-option value="alumni">Alumni</md-option>
+                    </md-select>
+                  </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Primary Email</label>
+                    <input ng-model="formdata.email" required type="email">
+                  </md-input-container>
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Secondary Email</label>
+                    <input ng-model="formdata.email2" type="email">
+                  </md-input-container>
+                </div>
+                <div layout="row" layout-xs="column">
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Current Employer</label>
+                    <input ng-model="formdata.employer" type="text">
+                  </md-input-container>
+                  <md-input-container flex="50" flex-xs="100">
+                    <label>Current Position</label>
+                    <input ng-model="formdata.position" type="text">
+                  </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                  <label>Biography</label>
+                  <textarea ng-model="formdata.bio" rows="5" maxlength="500">{{formdata.bio}}</textarea>
+                  <br>
+                  <span class="float-right">{{500 - formdata.bio.length}}/500</span>
+                </md-input-container>
+                <md-button class="md-raised" ng-click="backToList()">Back</md-button>
+                <md-button class="md-primary" md-no-ink ng-if="msg.successUpdate">{{msg.successUpdate}}</md-button>
+                <md-button class="md-raised md-primary float-right" ng-click="studentSubmit()">Update</md-button>
+                <md-button class="md-raised md-warn float-right" ng-click="logout()" ng-if="$root.loggedIn">Logout</md-button>
+              </form>
+            </md-content>
+          </md-tab>
+          <md-tab label="Socials" md-on-select="resetMsg()">
+            <md-content class="md-padding">
+              <form role="form" class="csel-form" name="forms.socialForm" ng-submit="socialSubmit()" ng-if="$root.loggedIn">
+                <md-input-container class="md-block">
+                  <label>Facebook Profile</label>
+                  <input type="text" ng-model="formdata.facebook" name="facebook" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/">
+                  <div ng-messages="socialForm.facebook.$error">
+                    <div ng-message-exp="['pattern']">Invalid URL.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>LinkedIn Profile</label>
+                  <input type="text" ng-model="formdata.linkedin" name="linkedin" ng-pattern="/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})/">
+                  <div ng-messages="socialForm.linkedin.$error">
+                    <div ng-message-exp="['pattern']">Invalid URL.</div>
+                  </div>
+                </md-input-container>
+                <md-button class="md-primary" md-no-ink ng-if="msg.successSocial">{{msg.successSocial}}</md-button>
+                <md-button class="md-raised md-primary float-right" type="submit">Update</md-button>
+              </form>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
+  </div>
+</div>

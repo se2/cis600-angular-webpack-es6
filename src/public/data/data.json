@@ -1,0 +1,127 @@
+{
+    "home": {
+        "mainPara" : "The Concurrent Software Engineering Laboratory (CSEL) performs research activities in modeling, design, development, and analysis of concurrent software systems, including parallel and distributed computing systems. This includes research in distributed software engineering, formal methods, flexible manufacturing systems, workflow management systems, web services, and multi-agent systems.",
+        "subParas" : [
+          {"point": "The research work in distributed software engineering covers many topics related to requirements specification and analysis, architecture design, verification and validation. Areas of focus include design and analysis methods for distributed object systems, parallel algorithms, multi-agent software, performance metrics for concurrency models, and techniques and tools for testing of concurrent software systems."},
+          {"point": "One area of emphasis is the theory and applications of <a href='http://www.informatik.uni-hamburg.de/TGI/PetriNets/' target='_blank'>Petri Nets</a>, a formal graph model for concurrency and coordination by using various forms of Petri nets and automata, including systems that require annotations of time, costs, and resource allocation."},
+          {"point": "Study of structural and behavioral properties of Petri net morphisms and their applications in analysis, decomposition, and synthesis of concurrent systems is part of a broader interest in formal conceptual modeling of parallel and distributed systems. Another interest is in efficient parallelization of sequential algorithms or programs."},
+          {"point": "Part of the research in verification seeks new approaches to improve the effectiveness of automated system verification using temporal logic and model checking algorithms."},
+          {"point": "Research in service-oriented computing includes model-based service composition, mobile cloud computing, agent-based web services, and web services security."},
+          {"point": "Research related to multi-agent systems focuses on model-based agent development and agent-oriented software engineering. Some specific research issues in this area include formal specification and prototyping of multi-agent systems; model-based development of agent-oriented software, including design and implementation of software agents; and real-world applications of agent technology."}
+        ]
+    },
+    
+    "publications": {
+        "umd09JP":[
+            {"point": "Haiping Xu and Deepti Bhalerao, \"Reliable and Secure Distributed Cloud Data Storage Using Reed-Solomon Codes,\" To appear in International Journal of Software Engineering and Knowledge Engineering (IJSEKE), 2015. PDF File"},
+            {"point": "Jean Rahme and Haiping Xu, \"A Software Reliability Model for Cloud-Based Software Rejuvenation Using Dynamic Fault Trees,\" To appear in International Journal of Software Engineering and Knowledge Engineering (IJSEKE), 2015. PDF File"},
+            {"point": "Haiping Xu, \"Future Research Directions of Software Engineering and Knowledge Engineering,\" International Journal of Software Engineering and Knowledge Engineering (IJSEKE), Vol. 25, No. 2, 2015, pp. 415-421. PDF File"}
+        ],
+        "umd03JP":[
+            {"point": "Haiping Xu, Liudong Xing, and Ryan Robidoux, \"DRBD: Dynamic Reliability Block Diagrams for System Reliability Modeling,\" International Journal of Computers and Applications (IJCA), Vol. 31, No. 2, 2009, pp. 132-141. PDF File"},
+            {"point": "Haiping Xu, Mihir Ayachit, and Abhinay Reddyreddy, \"Formal Modeling and Analysis of XML Firewall for Service-Oriented Systems,\" International Journal of Security and Networks (IJSN), Vol. 3, No. 3, 2008, pp. 147-160. PDF File"},
+            {"point": "Zhenhua Yu,Yuanli Cai, and Haiping Xu, \"Petri Nets Semantics of π-calculus,\" Frontiers of Electrical and Electronic Engineering in China (FEEEC), September 2008, Vol. 3, No. 3, pp. 290-294. SpringerLink PDF File"}
+        ],
+        "umd91JP":[
+            {"point": "Haiping Xu and Sol M. Shatz, \"A Framework for Model-Based Design of Agent-Oriented Software,\" IEEE Transactions on Software Engineering (IEEE TSE), January 2003, Vol. 29, No. 1, pp. 15-30. PDF File"},
+            {"point": "Ravi K. Gedela, Sol M. Shatz, and Haiping Xu, \"Compositional Petri Net Models of Advanced Tasking in Ada-95,\" Computer Languages, July 1999, Vol.25, No.2, pp. 55-87. PDF File (download from ScienceDirect)"},
+            {"point": "Ravi K. Gedela, Sol M. Shatz, and Haiping Xu, \"Formal Modeling of Synchronization Methods for Concurrent Objects in Ada 95,\" ACM SIGAda Ada Letters, 1999, Volume XIX, Issue 3, pp. 211-220. Also appears in [GSX99c]"}
+        ],
+        "books":[
+            {"point": "Haiping Xu (Ed.), Proceedings of the 27th International Conference on Software Engineering and Knowledge Engineering (SEKE 2015), Pittsburgh, USA, July 6-8, 2015. (Foreword) (Table of Contents)"},
+            {"point": "Haiping Xu, Gerry Gao, Yan Bai, and George Roussos (Eds.), Feature Topical Issue on Software Engineering and Knowledge Engineering for Mobile Cloud Computing and Services, International Journal of Software Engineering and Knowledge Engineering (IJSEKE), Vol. 24, No. 7, September 2014."},
+            {"point": "Haiping Xu (Ed.), Practical Applications of Agent-Based Technology, InTech, March 2012, ISBN: 978-953-51-0276-2. (Preface) (Book Info)."},
+            {"point": "M. A. Karim Sadiq, Haiping Xu, Jaroslav Zendulka, and Adegboyega K. Ojo (Eds.), Proceedings of the International Conference on Software Engineering Theory and Practice (SETP-08), Orlando, Florida, USA, July 7-10, 2008. ISRST 2008, ISBN 978-1-60651-005-6. (Book Info) DBLP:Haiping Xu"}
+        ],
+        "bookChapters":[
+            {"point": "Xiaoqin Zhang, Haiping Xu, and Bhavesh Shrestha, \"Building a Healthcare Multi-agent Simulation System with Role-Based Modeling,\" In R. Paranjape and A. Sadanand (Eds.), Multi-Agent Systems for Healthcare Simulation and Modeling: Applications for System Improvement, Chapter VI, IGI Global, August 2009, ISBN: 978-1605667720. PDF File (Book Info)"}
+        ],
+        "umd09CP":[
+            {"point": "Jean Rahme and Haiping Xu, \"Reliability-Based Software Rejuvenation Scheduling for Cloud-Based Systems,\" In Proceedings of the 27th International Conference on Software Engineering and Knowledge Engineering (SEKE 2015), Pittsburgh, USA, July 6-8, 2015, pp. 298-303. PDF File"},
+            {"point": "Haiping Xu and Deepti Bhalerao, \"A Reliable and Secure Cloud Storage Schema Using Multiple Service Providers,\" In Proceedings of the 27th International Conference on Software Engineering and Knowledge Engineering (SEKE 2015), Pittsburgh, USA, July 6-8, 2015, pp. 116-121 (Best Paper Award). PDF File"},
+            {"point": "Haiping Xu and Arturo Li, \"Two-Level Smart Search Engine Using Ontology-Based Semantic Reasoning,\" In Proceedings of the 26th International Conference on Software Engineering and Knowledge Engineering (SEKE 2014), Vancouver, Canada, July 1-3, 2014, pp. 648-652. PDF File"}
+        ],
+        "umd03CP":[
+            {"point": "Benjamin J. Ford, Haiping Xu, Christopher K. Bates, and Sol M. Shatz, \"Model-Based Specification of Flexible and Complex Bidding Strategies in Agent-Based Online Auctions,\" In Proceedings of the 6th International Conference on Information Technology: New Generations (ITNG 2009), April 27-29, 2009, Las Vegas, Nevada, USA, pp. 894-900. PDF File"},
+            {"point": "Fei Dong, Sol M. Shatz, and Haiping Xu, \"Inference of Online Auction Shills Using Dempster-Shafer Theory,\" In Proceedings of the 6th International Conference on Information Technology: New Generations (ITNG 2009), April 27-29, 2009, Las Vegas, Nevada, USA, pp. 908-914. PDF File"},
+            {"point": "Abhinay Reddyreddy and Haiping Xu, \"Securing Service-Oriented Systems Using State-Based XML Firewall,\" In Proceedings of the 20th International Conference on Software Engineering and Knowledge Engineering (SEKE'2008), July 1-3, 2008, Redwood City, San Francisco Bay, California, USA, pp. 512-518. PDF File"}
+        ],
+        "umd91CP":[
+            {"point": "Haiping Xu and Sol M. Shatz, \"A Framework for Modeling Agent-Oriented Software,\" In Proceedings of the IEEE 21st International Conference on Distributed Computing Systems (ICDCS-21), April 16-19, 2001, Phoenix, Arizona, USA, pp. 57-64. PDF File"},
+            {"point": "Haiping Xu and Sol M. Shatz, \"An Agent-Based Petri Net Model with Application to Seller/Buyer Design in Electronic Commerce,\" In Proceedings of the IEEE 5th International Symposium on Autonomous Decentralized Systems (ISADS 2001), March 26-28, 2001, Dallas, Texas, USA, pp. 11-18. PDF File"},
+            {"point": "Haiping Xu and Sol M. Shatz, \"Extending G-Nets to Support Inheritance Modeling in Concurrent Object-Oriented Design,\" In Proceedings of the IEEE International Conference on Systems, Man, and Cybernetics (SMC 2000), October 8-11, 2000, Nashville, Tennessee, USA, pp. 3128-3133. PDF File"}
+        ],
+        "techReports":[
+            {"point": "Ryan Robidoux and Haiping Xu, \"Automated Verification of Dynamic Reliability Block Diagrams Using Colored Petri Nets,\" Computer and Information Science Department, University of Massachusetts Dartmouth, March 2008. PDF File"},
+            {"point": "Haiping Xu, Sol M. Shatz, and Chris Bates, \"A Framework for Agent-Based Trust Management in Online Auctions,\" Computer and Information Science Department, University of Massachusetts Dartmouth, December 2007. PDF File"},
+            {"point": "Zhenhua Yu,Yuanli Cai, and Haiping Xu, \"A Novel π-Net Based Architecture Description Language for Multi-Agent Systems,\" Computer and Information Science Department, University of Massachusetts Dartmouth, September 2006. PDF File"}
+        ],
+        "thesisProject":[
+            {"point": "Haiping Xu, \"A Model-Based Approach for Development of Multi-Agent Software Systems,\" Ph.D. Thesis, Department of Computer Science, University of Illinois at Chicago, March 2003. Outstanding Ph.D. Thesis Award 2004, Thesis Supervisor: Dr. Sol M. Shatz."},
+            {"point": "Haiping Xu, \"Task Partitioning and Allocation on Supercomputers and Network of Workstations,\" Master's Project, Wright State University, Dayton, OH, USA, May 1998, Project Supervisor: Dr. Karen Tomko."},
+            {"point": "Haiping Xu, \"Development of Intelligent Chinese Tutoring System,\" Master's Thesis, Zhejiang University, Hangzhou, China, January 1992 (in Chinese), Thesis Supervisors: Dr. Zengwu Chen and Dr. Shangxu Hu."},
+            {"point": "Haiping Xu, \"Computer-Aided Design of Quadratic Regulator,\" Undergraduate Thesis, Zhejiang University, Hangzhou, China, July 1989 (in Chinese)."}
+        ]
+    },
+    
+    "gradStudents": {
+        "mastersThesisUnder":[
+            {"point": "Amol S. Gade, Predicting Local House Prices with Deep Learning, Master's Thesis, Computer and Information Science Department, UMass Dartmouth, In Progress."},
+            {"point": "Yuhan Zhang, SLTM: A Sentence Level Topic Model for Analysis of Online Product Reviews, Master's Thesis, Computer and Information Science Department, UMass Dartmouth, Friday, September 4, 2015 (Abstract)."},
+            {"point": "Chang Wei (Morris) Huang, Embedding Digital Signatures as Invisible Watermarks in Cloud-Based Critical Data, Master's Thesis, Computer and Information Science Department, UMass Dartmouth, Friday, April 11, 2014 (Abstract)."}
+        ],
+        "mastersProjectUnder":[
+            {"point": "Vishal Sarode, TBD, Master's Project, Computer and Information Science Department, UMass Dartmouth, In Progress."},
+            {"point": "Surya K. Juthuka, TBD, Master's Project, Computer and Information Science Department, UMass Dartmouth, In Progress."},
+            {"point": "Chien Sien Low, TBD, Master's Project, Computer and Information Science Department, UMass Dartmouth, In Progress."}
+        ],
+        "phdDissertationUnder":[
+            {"point": "Amruta A. Meshram, Big Data Analysis, Ph.D. Dissertation, Computer and Information Science Department, UMass Dartmouth, In Progress."},
+            {"point": "Jean F. Rahme, Modeling and Analyzing Cloud-Based Systems Using Extended Dynamic Fault Trees, Ph.D. Dissertation, Computer and Information Science Department, UMass Dartmouth, In Progress. (Paper-1)(Paper-2)(Paper-3)(Paper-4)(Paper-5)"},
+            {"point": "Fei Dong, Automated Inference of Shilling Behavior in Online Auction Systems, Ph.D. Dissertation, Department of Computer Science, University of Illinois at Chicago, Monday, April 23, 2012, Co-advised with Dr. Sol M. Shatz. (Paper-1)(Paper-2)(Paper-3)(Paper-4)(Paper-5)"},
+            {"point": "Zhenhua Yu, A Novel π-Net Based Architecture Description Language for Multi-Agent Systems, Ph.D. Dissertation, School of Electronics and Information Engineering, Xi'an Jiaotong University, July 2007, Co-advised with Dr. Yuanli Cai. (Paper-1)(Paper-2)(Paper-3)(Paper-4)"}
+        ],
+        "capstoneProjectSupervised":[
+            {"point": "Marvin Celestin, Venus Ho, Erin Fahey, Zachary Moriarty, and MacKinley Trudeau*, Automated Real-Time Price Tracking Services for Online Products in E-Commerce, Senior Project, Computer and Information Science Department, UMass Dartmouth, Friday, May 1, 2015 (CIS Day)."}
+        ],
+        "mastersThesisCommittee":[
+            {"point": "Guilin Zhao, Probabilistic Competing Failure Analysis Considering Random Propagation Time, Department of Electrical & Computer Engineering, UMass Dartmouth, In Progress. Thesis Advisor: Dr. Liudong Xing."},
+            {"point": "Daniel R. Noyes, Security Analysis of USB Technology, Department of Electrical & Computer Engineering, UMass Dartmouth, In Progress. Thesis Advisor: Dr. Paul Fortier."},
+            {"point": "Lavanya Mandava, Reliability Analysis of Cloud-RAID Systems with Imperfect Fault Coverage, Department of Electrical & Computer Engineering, UMass Dartmouth, In Progress. Thesis Advisor: Dr. Liudong Xing."}
+        ],
+        "mastersProjectCommittee":[
+            {"point": "Sachin Patel, Capturing Provenance in Interactive Web Visualization, Computer and Information Science Department, UMass Dartmouth, LARTS-117, 3:00PM, Friday, October 16, 2015, Project Advisor: Dr. David Koop."},
+            {"point": "Komal Shilimkar, Receiving Real-time Notifications with Multiple Mobile Devices, Computer and Information Science Department, UMass Dartmouth, LARTS-117, 3:00PM, Friday, October 9, 2015, Project Advisor: Dr. Firas Khatib."},
+            {"point": "Manideep Gunnam, Avoiding Overlap when Distorting Treemaps, Computer and Information Science Department, UMass Dartmouth, Friday, August 28, 2015, Project Advisor: Dr. David Koop."}
+        ],
+        "phdDissertationCommittee":[
+            {"point": "Qisi Liu, Risk Assessment, Department of Electrical & Computer Engineering, UMass Dartmouth, In Progress. Thesis Advisor: Dr. Liudong Xing."},
+            {"point": "Paul C Proffitt, TBD, Department of Electrical and Computer Engineering, UMass Dartmouth, In Progress. Thesis Advsior: Dr. Honggang Wang."},
+            {"point": "Yujie Wang, Authentication Design for Color-depth-based 3D Video Transmission over Wireless Networks, Department of Electrical and Computer Engineering, UMass Dartmouth, In Progress. Thesis Advsior: Dr. Honggang Wang."}
+        ]
+    },
+    
+    "grantActivities": [
+      {"point": "PI: Haiping Xu, NSF Grant, \"<b>CT-ISG: Agent-Based Trust Management for Trust Re-Evaluation in Online Auctions,</b>\" Collaborative Research with University of Illinois at Chicago, August 2007 – July 2010 ( <a href='http://www.cis.umassd.edu/~hxu/Projects/ATM/' target='_blank'>Project Home Page</a> )."},
+      {"point": "PI: Haiping Xu, Co-PI: Ramprasad Balasubramanian, Marine Corps Grant, \"<b>Ontology-Based Dynamic Service Discovery for Fault-Tolerant Service-Oriented Systems,</b>\" May 2008 – October 2008."},
+      {"point": "PI: Haiping Xu, Chancellor’s Research/UMass Healey Endowment Grants, \"<b>State-Based XML Firewall for Service-Oriented Systems,</b>\" July 2007 – June 2008 ( <a href='http://www.cis.umassd.edu/~hxu/Projects/XMLFirewall/' target='_blank'>Project Home Page</a> )."},
+      {"point": "PI: Haiping Xu, Research Seed Initiative Fund (RSIF), \"<b>Agent-Based Trustworthy Service-Oriented Architecture,</b>\" July 2007 – June 2008."},
+      {"point": "PI: Haiping Xu, Chancellor’s Research/UMass Healey Endowment Grants, \"<b>A Trustworthy Agent Based Online Auction System,</b>\" July 2006 – June 2007."},
+      {"point": "PI: Haiping Xu, Co-PI: Xiaoqin Zhang, Research Seed Initiative Fund (RSIF), \"<b>Prototyping Role-Based Large Scale, Complex Multi-Agent Applications,</b>\" February 2005 – January 2006 (  <a href='http://www.cis.umassd.edu/%7Ehxu/Projects/RADE/' target='_blank'>Project Home Page</a> )."}
+    ],
+    
+    "contactInfo": {
+      "director": "Dr. Haiping Xu",
+      "staff": [
+        {"point": "Lab Manager: Jean F. Rahme (Email: jrahme@umassd.edu)"},
+        {"point": "Technician: Paul Naylor (Email: pnaylor@umassd.edu)"},
+        {"point": "Former Lab Manager: Arturo Li (graduated in May 2013)"}
+      ],
+      "location": [
+        {"point": "101C Textile Building"},
+        {"point": "285 Old Westport Rd."},
+        {"point": "University of Massachusetts Dartmouth"},
+        {"point": "(508) 910-6285"}
+      ]
+    }
+}
