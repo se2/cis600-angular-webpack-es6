@@ -135,9 +135,9 @@
                 </div>
                 <md-input-container class="md-block">
                   <label>Biography</label>
-                  <textarea ng-model="formdata.bio" rows="5" maxlength="500">{{formdata.bio}}</textarea>
+                  <textarea ng-model="formdata.bio" rows="5">{{formdata.bio}}</textarea>
                   <br>
-                  <span class="float-right">{{500 - formdata.bio.length}}/500</span>
+                  <!-- <span class="float-right">{{500 - formdata.bio.length}}/500</span> -->
                 </md-input-container>
                 <md-button class="md-raised md-primary" ng-click="register()" ng-disabled="forms.registerForm.$invalid">Register</md-button>
                 <md-button class="md-primary" md-no-ink ng-if="msg.successRegister">{{msg.successRegister}}</md-button>
@@ -201,9 +201,9 @@
                 </div>
                 <md-input-container class="md-block">
                   <label>Biography</label>
-                  <textarea ng-model="formdata.bio" rows="5" maxlength="500">{{formdata.bio}}</textarea>
+                  <textarea ng-model="formdata.bio" rows="5">{{formdata.bio}}</textarea>
                   <br>
-                  <span class="float-right">{{500 - formdata.bio.length}}/500</span>
+                  <!-- <span class="float-right">{{500 - formdata.bio.length}}/500</span> -->
                 </md-input-container>
                 <md-button class="md-raised" ng-click="backToList()">Back</md-button>
                 <md-button class="md-primary" md-no-ink ng-if="msg.successUpdate">{{msg.successUpdate}}</md-button>

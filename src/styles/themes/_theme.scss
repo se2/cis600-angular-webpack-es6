@@ -864,6 +864,53 @@ md-card-title-media .md-media-sm {
     color: $primary-color;
 }
 
-.people-page #GSSH2 {
-    margin: 0 -8px;
+.people-page #GSSH2,
+.people-page #CPSH2,
+.people-page #GSCH2 {
+    padding: 0 8px;
+}
+
+.pos-rel {
+    position: relative;
+}
+
+button.details-btn {
+    position: absolute;
+    left: 0;
+}
+
+.wide-dialog {
+    width: 60%;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+    @media #{$mobile} {
+        max-width: 96%;
+        max-height: 86vh;
+    }
+}
+
+.md-icon-button {
+    &:hover {
+        path {
+            fill: $accent-color;
+        }
+    }
+}
+
+.info.login-header a {
+    color: $primary-color-light;
+    text-decoration: none;
+    float: right;
+    transition: color 300ms;
+
+    &:hover {
+        color: $accent-color;
+    }
+}
+
+md-card-title-text {
+    @media #{$mobile} {
+        padding-right: 8px;
+    }
 }

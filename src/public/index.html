@@ -28,7 +28,9 @@
         <div class="info">
           Computer & Information Sciences, UMass Dartmouth
         </div>
-        <md-button class="md-raised" ui-sref="profile">{{loggedIn ? 'Profile' : 'Login'}}</md-button>
+        <div class="info login-header">
+          <a ui-sref="profile">{{loggedIn ? 'Profile' : 'Login'}}</a>
+        </div>
       </div>
     </div>
     <div id="headerRow2">
