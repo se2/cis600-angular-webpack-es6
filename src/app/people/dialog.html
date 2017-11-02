@@ -1,4 +1,4 @@
-<md-dialog aria-label="$root.selectedUser.id" class="wide-dialog">
+<md-dialog aria-label="{{$root.selectedUser.id}}" flex layout="column">
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>{{$root.selectedUser.firstname}} {{$root.selectedUser.lastname}}</h2>
@@ -17,7 +17,7 @@
             <span class="md-subhead" ng-if="$root.selectedUser.position && $root.selectedUser.employer">{{$root.selectedUser.position}} at {{$root.selectedUser.employer}}</span>
           </md-card-title-text>
           <md-card-title-media>
-            <div class="md-media-sm card-media" style="background-image:url('{{$root.selectedUser.avatar ? $root.selectedUser.avatar : defaultAvatar}}')"></div>
+            <div class="md-media-sm card-media" ng-style="{'background-image': 'url({{$root.selectedUser.avatar ? $root.selectedUser.avatar : defaultAvatar}})'}"></div>
           </md-card-title-media>
         </md-card-title>
         <md-card-content>

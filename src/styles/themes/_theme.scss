@@ -879,17 +879,6 @@ button.details-btn {
     left: 0;
 }
 
-.wide-dialog {
-    width: 60%;
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-    @media #{$mobile} {
-        max-width: 96%;
-        max-height: 86vh;
-    }
-}
-
 .md-icon-button {
     &:hover {
         path {
@@ -903,7 +892,6 @@ button.details-btn {
     text-decoration: none;
     float: right;
     transition: color 300ms;
-
     &:hover {
         color: $accent-color;
     }
@@ -912,5 +900,14 @@ button.details-btn {
 md-card-title-text {
     @media #{$mobile} {
         padding-right: 8px;
+    }
+}
+
+/* workaround for iOS issue */
+@media #{$mobile} {
+    .md-dialog-container {
+        height: 100% !important;
+        position: fixed !important;
+        top: 0px !important;
     }
 }

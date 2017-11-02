@@ -36,7 +36,6 @@ var peopleCtrl = function (AppServices, $rootScope, $scope, $mdDialog) {
   $(function () {
     /*-- Scroll to link --*/
     $('.scroller-link').click(function (e) {
-      console.log("click");
       e.preventDefault(); //Don't automatically jump to the link
       var id;
       id = $(this).attr('href').replace('#', ''); //Extract the id of the element to jump to
