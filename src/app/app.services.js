@@ -1,15 +1,8 @@
 export default function ($http) {
+  var dataURL = 'http://www.cis.umassd.edu/~dluong1/csel-test/data/';
   return {
-    getPageData: function () {
-      return $http.get('./data/data.json')
-        .then(function (response) { // success
-          return response.data;
-        }, function (response) { // error
-          return response.data;
-        });
-    },
     getHomeData: function () {
-      return $http.get('./data/homeData.json')
+      return $http.get(dataURL + 'getHomeData.php')
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -17,7 +10,7 @@ export default function ($http) {
         });
     },
     getPubData: function () {
-      return $http.get('./data/publicationData.json')
+      return $http.get(dataURL + 'getPubData.php')
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -25,7 +18,7 @@ export default function ($http) {
         });
     },
     getStudentData: function () {
-      return $http.get('./data/studentData.json')
+      return $http.get(dataURL + 'getStudentData.php')
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -33,7 +26,7 @@ export default function ($http) {
         });
     },
     getUsersData: function () {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/getUsers.php')
+      return $http.post(dataURL + 'getUsers.php')
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -41,7 +34,7 @@ export default function ($http) {
         });
     },
     getUserData: function (userId) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/getUser.php', {
+      return $http.post(dataURL + 'getUser.php', {
         'userId': userId
       })
       .then(function (response) {
@@ -52,7 +45,10 @@ export default function ($http) {
         });
     },
     login: function (username, password) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/login.php', { 'username': username, 'password': password })
+      return $http.post(dataURL + 'login.php', {
+          'username': username,
+          'password': password
+      })
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -60,7 +56,7 @@ export default function ($http) {
         });
     },
     register: function (formData) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/register.php', {
+      return $http.post(dataURL + 'register.php', {
         'data': formData
       })
         .then(function (response) {
@@ -70,7 +66,7 @@ export default function ($http) {
         });
     },
     updatePass: function (email, currentPassword, newPassword) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/updatePass.php', {
+      return $http.post(dataURL + 'updatePass.php', {
         'email': email,
         'currentPassword': currentPassword,
         'newPassword': newPassword
@@ -82,7 +78,7 @@ export default function ($http) {
         });
     },
     resetPass: function (email) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/resetPass.php', {
+      return $http.post(dataURL + 'resetPass.php', {
         'email': email
       })
         .then(function (response) {
@@ -92,7 +88,7 @@ export default function ($http) {
         });
     },
     updateStudent: function (studentData) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/updateStudent.php', {
+      return $http.post(dataURL + 'updateStudent.php', {
         'data': studentData
       })
         .then(function (response) {
@@ -102,7 +98,7 @@ export default function ($http) {
         });
     },
     updateSocial: function (studentData) {
-      return $http.post('http://www.cis.umassd.edu/~dluong1/csel/data/updateSocial.php', {
+      return $http.post(dataURL + 'updateSocial.php', {
         'userId': studentData.id,
         'facebook': studentData.facebook,
         'linkedin': studentData.linkedin

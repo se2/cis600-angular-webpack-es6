@@ -1,7 +1,7 @@
 <div id="accountContainer">
   <div class="xuInfoCard" ng-if="$root.loggedIn && isEdit">
     <div class="xuImg profile-page">
-      <img src="{{formdata.avatar}}">
+      <img ng-src="{{formdata.avatar}}">
     </div>
     <div class="name">{{formdata.firstname}} {{formdata.lastname}}</div>
     <div class="dept">

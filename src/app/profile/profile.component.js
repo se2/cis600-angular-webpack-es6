@@ -98,7 +98,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
 
   $scope.upload = function (file) {
     Upload.upload({
-      url: 'http://www.cis.umassd.edu/~dluong1/csel/data/changeAvatar.php',
+      url: 'http://www.cis.umassd.edu/~dluong1/csel-test/data/changeAvatar.php',
       data: { file: file, 'userId': $scope.formdata.id }
     }).then(function (resp) {
       console.log('Success ' + resp.config.data.file.name + ' uploaded.');

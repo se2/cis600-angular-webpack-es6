@@ -1,5 +1,7 @@
 <IfModule mod_rewrite.c>
-Options +FollowSymlinks
+Options All -Indexes
+IndexIgnore *.json
+# Options +FollowSymlinks
 RewriteEngine On
 
 # Don't rewrite files or directories
@@ -7,5 +9,15 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-RewriteRule (.*) /~dluong1/csel/index.html [L]
+RewriteRule (.*) /~dluong1/csel-test/index.html [L]
 </IfModule>
+
+<FilesMatch "(\.(json)|~)$">
+    ## Apache 2.2
+    Order allow,deny
+    Deny from all
+    Satisfy All
+
+    ## Apache 2.4
+    # Require all denied
+</FilesMatch>

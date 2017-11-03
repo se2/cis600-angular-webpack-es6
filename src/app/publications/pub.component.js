@@ -6,6 +6,7 @@ var pubCtrl = function (AppServices) {
 
   // Get the json data from the service($http)
   AppServices.getPubData().then(function (data) {
+    data = JSON.parse(data);
     publications.umd09JP = data.publications.umd09JP;
     publications.umd03JP = data.publications.umd03JP;
     publications.umd91JP = data.publications.umd91JP;

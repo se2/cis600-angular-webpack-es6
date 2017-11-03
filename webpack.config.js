@@ -100,7 +100,7 @@ if (TARGET !== undefined && TARGET.startsWith('build')) {
   module.exports = merge.smart(common, {
     output: {
       path: __dirname + '/dist',
-      publicPath: '/~dluong1/csel/',
+      publicPath: '/~dluong1/csel-test/',
       filename: '[name].[hash].js',
       chunkFilename: '[name].[hash].js'
     },

@@ -37,7 +37,7 @@
               <span class="md-subhead" ng-if="person.position && person.employer">{{person.position}} at {{person.employer}}</span>
             </md-card-title-text>
             <md-card-title-media>
-              <div class="md-media-sm card-media" style="background-image:url('{{person.avatar ? person.avatar : defaultAvatar}}')"></div>
+              <div class="md-media-sm card-media" ng-style="{'background-image': 'url({{person.avatar ? person.avatar : defaultAvatar}})'}"></div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center" class="pos-rel">
@@ -74,7 +74,7 @@
               <span class="md-subhead" ng-if="person.position && person.employer">{{person.position}} at {{person.employer}}</span>
             </md-card-title-text>
             <md-card-title-media>
-              <div class="md-media-sm card-media" style="background-image:url('{{person.avatar ? person.avatar : defaultAvatar}}')"></div>
+              <div class="md-media-sm card-media" ng-style="{'background-image': 'url({{person.avatar ? person.avatar : defaultAvatar}})'}"></div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center" class="pos-rel">
@@ -111,7 +111,7 @@
               <span class="md-subhead" ng-if="person.position && person.employer">{{person.position}} at {{person.employer}}</span>
             </md-card-title-text>
             <md-card-title-media>
-              <div class="md-media-sm card-media" style="background-image:url('{{person.avatar ? person.avatar : defaultAvatar}}')"></div>
+              <div class="md-media-sm card-media" ng-style="{'background-image': 'url({{person.avatar ? person.avatar : defaultAvatar}})'}"></div>
             </md-card-title-media>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center" class="pos-rel">

@@ -5,6 +5,7 @@ var gradCtrl = function (AppServices) {
   var gradStudents = this;
   //Get the json data from the service($http)
   AppServices.getStudentData().then(function (data) {
+    data = JSON.parse(data);
     gradStudents.mastersThesisUnder = data.gradStudents.mastersThesisUnder;
     gradStudents.mastersProjectUnder = data.gradStudents.mastersProjectUnder;
     gradStudents.phdDissertationUnder = data.gradStudents.phdDissertationUnder;

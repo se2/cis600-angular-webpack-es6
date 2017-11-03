@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <base href="/" />
-  <!-- <base href="/~dluong1/csel/" /> -->
+  <!-- <base href="/~dluong1/csel-test/" /> -->
 
 </head>
 
@@ -64,6 +64,9 @@
         </li>
         <li class="inline-list contactInfo">
           <a ui-sref="contactInfo">Contact Info</a>
+        </li>
+        <li class="inline-list profile" ng-if="$root.loggedIn">
+          <a ui-sref="profile">Profile</a>
         </li>
       </ul>
     </div>
