@@ -865,12 +865,6 @@ md-card-title-media .md-media-sm {
     color: $primary-color;
 }
 
-.people-page #GSSH2,
-.people-page #CPSH2,
-.people-page #GSCH2 {
-    padding: 0 8px;
-}
-
 .pos-rel {
     position: relative;
 }
@@ -902,6 +896,34 @@ md-card-title-text {
     @media #{$mobile} {
         padding-right: 8px;
     }
+}
+
+#gradStudentsContainer #gradStudentsContent {
+    .people-title {
+        padding-bottom: 8px;
+    }
+    #GSSContainer.people-page {
+        padding-top: 40px;
+    }
+}
+
+.form-section-title {
+    color: $primary-color;
+    padding-bottom: 5px;
+    border-bottom: 2px solid $accent-color;
+    margin-bottom: 8px;
+}
+
+.form-wrapper {
+    &.md-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.search-not-found {
+    text-align: center;
+    color: $accent-color;
 }
 
 /* workaround for iOS issue */

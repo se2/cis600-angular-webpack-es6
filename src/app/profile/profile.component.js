@@ -2,6 +2,12 @@ import template from './profile.html';
 
 var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   $scope.defaultAvatar = "images/noimage.png";
+  $scope.defaultForm = {
+    avatar: $scope.defaultAvatar,
+    type: 'graduate',
+    year: 2016,
+    school: 'UMass Dartmouth'
+  }
   // $scope variables
   $scope.isEdit = false;
   $scope.formdata = {};
@@ -10,15 +16,17 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   $scope.msg = {};
   $scope.users = {};
   $scope.ids = {};
-  $scope.formdata.avatar = $scope.defaultAvatar;
+  $scope.formdata = $scope.defaultForm;
 
   // check logged-in state
   if (sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '') {
-    AppServices.getUsersData().then(function (result) {
-      $scope.users = result;
-      $scope.ids = result.map(function (item) { return item["id"]; });
-      sessionStorage.setItem('csel-users', JSON.stringify($scope.ids));
-    })
+    if ($rootScope.isAdmin) {
+      AppServices.getUsersData().then(function (result) {
+        $scope.users = result;
+        $scope.ids = result.map(function (item) { return item["id"]; });
+        sessionStorage.setItem('csel-users', JSON.stringify($scope.ids));
+      });
+    }
     $rootScope.loggedIn = true;
   } else {
     $rootScope.loggedIn = false;
@@ -38,13 +46,17 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   }
 
   $scope.submit = function (credentials) {
+    $scope.formdata.searchInput = '';
+    $scope.formdata = $scope.defaultForm;
+    $scope.msg = {};
     AppServices.login($scope.credentials.username, $scope.credentials.password).then(function (result) {
       if (result.found) {
-        $scope.error = '';
         $rootScope.loggedIn = true;
+        $rootScope.isAdmin = (result.userRole == 'admin') ? true : false;
         $scope.isEdit = false;
         $scope.users = result.users;
         $scope.ids = result.users.map(function (item) { return item["id"]; });
+        sessionStorage.setItem('csel-role', result.userRole);
         sessionStorage.setItem('csel-users', JSON.stringify($scope.ids));
       } else {
         $rootScope.loggedIn = false;
@@ -64,28 +76,34 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
 
   $scope.backToList = function () {
     $scope.msg = {};
-    $scope.formdata = {};
+    $scope.formdata = $scope.defaultForm;
     $scope.isEdit = false;
   }
 
   $scope.register = function () {
-    $scope.formdata.avatar = $scope.formdata.avatar ? $scope.formdata.avatar : $scope.defaultAvatar;
+    $scope.formdata.avatar = $scope.defaultAvatar;
+    if ($scope.formdata.middlename && $scope.formdata.middlename != '') {
+      $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.middlename + '. ' + $scope.formdata.lastname;
+    } else {
+      $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
+    }
+    if ($scope.formdata.type != 'alumni') {
+      $scope.formdata.year = '';
+    }
     AppServices.register($scope.formdata)
       .then(function (result) {
         if (Object.keys(result).length > 0) {
           // update current users list
-          $scope.users.push($scope.formdata);
-          // update user data
-          $scope.formdata = {};
-          $scope.formdata.type = 'graduate';
-          $scope.formdata.avatar = $scope.defaultAvatar;
+          $scope.users.push(result);
+          // reset form data
+          $scope.formdata = $scope.defaultForm;
           $scope.forms.registerForm.$setPristine();
           $scope.forms.registerForm.$setUntouched();
           $scope.msg = {};
           $scope.msg.successRegister = 'Registered Successfully';
         } else {
           $scope.msg = {};
-          $scope.msg.errorRegister = 'Email already exists!';
+          // $scope.msg.errorRegister = 'Email already exists!';
         }
       });
   }
@@ -116,6 +134,14 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   };
 
   $scope.studentSubmit = function () {
+    if ($scope.formdata.middlename && $scope.formdata.middlename != '') {
+      $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.middlename + '. ' + $scope.formdata.lastname;
+    } else {
+      $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
+    }
+    if ($scope.formdata.type != 'alumni') {
+      $scope.formdata.year = '';
+    }
     AppServices.updateStudent($scope.formdata)
       .then(function (result) {
         if (result.updated) {
@@ -153,20 +179,37 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
     } else {
       $scope.msg.errorUpdatePass = "Confirm password mismatch";
     }
-  }
+  };
+
+  $scope.searchUser = function() {
+    if (!$rootScope.isAdmin) {
+      AppServices.getSearchUser($scope.formdata.searchInput.toLowerCase())
+        .then(function (result) {
+          $scope.msg = {};
+          $scope.users = result;
+          if ($scope.users.length == 0) {
+            $scope.msg.searchNotFound = 'User Not Found. Please Register!'
+          }
+        });
+    }
+  };
 
   $scope.logout = function () {
     $rootScope.loggedIn = false;
     $rootScope.isEdit = false;
     // reset formdata
-    $scope.formdata = {};
+    $scope.formdata = $scope.defaultForm;
     $scope.credentials = {};
-    $scope.formdata.avatar = $scope.defaultAvatar;
     // reset messages
     $scope.msg = {};
     // reset sessionStorage
+    sessionStorage.removeItem('csel-role');
     sessionStorage.removeItem('csel-users');
   };
+
+  $rootScope.$on('appLogout', function(event) {
+    $scope.logout();
+  });
 }
 
 export default {

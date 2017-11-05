@@ -77,6 +77,19 @@ export default angular.module('csel', [
     '$window',
     function ($rootScope, $location, $scope, $compile, $window) {
 
+      // check logged-in state
+      if (sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '') {
+        $rootScope.loggedIn = true;
+        if (sessionStorage.getItem('csel-role') && sessionStorage.getItem('csel-role') == 'admin') {
+          $rootScope.isAdmin = true;
+        } else {
+          $rootScope.isAdmin = false;
+        }
+      } else {
+        $rootScope.loggedIn = false;
+      }
+
+      // watch url
       var path = function () {
         return $location.path();
       };
@@ -90,6 +103,10 @@ export default angular.module('csel', [
           $('#navTabs li.' + newVal.substr(1) + ' a').addClass('active');
         }
       });
+
+      $rootScope.logout = function () {
+        $rootScope.$emit('appLogout');
+      };
 
       // onClick Mobile Menu
       $rootScope.mobileMenu = function () {
@@ -106,7 +123,6 @@ export default angular.module('csel', [
         });
 
         $('#navTabs a').removeClass('active');
-        $(this).find('.sub-nav li a').removeClass('active');
         $(this).addClass('active');
 
         $('#viewContainer').css({

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "000",
+    "login": "admin",
+    "hashed": "$1$GFH0.w8Q$tOBrPraysF4t5h72/6b0F1",
+    "role": "admin"
+  },
+  {
+    "id": "001",
+    "login": "user",
+    "hashed": "$1$SrlHeCCF$ib4arkGLtq/FJn8ElZOoo1",
+    "role": "common"
+  }
+]

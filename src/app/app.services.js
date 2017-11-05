@@ -38,7 +38,16 @@ export default function ($http) {
         'userId': userId
       })
       .then(function (response) {
-        console.log(response);
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
+    },
+    getSearchUser: function (searchInput) {
+      return $http.post(dataURL + 'searchUser.php', {
+        'search': searchInput
+      })
+      .then(function (response) {
           return response.data;
         }, function (response) {
           return response.data;

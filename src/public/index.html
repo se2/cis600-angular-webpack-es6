@@ -28,8 +28,11 @@
         <div class="info">
           Computer & Information Sciences, UMass Dartmouth
         </div>
-        <div class="info login-header">
-          <a ui-sref="profile">{{loggedIn ? 'Profile' : 'Login'}}</a>
+        <div class="info login-header" ng-if="!$root.loggedIn">
+          <a ui-sref="profile">Login</a>
+        </div>
+        <div class="info login-header" ng-if="$root.loggedIn">
+          <a ng-click="logout()" href="#">Logout</a>
         </div>
       </div>
     </div>
@@ -66,7 +69,7 @@
           <a ui-sref="contactInfo">Contact Info</a>
         </li>
         <li class="inline-list profile" ng-if="$root.loggedIn">
-          <a ui-sref="profile">Profile</a>
+          <a ui-sref="profile">{{$root.isAdmin ? 'Management' : 'Profile'}}</a>
         </li>
       </ul>
     </div>
