@@ -2,17 +2,19 @@
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
-import ngCookies from 'angular-cookies';
+// import ngCookies from 'angular-cookies';
 import ngMessages from 'angular-messages';
 import ngSanitize from 'angular-sanitize';
 import ngMaterial from 'angular-material';
-import ngTranslate from 'angular-translate';
-import ngTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
+// import ngTranslate from 'angular-translate';
+// import ngTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
 import uiRouter from 'angular-ui-router';
 import ngResource from 'angular-resource';
 import ngFileUpload from 'ng-file-upload';
 import filter from 'angular-filter';
 import $ from 'jquery';
+import 'jquery-ui-bundle';
+import uiSortable from 'angular-ui-sortable';
 
 import '../styles/main.scss';
 import 'angular-material/angular-material.css';
@@ -26,7 +28,7 @@ import appServices from './app.services';
 // components
 import homeComponent from './home/home.component';
 import pubComponent from './publications/pub.component';
-import gradComponent from './graduate/grad.component';
+import researchComponent from './graduate/grad.component';
 import actComponent from './activities/act.component';
 import contactComponent from './contact/contact.component';
 import profileComponent from './profile/profile.component';
@@ -35,15 +37,13 @@ import peopleComponent from './people/people.component';
 export default angular.module('csel', [
   ngAnimate,
   ngAria,
-  ngCookies,
   ngMessages,
   ngSanitize,
   ngMaterial,
-  ngTranslate,
-  ngTranslateLoaderStaticFiles,
   ngResource,
   ngFileUpload,
   uiRouter,
+  'ui.sortable',
   filter
 ])
   .config(appConfig)
@@ -64,7 +64,7 @@ export default angular.module('csel', [
   })
   .component('home', homeComponent)
   .component('publications', pubComponent)
-  .component('gradStudents', gradComponent)
+  .component('research', researchComponent)
   .component('grantActivities', actComponent)
   .component('contactInfo', contactComponent)
   .component('people', peopleComponent)

@@ -23,9 +23,6 @@
   $inputUsername = $request->username;
   $inputPassword = $request->password;
 
-  // echo crypt('admin'.'adminpassword');
-  // echo crypt('user'.'userpassword');
-
   $accounts = $json->decode(file_get_contents('accounts.json'));
   foreach ($accounts as $key => $account) {
     if (hash_equals(crypt($inputUsername.$inputPassword, $account->hashed), $account->hashed)) {

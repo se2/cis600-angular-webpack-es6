@@ -53,6 +53,12 @@ let common = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      "$": "jquery",
+      "jQuery": "jquery",
+      "window.jQuery": "jquery"
+    }),
+
     new HtmlWebpackPlugin({
       template: './src/public/index.html',
       inject: 'body'

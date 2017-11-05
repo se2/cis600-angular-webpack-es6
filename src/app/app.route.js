@@ -14,7 +14,7 @@ export default function ($stateProvider, $urlRouterProvider) {
     })
     .state('research', {
       url: '/research',
-      component: 'gradStudents'
+      component: 'research'
     })
     .state('grantActivities', {
       url: '/grantActivities',

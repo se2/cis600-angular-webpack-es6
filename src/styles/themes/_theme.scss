@@ -245,7 +245,7 @@ footer {
     #homeContainer,
     #accountContainer,
     #publicationsContainer,
-    #gradStudentsContainer,
+    #researchContainer,
     #grantActivitiesContainer,
     #contactInfoContainer {
         max-width: 1060px;
@@ -500,8 +500,8 @@ footer {
     }
 }
 
-// GRADUATE STUDENTS PAGE & PUBLICATIONS PAGE
-#gradStudentsContainer,
+// RESEARCH PAGE & PUBLICATIONS PAGE
+#researchContainer,
 #publicationsContainer {
     display: -webkit-box;
     display: -webkit-flex;
@@ -586,7 +586,7 @@ footer {
             background-color: #f6f6f6;
         }
     }
-    #gradStudentsContent,
+    #researchContent,
     #publicationsContent {
         -webkit-box-flex: 4;
         -webkit-flex: 4;
@@ -654,7 +654,7 @@ footer {
             padding-top: 40px !important;
         }
     }
-    #gradStudentsContent {
+    #researchContent {
         li {
             display: block;
         }
@@ -839,7 +839,7 @@ md-content {
     }
 }
 
-#gradStudentsContainer {
+#researchContainer {
     &.people-page {
         #GSSContainer {
             padding-top: 20px;
@@ -874,10 +874,38 @@ button.details-btn {
     left: 0;
 }
 
-.md-icon-button {
+.md-button.md-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
+        color: $accent-color;
         path {
             fill: $accent-color;
+        }
+    }
+}
+
+.edit-item {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    button {
+        float: right;
+    }
+}
+
+.item-admin-edit {
+    md-input-container.md-block {
+        display: none;
+    }
+    &.show-edit {
+        span {
+            display: none;
+        }
+        md-input-container.md-block {
+            display: block;
         }
     }
 }
@@ -898,7 +926,7 @@ md-card-title-text {
     }
 }
 
-#gradStudentsContainer #gradStudentsContent {
+#researchContainer #researchContent {
     .people-title {
         padding-bottom: 8px;
     }
@@ -924,6 +952,10 @@ md-card-title-text {
 .search-not-found {
     text-align: center;
     color: $accent-color;
+}
+
+li.drag {
+    cursor: move;
 }
 
 /* workaround for iOS issue */

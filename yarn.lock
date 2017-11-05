@@ -160,6 +160,10 @@ angular-ui-router@^1.0.0-beta.3:
   dependencies:
     "@uirouter/core" "5.0.3"
 
+angular-ui-sortable@^0.17.2:
+  version "0.17.2"
+  resolved "https://registry.yarnpkg.com/angular-ui-sortable/-/angular-ui-sortable-0.17.2.tgz#8c4426cad306c7cdd1c30b454af85b2d15818cdc"
+
 angular@*, "angular@>=1.2.26 <=1.6", angular@^1.6.0:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
@@ -3411,6 +3415,14 @@ istanbul@^0.4.0:
     supports-color "^3.1.0"
     which "^1.1.1"
     wordwrap "^1.0.0"
+
+jquery-ui-bundle@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui-bundle/-/jquery-ui-bundle-1.12.1.tgz#d6be2e4c377494e2378b1cae2920a91d1182d8c4"
+
+jquery-ui@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
 
 jquery@^3.2.1:
   version "3.2.1"

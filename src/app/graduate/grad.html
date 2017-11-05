@@ -1,4 +1,4 @@
-<div id="gradStudentsContainer">
+<div id="researchContainer">
   <div id="sideNavContainer">
     <div id="sideNav">
       <h4>In Page Navigation</h4>
@@ -36,45 +36,91 @@
       </ul>
     </div>
   </div>
-  <div id="gradStudentsContent">
+  <div id="researchContent">
     <h2 id="GSSH2">Current Graduate Students</h2>
     <div id="GSSContainer">
-      <h3 id="GSSH31">Master's Thesis</h3>
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.mastersThesisUnder">
-        <li class="mastersThesis" ng-bind-html="gradStudent.point"></li>
+      <h3 id="GSSH31" class="pos-rel">
+        Master's Thesis
+        <!-- <md-button aria-label="Add New" class="md-icon-button nopadding nomargin edit-item" ng-if="$root.isAdmin">
+          <i class="material-icons">add</i>
+        </md-button> -->
+      </h3>
+      <div ng-model="research.gradStudents.mastersThesis" ui-sortable="sortingOptionsResearch" class="grad-thesis" style="min-height:84px;">
+        <ul ng-repeat="gradStudent in research.gradStudents.mastersThesis">
+          <li class="mastersThesis drag pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'show-edit unsortable' : ''">
+            <span ng-bind-html="gradStudent.point"></span>
+            <div class="edit-item">
+              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-if="$root.isAdmin">
+                <i class="material-icons">delete</i>
+              </md-button>
+              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-if="$root.isAdmin" ng-click="gradStudent.edit = !gradStudent.edit">
+                <i class="material-icons">{{gradStudent.edit ? 'done' : 'edit'}}</i>
+              </md-button>
+            </div>
+            <md-input-container class="md-block nomargin">
+              <!-- temporarily workaround -->
+              <textarea ng-model="gradStudent.point" rows="3" required style="min-height:56px;" aria-label="Edit">{{gradStudent.point}}</textarea>
+            </md-input-container>
+          </li>
+        </ul>
       </div>
       <h3 id="GSSH32">Master's Project</h3>
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.mastersProjectUnder">
-        <li class="mastersProject" ng-bind-html="gradStudent.point"></li>
+      <div ng-model="research.gradStudents.mastersProject" ui-sortable="sortingOptionsResearch" class="grad-project" style="min-height:84px;">
+        <ul ng-repeat="gradStudent in research.gradStudents.mastersProject">
+          <li class="mastersProject drag pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'show-edit unsortable' : ''">
+            <span ng-bind-html="gradStudent.point"></span>
+            <div class="edit-item">
+              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-if="$root.isAdmin">
+                <i class="material-icons">delete</i>
+              </md-button>
+              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-if="$root.isAdmin" ng-click="gradStudent.edit = !gradStudent.edit">
+                <i class="material-icons">{{gradStudent.edit ? 'done' : 'edit'}}</i>
+              </md-button>
+            </div>
+            <md-input-container class="md-block nomargin">
+              <textarea ng-model="gradStudent.point" rows="3" required style="min-height:56px;" aria-label="Edit">{{gradStudent.point}}</textarea>
+            </md-input-container>
+          </li>
+        </ul>
       </div>
       <h3 id="GSSH33">Ph.D. Dissertation</h3>
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.phdDissertationUnder">
-        <li class="phdDissertation" ng-bind-html="gradStudent.point"></li>
+      <div ng-model="research.gradStudents.phdDissertation" ui-sortable="sortingOptionsResearch" class="grad-phd" style="min-height:84px;">
+        <ul ng-repeat="gradStudent in research.gradStudents.phdDissertation">
+          <li class="phdDissertation drag" ng-bind-html="gradStudent.point"></li>
+        </ul>
       </div>
     </div>
     <h2 id="CPSH2">Visiting Scholars</h2>
     <div id="CPSContainer">
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.visitingScholar">
-        <li class="CPS" ng-bind-html="gradStudent.point"></li>
+      <div ng-model="research.visitingScholar" ui-sortable="sortingOptionsResearch" class="visit-scholar" style="min-height:84px;">
+        <ul ng-repeat="scholar in research.visitingScholar">
+          <li class="CPS drag" ng-bind-html="scholar.point"></li>
+        </ul>
       </div>
     </div>
     <h2 id="GSCH2">Alumni</h2>
     <div id="GSCContainer">
       <h3 id="GSCH31">Master's Thesis</h3>
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.mastersThesisCommittee">
-        <li class="mastersThesis" ng-bind-html="gradStudent.point"></li>
+      <div ng-model="research.alumni.mastersThesis" ui-sortable="sortingOptionsResearch" class="alumni-thesis" style="min-height:84px;">
+        <ul ng-repeat="alumni in research.alumni.mastersThesis">
+          <li class="mastersThesis drag" ng-bind-html="alumni.point"></li>
+        </ul>
       </div>
       <h3 id="GSCH32">Master's Project</h3>
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.mastersProjectCommittee">
-        <li class="mastersProject" ng-bind-html="gradStudent.point"></li>
+      <div ng-model="research.alumni.mastersProject" ui-sortable="sortingOptionsResearch" class="alumni-project" style="min-height:84px;">
+        <ul ng-repeat="alumni in research.alumni.mastersProject">
+          <li class="mastersProject drag" ng-bind-html="alumni.point"></li>
+        </ul>
       </div>
       <h3 id="GSCH33">Ph.D. Dissertation</h3>
-      <div style="list-style: none;" ng-repeat="gradStudent in gradStudents.phdDissertationCommittee">
-        <li class="phdDissertation" ng-bind-html="gradStudent.point"></li>
+      <div ng-model="research.alumni.phdDissertation" ui-sortable="sortingOptionsResearch" class="alumni-phd" style="min-height:84px;">
+        <ul ng-repeat="alumni in research.alumni.phdDissertation">
+          <li class="phdDissertation drag" ng-bind-html="alumni.point"></li>
+        </ul>
       </div>
     </div>
     <hr> Click
-    <a href="http://www.cis.umassd.edu/~hxu/Projects/gradstudents.html" style="text-decoration: none;" target="CSEL">here</a> for a complete list of graduate students supervised at UMass Dartmout since 2003.
+    <a href="http://www.cis.umassd.edu/~hxu/Projects/research.html" style="text-decoration: none;" target="CSEL">here</a> for a complete list of graduate students supervised at UMass Dartmout since 2003.
     <hr>
     <br>
     <br>

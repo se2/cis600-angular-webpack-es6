@@ -29,7 +29,10 @@
     "angular-translate": "^2.13.0",
     "angular-translate-loader-static-files": "^2.13.0",
     "angular-ui-router": "^1.0.0-beta.3",
+    "angular-ui-sortable": "^0.17.2",
     "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-bundle": "^1.12.1",
     "material-design-icons": "^3.0.1",
     "ng-file-upload": "^12.2.13",
     "pbkdf2": "^3.0.14"
