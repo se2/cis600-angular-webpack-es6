@@ -52,11 +52,12 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
     AppServices.login($scope.credentials.username, $scope.credentials.password).then(function (result) {
       if (result.found) {
         $rootScope.loggedIn = true;
-        $rootScope.isAdmin = (result.userRole == 'admin') ? true : false;
+        $rootScope.account = result.account;
+        $rootScope.isAdmin = (result.account.role == 'admin') ? true : false;
         $scope.isEdit = false;
         $scope.users = result.users;
         $scope.ids = result.users.map(function (item) { return item["id"]; });
-        sessionStorage.setItem('csel-role', result.userRole);
+        sessionStorage.setItem('csel-account', JSON.stringify(result.account));
         sessionStorage.setItem('csel-users', JSON.stringify($scope.ids));
       } else {
         $rootScope.loggedIn = false;
@@ -161,17 +162,25 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
       });
   };
 
+  $scope.setAccount = function () {
+    $scope.resetMsg();
+    $scope.credentials = $rootScope.account;
+  };
+
   $scope.updatePassword = function (credentials) {
     if ($scope.credentials.newPassword == $scope.credentials.confirmPassword) {
-      AppServices.updatePass($scope.formdata.email, $scope.credentials.currentPassword, $scope.credentials.newPassword)
+      AppServices.updatePass($scope.credentials)
         .then(function (result) {
           if (result.updated) {
+            delete result.account.hashed;
+            $scope.credentials = $rootScope.account = result.account;
+            sessionStorage.setItem('csel-account', JSON.stringify($scope.credentials));
             $scope.msg.errorUpdatePass = '';
             $scope.msg.successUpdatePass = 'Password updated';
-            $scope.credentials = {};
             $scope.forms.updatePasswordForm.$setPristine();
             $scope.forms.updatePasswordForm.$setUntouched();
           } else {
+            $scope.credentials = $rootScope.account;
             $scope.msg.successUpdatePass = '';
             $scope.msg.errorUpdatePass = result.error;
           }
@@ -203,7 +212,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
     // reset messages
     $scope.msg = {};
     // reset sessionStorage
-    sessionStorage.removeItem('csel-role');
+    sessionStorage.removeItem('csel-account');
     sessionStorage.removeItem('csel-users');
   };
 

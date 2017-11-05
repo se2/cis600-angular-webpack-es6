@@ -74,11 +74,9 @@ export default function ($http) {
           return response.data;
         });
     },
-    updatePass: function (email, currentPassword, newPassword) {
+    updatePass: function (credentials) {
       return $http.post(dataURL + 'updatePass.php', {
-        'email': email,
-        'currentPassword': currentPassword,
-        'newPassword': newPassword
+        'account': credentials
       })
         .then(function (response) {
           return response.data;

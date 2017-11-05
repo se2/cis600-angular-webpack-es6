@@ -164,6 +164,32 @@
               </form>
             </md-content>
           </md-tab>
+          <md-tab label="Security" md-on-select="setAccount()" ng-if="$root.isAdmin">
+            <md-content class="md-padding">
+              <form role="form" class="csel-form" id="updatePasswordForm" name="forms.updatePasswordForm" ng-submit="updatePassword(credentials)">
+                <input type="hidden" ng-model="credentials.id">
+                <md-input-container class="md-block">
+                  <label>Username</label>
+                  <input type="text" ng-model="credentials.username" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Current Password</label>
+                  <input type="password" ng-model="credentials.currentPassword" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>New Password</label>
+                  <input type="password" ng-model="credentials.newPassword" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                  <label>Confirm Password</label>
+                  <input type="password" ng-model="credentials.confirmPassword" required>
+                </md-input-container>
+                <md-button class="md-warn" md-no-ink ng-if="msg.errorUpdatePass">{{msg.errorUpdatePass}}</md-button>
+                <md-button class="md-primary" md-no-ink ng-if="msg.successUpdatePass">{{msg.successUpdatePass}}</md-button>
+                <md-button class="md-raised md-primary float-right" type="submit">Update</md-button>
+              </form>
+            </md-content>
+          </md-tab>
         </md-tabs>
       </md-content>
     </div>

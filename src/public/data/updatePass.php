@@ -21,24 +21,28 @@
   $request = $json->decode($postdata);
 
   // extract data
-  $email = $request->email;
-  $current = $request->currentPassword;
-  $new = $request->newPassword;
+  $id = $request->account->id;
+  $username = $request->account->username;
+  $current = $request->account->currentPassword;
+  $new = $request->account->newPassword;
 
-  $fileName = split('@', $email);
-  $user = $json->decode(file_get_contents($baseUrl . $fileName[0] . ".json"));
+  $newAccount = array();
+  $accounts = $json->decode(file_get_contents('accounts.json'));
 
-  if ($user->email == $email && hash_equals($user->password, crypt($email.$current, $user->password))) {
-    $found = true;
-    $newHashedPassword = crypt($email.$new);
-    $user->password = $newHashedPassword;
-
-    unlink($baseUrl . $fileName[0] . ".json");
-    file_put_contents($baseUrl . $fileName[0] . ".json", $json->encode($user));
-    echo $json->encode(array('updated' => $found));
-  } else {
-    $errorMsg = 'Incorrect Password';
-    echo $json->encode(array('updated' => $found, 'error' => $errorMsg));
+  foreach ($accounts as $key => $account) {
+    if ($account->id == $id && hash_equals($account->hashed, crypt($account->username.$current, $account->hashed))) {
+      $found = true;
+      $newHashed = crypt($username.$new);
+      $account->username = $username;
+      $account->hashed = $newHashed;
+      $accounts[$key] = $account;
+      $newAccount = $account;
+      unlink("accounts.json");
+      file_put_contents("accounts.json", $json->encode($accounts));
+      break;
+    } else {
+      $errorMsg = 'Incorrect Password!';
+    }
   }
-
+  echo $json->encode(array('updated' => $found, 'account' => $newAccount, 'error' => $errorMsg));
 ?>

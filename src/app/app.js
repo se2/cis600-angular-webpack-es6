@@ -80,7 +80,8 @@ export default angular.module('csel', [
       // check logged-in state
       if (sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '') {
         $rootScope.loggedIn = true;
-        if (sessionStorage.getItem('csel-role') && sessionStorage.getItem('csel-role') == 'admin') {
+        $rootScope.account = JSON.parse(sessionStorage.getItem('csel-account'));
+        if ($rootScope.account && $rootScope.account.role == 'admin') {
           $rootScope.isAdmin = true;
         } else {
           $rootScope.isAdmin = false;
