@@ -14,7 +14,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   $scope.credentials = {};
   $scope.forms = {};
   $scope.msg = {};
-  $scope.users = {};
+  $scope.users = [];
   $scope.ids = {};
   $scope.formdata = $scope.defaultForm;
 

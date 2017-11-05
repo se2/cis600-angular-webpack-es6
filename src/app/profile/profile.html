@@ -3,7 +3,7 @@
     <div class="xuImg profile-page">
       <img ng-src="{{formdata.avatar}}">
     </div>
-    <div class="name">{{formdata.firstname}} {{formdata.lastname}}</div>
+    <div class="name">{{formdata.fullname}}</div>
     <div class="dept">
       <form name="forms.avatarForm" id="avatarForm">
         <label>Upload avatar (max: 5MB, square)</label>
@@ -16,13 +16,13 @@
         <md-button class="md-raised md-primary" ng-click="changeAvatar()">Update Avatar</md-button>
       </form>
     </div>
-    <div class="dept" ng-if="$root.loggedIn">
+    <!-- <div class="dept" ng-if="$root.loggedIn">
       <h4>Department:</h4>
       <p>Computer & Information Sciences</p>
-    </div>
-    <div class="univ" ng-if="$root.loggedIn">
+    </div> -->
+    <div class="univ" ng-if="$root.loggedIn && formdata.school">
       <h4>University:</h4>
-      <p>University of Massachusetts Dartmouth</p>
+      <p>{{formdata.school}}</p>
     </div>
   </div>
   <!-- Login section -->
@@ -59,7 +59,7 @@
               </form>
               <div class="search-not-found" ng-if="msg.searchNotFound">{{msg.searchNotFound}}</div>
               <md-list layout="row" layout-wrap layout-xs="column">
-                <md-tooltip md-direction="top">Select to edit</md-tooltip>
+                <md-tooltip md-direction="top" ng-if="users.length > 0">Select to edit</md-tooltip>
                 <md-list-item flex="50" flex-xs="100" ng-repeat="user in users | toArray:false | filter: formdata.searchInput | orderBy:['firstname', 'lastname']"
                   ng-click="editUser(user.id)">
                   <img alt="{{user.email}}" ng-src="{{user.avatar ? user.avatar : defaultAvatar}}" err-src="{{defaultAvatar}}" class="md-avatar"

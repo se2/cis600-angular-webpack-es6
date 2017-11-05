@@ -12,7 +12,7 @@
         <a href="#GSCH2" class="scroller-link">
           <li>> Alumni</li>
         </a>
-        <ul class="subUL">
+        <!-- <ul class="subUL">
           <a href="#2016" class="scroller-link">
             <li>2016</li>
           </a>
@@ -22,7 +22,7 @@
           <a href="#2014" class="scroller-link">
             <li>2014</li>
           </a>
-        </ul>
+        </ul> -->
       </ul>
     </div>
   </div>
@@ -106,7 +106,8 @@
           <md-card md-theme="'default'" md-theme-watch flex="100">
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline">{{person.firstname}} {{person.lastname}}</span>
+                <span class="md-headline">{{person.fullname}}</span>
+                <span class="md-subhead" ng-if="person.year && person.type == 'alumni'">Graduation: {{person.year}}</span>
                 <span class="md-subhead" ng-if="person.position && person.employer">{{person.position}} at {{person.employer}}</span>
               </md-card-title-text>
               <md-card-title-media>
