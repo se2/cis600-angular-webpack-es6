@@ -1,4 +1,5 @@
 import template from './profile.html';
+import $ from 'jquery';
 
 var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   $scope.defaultAvatar = "images/noimage.png";
@@ -205,20 +206,17 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
 
   $scope.logout = function () {
     $rootScope.loggedIn = false;
+    $rootScope.isAdmin = false;
     $rootScope.isEdit = false;
     // reset formdata
     $scope.formdata = $scope.defaultForm;
-    $scope.credentials = {};
+    $scope.credentials.username = {};
     // reset messages
     $scope.msg = {};
     // reset sessionStorage
     sessionStorage.removeItem('csel-account');
     sessionStorage.removeItem('csel-users');
   };
-
-  $rootScope.$on('appLogout', function(event) {
-    $scope.logout();
-  });
 }
 
 export default {

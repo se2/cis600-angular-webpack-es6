@@ -68,7 +68,7 @@
         <li class="inline-list contactInfo">
           <a ui-sref="contactInfo">Contact Info</a>
         </li>
-        <li class="inline-list profile" ng-if="$root.loggedIn">
+        <li class="inline-list profile" ng-show="$root.loggedIn">
           <a ui-sref="profile">{{$root.isAdmin ? 'Management' : 'Profile'}}</a>
         </li>
       </ul>

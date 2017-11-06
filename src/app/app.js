@@ -2,12 +2,9 @@
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
-// import ngCookies from 'angular-cookies';
 import ngMessages from 'angular-messages';
 import ngSanitize from 'angular-sanitize';
 import ngMaterial from 'angular-material';
-// import ngTranslate from 'angular-translate';
-// import ngTranslateLoaderStaticFiles from 'angular-translate-loader-static-files';
 import uiRouter from 'angular-ui-router';
 import ngResource from 'angular-resource';
 import ngFileUpload from 'ng-file-upload';
@@ -75,7 +72,8 @@ export default angular.module('csel', [
     '$scope',
     '$compile',
     '$window',
-    function ($rootScope, $location, $scope, $compile, $window) {
+    '$state',
+    function ($rootScope, $location, $scope, $compile, $window, $state) {
 
       // check logged-in state
       if (sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '') {
@@ -106,7 +104,13 @@ export default angular.module('csel', [
       });
 
       $rootScope.logout = function () {
-        $rootScope.$emit('appLogout');
+        $rootScope.isAdmin = false;
+        $rootScope.loggedIn = false;
+        $rootScope.isEdit = false;
+        // reset sessionStorage
+        sessionStorage.removeItem('csel-account');
+        sessionStorage.removeItem('csel-users');
+        $state.go('home');
       };
 
       // onClick Mobile Menu

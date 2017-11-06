@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import template from './grad.html';
 
-var researchCtrl = function (AppServices, $scope) {
+var researchCtrl = function (AppServices, $scope, $mdDialog) {
   var research = this;
   //Get the json data from the service($http)
   AppServices.getStudentData().then(function (data) {
@@ -19,6 +19,22 @@ var researchCtrl = function (AppServices, $scope) {
     update: function (e, ui) {
       console.log(research);
     }
+  }
+
+  $scope.addPoint = function (model) {
+    model.unshift({ 'edit': true, 'point': '' });
+  };
+
+  $scope.deletePoint = function (model, index) {
+    var confirm = $mdDialog.confirm()
+      .title('Are you sure you want to delete this research?')
+      .ariaLabel('Delete Confirmation')
+      .ok('YES')
+      .cancel('CANCEL');
+
+    $mdDialog.show(confirm).then(function () {
+      model.splice(index, 1);
+    }, function () {});
   }
 
   /*-- Scroll to link --*/
@@ -45,6 +61,6 @@ var researchCtrl = function (AppServices, $scope) {
 
 export default {
   template: template,
-  controller: ['AppServices', '$scope', researchCtrl],
+  controller: ['AppServices', '$scope', '$mdDialog', researchCtrl],
   controllerAs: 'research'
 };
