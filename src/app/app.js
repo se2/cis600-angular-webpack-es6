@@ -110,7 +110,9 @@ export default angular.module('csel', [
         // reset sessionStorage
         sessionStorage.removeItem('csel-account');
         sessionStorage.removeItem('csel-users');
-        $state.go('home');
+        if ($state.current.name == 'profile') {
+          $state.go('home');
+        }
       };
 
       // onClick Mobile Menu

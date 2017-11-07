@@ -890,23 +890,8 @@ button.details-btn {
     position: absolute;
     right: 0;
     bottom: 0;
-
     button {
         float: right;
-    }
-}
-
-.item-admin-edit {
-    md-input-container.md-block {
-        display: none;
-    }
-    &.show-edit {
-        span {
-            display: none;
-        }
-        md-input-container.md-block {
-            display: block;
-        }
     }
 }
 
@@ -958,7 +943,9 @@ li.drag {
     cursor: move;
 }
 
+
 /* workaround for iOS issue */
+
 @media #{$mobile} {
     .md-dialog-container {
         height: 100% !important;
