@@ -37,7 +37,7 @@ export default function ($http) {
       return $http.post(dataURL + 'getUser.php', {
         'userId': userId
       })
-      .then(function (response) {
+        .then(function (response) {
           return response.data;
         }, function (response) {
           return response.data;
@@ -47,7 +47,7 @@ export default function ($http) {
       return $http.post(dataURL + 'searchUser.php', {
         'search': searchInput
       })
-      .then(function (response) {
+        .then(function (response) {
           return response.data;
         }, function (response) {
           return response.data;
@@ -55,8 +55,8 @@ export default function ($http) {
     },
     login: function (username, password) {
       return $http.post(dataURL + 'login.php', {
-          'username': username,
-          'password': password
+        'username': username,
+        'password': password
       })
         .then(function (response) {
           return response.data;
@@ -109,6 +109,16 @@ export default function ($http) {
         'userId': studentData.id,
         'facebook': studentData.facebook,
         'linkedin': studentData.linkedin
+      })
+        .then(function (response) {
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
+    },
+    updateResearch: function (research) {
+      return $http.post(dataURL + 'updateResearch.php', {
+        'data': research
       })
         .then(function (response) {
           return response.data;

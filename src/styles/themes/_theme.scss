@@ -905,6 +905,21 @@ button.details-btn {
     }
 }
 
+.loading-icon {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+
 md-card-title-text {
     @media #{$mobile} {
         padding-right: 8px;
