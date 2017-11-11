@@ -3,12 +3,16 @@ import $ from 'jquery';
 
 var actCtrl = function (AppServices, $scope, $mdDialog) {
   var grantActivities = this;
-  $scope.loading = false;
+  $scope.loading = true;
 
-  AppServices.getPageData('grantActivities').then(function (data) {
-    data = JSON.parse(data);
-    grantActivities.data = data.grantActivities;
-  });
+  AppServices.getPageData('grantActivities')
+    .then(function (data) {
+      data = JSON.parse(data);
+      grantActivities.data = data.grantActivities;
+    })
+    .finally(function (data) {
+      $scope.loading = false;
+    });
 
   $scope.addPoint = function (model) {
     model.unshift({ 'edit': true, 'point': '' });
@@ -26,7 +30,7 @@ var actCtrl = function (AppServices, $scope, $mdDialog) {
 
       $mdDialog.show(confirm).then(function () {
         model.splice(index, 1);
-      }, function () {});
+      }, function () { });
     }
   };
 

@@ -9,22 +9,6 @@ export default function ($http) {
           return response.data;
         });
     },
-    getHomeData: function () {
-      return $http.get(dataURL + 'getHomeData.php')
-        .then(function (response) {
-          return response.data;
-        }, function (response) {
-          return response.data;
-        });
-    },
-    getPubData: function () {
-      return $http.get(dataURL + 'getPubData.php')
-        .then(function (response) {
-          return response.data;
-        }, function (response) {
-          return response.data;
-        });
-    },
     getUsersData: function () {
       return $http.post(dataURL + 'getUsers.php')
         .then(function (response) {

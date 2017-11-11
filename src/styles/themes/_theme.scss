@@ -9,6 +9,7 @@
 /* Responsive: Portrait tablets and up */
 
 $mobile: "only screen and (max-width: 449px)";
+$tablet: "only screen and (max-width: 768px)";
 $responsive: "only screen and (max-width: 900px)";
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
 
@@ -956,7 +957,7 @@ md-card-title-text {
     color: $accent-color;
 }
 
-li.drag {
+.drag {
     cursor: move;
 }
 
@@ -964,6 +965,14 @@ md-progress-linear.loading {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+md-dialog.person-dialog {
+    max-width: 800px;
+
+    @media #{$responsive} {
+        max-width: 90%;
+    }
 }
 
 /* workaround for iOS issue of mdDialog */

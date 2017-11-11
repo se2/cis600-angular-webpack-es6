@@ -11,21 +11,19 @@
     </h2>
     </br>
     <div ng-model="grantActivities.data" ui-sortable class="grad-thesis" style="min-height:84px;">
-        <ul ng-repeat="grantAct in grantActivities.data">
-            <li class="grantPara {{($root.isAdmin && !grantAct.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="grantAct.edit ? 'unsortable' : ''">
-                <span ng-bind-html="grantAct.point" ng-if="!grantAct.edit"></span>
-                <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-                    <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(grantActivities.data, $index)">
-                        <i class="material-icons">delete</i>
-                    </md-button>
-                    <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="grantAct.edit = !grantAct.edit">
-                        <i class="material-icons">{{grantAct.edit ? 'check_circle' : 'edit'}}</i>
-                    </md-button>
-                </div>
-                <md-input-container class="md-block nomargin" ng-if="grantAct.edit">
-                    <textarea autofocus ng-model="grantAct.point" rows="3" aria-label="Edit">{{grantAct.point}}</textarea>
-                </md-input-container>
-            </li>
-        </ul>
+        <div ng-repeat="grantAct in grantActivities.data" class="grantPara {{($root.isAdmin && !grantAct.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="grantAct.edit ? 'unsortable' : ''">
+            <span ng-bind-html="grantAct.point" ng-if="!grantAct.edit"></span>
+            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+                <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(grantActivities.data, $index)">
+                    <i class="material-icons">delete</i>
+                </md-button>
+                <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="grantAct.edit = !grantAct.edit">
+                    <i class="material-icons">{{grantAct.edit ? 'check_circle' : 'edit'}}</i>
+                </md-button>
+            </div>
+            <md-input-container class="md-block nomargin" ng-if="grantAct.edit">
+                <textarea autofocus ng-model="grantAct.point" rows="3" aria-label="Edit">{{grantAct.point}}</textarea>
+            </md-input-container>
+        </div>
     </div>
 </div>

@@ -3,30 +3,33 @@ import $ from 'jquery';
 
 var pubCtrl = function (AppServices, $scope, $mdDialog) {
   var publications = this;
-  $scope.loading = false;
-  $scope.date = new Date();
+  $scope.loading = true;
 
   // Get the json data from the service($http)
-  AppServices.getPageData('publicationData').then(function (data) {
-    data = JSON.parse(data);
-    publications.umd09JP = data.publications.umd09JP;
-    publications.umd03JP = data.publications.umd03JP;
-    publications.umd91JP = data.publications.umd91JP;
-    publications.books = data.publications.books;
-    publications.proceedings = data.publications.proceedings;
-    publications.umd09CP = data.publications.umd09CP;
-    publications.umd03CP = data.publications.umd03CP;
-    publications.umd91CP = data.publications.umd91CP;
-    publications.techReports = data.publications.techReports;
-    publications.thesisProject = data.publications.thesisProject;
-  });
+  AppServices.getPageData('publicationData')
+    .then(function (data) {
+      data = JSON.parse(data);
+      publications.umd09JP = data.publications.umd09JP;
+      publications.umd03JP = data.publications.umd03JP;
+      publications.umd91JP = data.publications.umd91JP;
+      publications.books = data.publications.books;
+      publications.proceedings = data.publications.proceedings;
+      publications.umd09CP = data.publications.umd09CP;
+      publications.umd03CP = data.publications.umd03CP;
+      publications.umd91CP = data.publications.umd91CP;
+      publications.techReports = data.publications.techReports;
+      publications.thesisProject = data.publications.thesisProject;
+    })
+    .finally(function (data) {
+      $scope.loading = false;
+    });
 
   $scope.addPoint = function (model) {
     model.unshift({ 'edit': true, 'point': '' });
   };
 
   $scope.deletePoint = function (model, index) {
-    if (!model[index].point || model[index].point == '' ) {
+    if (!model[index].point || model[index].point == '') {
       model.splice(index, 1);
     } else {
       var confirm = $mdDialog.confirm()
@@ -55,7 +58,7 @@ var pubCtrl = function (AppServices, $scope, $mdDialog) {
       publications.techReports,
       publications.thesisProject
     ];
-    models.forEach(function(element) {
+    models.forEach(function (element) {
       element.map(function (x) { x.edit = false; return x });
     }, this);
     AppServices.updateData('publicationData', { 'publications': publications })

@@ -54,22 +54,20 @@
         </div>
       </h3>
       <div ng-model="research.gradStudents.mastersThesis" ui-sortable="sortingOptionsResearch" class="grad-thesis" style="min-height:84px;">
-        <ul ng-repeat="gradStudent in research.gradStudents.mastersThesis">
-          <li class="mastersThesis {{($root.isAdmin && !gradStudent.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'unsortable' : ''">
-            <span ng-bind-html="gradStudent.point" ng-if="!gradStudent.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.gradStudents.mastersThesis, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="gradStudent.edit = !gradStudent.edit">
-                <i class="material-icons">{{gradStudent.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
-              <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+        <div ng-repeat="gradStudent in research.gradStudents.mastersThesis" class="mastersThesis {{($root.isAdmin && !gradStudent.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'unsortable' : ''">
+          <span ng-bind-html="gradStudent.point" ng-if="!gradStudent.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.gradStudents.mastersThesis, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="gradStudent.edit = !gradStudent.edit">
+              <i class="material-icons">{{gradStudent.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
+            <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
       <h3 id="GSSH32" class="pos-rel">
         Master's Project
@@ -80,22 +78,20 @@
         </div>
       </h3>
       <div ng-model="research.gradStudents.mastersProject" ui-sortable="sortingOptionsResearch" class="grad-project" style="min-height:84px;">
-        <ul ng-repeat="gradStudent in research.gradStudents.mastersProject">
-          <li class="mastersProject {{($root.isAdmin && !gradStudent.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'unsortable' : ''">
-            <span ng-bind-html="gradStudent.point" ng-if="!gradStudent.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.gradStudents.mastersProject, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="gradStudent.edit = !gradStudent.edit">
-                <i class="material-icons">{{gradStudent.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
-              <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+        <div ng-repeat="gradStudent in research.gradStudents.mastersProject" class="mastersProject {{($root.isAdmin && !gradStudent.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'unsortable' : ''">
+          <span ng-bind-html="gradStudent.point" ng-if="!gradStudent.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.gradStudents.mastersProject, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="gradStudent.edit = !gradStudent.edit">
+              <i class="material-icons">{{gradStudent.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
+            <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
       <h3 id="GSSH33" class="pos-rel">
         Ph.D. Dissertation
@@ -106,22 +102,20 @@
         </div>
       </h3>
       <div ng-model="research.gradStudents.phdDissertation" ui-sortable="sortingOptionsResearch" class="grad-project" style="min-height:84px;">
-        <ul ng-repeat="gradStudent in research.gradStudents.phdDissertation">
-          <li class="phdDissertation {{($root.isAdmin && !gradStudent.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'unsortable' : ''">
-            <span ng-bind-html="gradStudent.point" ng-if="!gradStudent.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.gradStudents.phdDissertation, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="gradStudent.edit = !gradStudent.edit">
-                <i class="material-icons">{{gradStudent.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
-              <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+        <div ng-repeat="gradStudent in research.gradStudents.phdDissertation" class="phdDissertation {{($root.isAdmin && !gradStudent.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="gradStudent.edit ? 'unsortable' : ''">
+          <span ng-bind-html="gradStudent.point" ng-if="!gradStudent.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.gradStudents.phdDissertation, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="gradStudent.edit = !gradStudent.edit">
+              <i class="material-icons">{{gradStudent.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
+            <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
     </div>
     <h2 id="CPSH2" class="pos-rel">
@@ -133,23 +127,21 @@
       </div>
     </h2>
     <div id="CPSContainer">
-      <div ng-model="research.visitingScholar" ui-sortable="sortingOptionsResearch" class="visit-scholar" style="min-height:84px;">
-        <ul ng-repeat="scholar in research.visitingScholar">
-          <li class="CPS {{($root.isAdmin && !scholar.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="scholar.edit ? 'unsortable' : ''">
-            <span ng-bind-html="scholar.point" ng-if="!scholar.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.visitingScholar, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="scholar.edit = !scholar.edit">
-                <i class="material-icons">{{scholar.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="scholar.edit">
-              <textarea autofocus ng-model="scholar.point" rows="3" aria-label="Edit">{{scholar.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+      <div ng-model="research.visitingScholar" ui-sortable="sortingOptionsResearch" class="paddingTop visit-scholar" style="min-height:84px;">
+        <div ng-repeat="scholar in research.visitingScholar" class="phdDissertation {{($root.isAdmin && !scholar.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="scholar.edit ? 'unsortable' : ''">
+          <span ng-bind-html="scholar.point" ng-if="!scholar.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.visitingScholar, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="scholar.edit = !scholar.edit">
+              <i class="material-icons">{{scholar.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="scholar.edit">
+            <textarea autofocus ng-model="scholar.point" rows="3" aria-label="Edit">{{scholar.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
     </div>
     <h2 id="GSCH2">Alumni</h2>
@@ -163,22 +155,20 @@
         </div>
       </h3>
       <div ng-model="research.alumni.mastersThesis" ui-sortable="sortingOptionsResearch" class="grad-thesis" style="min-height:84px;">
-        <ul ng-repeat="alumni in research.alumni.mastersThesis">
-          <li class="mastersThesis {{($root.isAdmin && !alumni.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="alumni.edit ? 'unsortable' : ''">
-            <span ng-bind-html="alumni.point" ng-if="!alumni.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.alumni.mastersThesis, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="alumni.edit = !alumni.edit">
-                <i class="material-icons">{{alumni.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="alumni.edit">
-              <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+        <div ng-repeat="alumni in research.alumni.mastersThesis" class="mastersThesis {{($root.isAdmin && !alumni.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="alumni.edit ? 'unsortable' : ''">
+          <span ng-bind-html="alumni.point" ng-if="!alumni.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.alumni.mastersThesis, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="alumni.edit = !alumni.edit">
+              <i class="material-icons">{{alumni.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="alumni.edit">
+            <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
       <h3 id="GSCH32" class="pos-rel">
         Master's Project
@@ -189,22 +179,20 @@
         </div>
       </h3>
       <div ng-model="research.alumni.mastersProject" ui-sortable="sortingOptionsResearch" class="grad-thesis" style="min-height:84px;">
-        <ul ng-repeat="alumni in research.alumni.mastersProject">
-          <li class="mastersProject {{($root.isAdmin && !alumni.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="alumni.edit ? 'unsortable' : ''">
-            <span ng-bind-html="alumni.point" ng-if="!alumni.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.alumni.mastersProject, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="alumni.edit = !alumni.edit">
-                <i class="material-icons">{{alumni.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="alumni.edit">
-              <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+        <div ng-repeat="alumni in research.alumni.mastersProject" class="mastersProject {{($root.isAdmin && !alumni.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="alumni.edit ? 'unsortable' : ''">
+          <span ng-bind-html="alumni.point" ng-if="!alumni.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.alumni.mastersProject, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="alumni.edit = !alumni.edit">
+              <i class="material-icons">{{alumni.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="alumni.edit">
+            <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
       <h3 id="GSCH33" class="pos-rel">
         Ph.D. Dissertation
@@ -215,22 +203,20 @@
         </div>
       </h3>
       <div ng-model="research.alumni.phdDissertation" ui-sortable="sortingOptionsResearch" class="grad-thesis" style="min-height:84px;">
-        <ul ng-repeat="alumni in research.alumni.phdDissertation">
-          <li class="phdDissertation {{($root.isAdmin && !alumni.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="alumni.edit ? 'unsortable' : ''">
-            <span ng-bind-html="alumni.point" ng-if="!alumni.edit"></span>
-            <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
-              <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.alumni.phdDissertation, $index)">
-                <i class="material-icons">delete</i>
-              </md-button>
-              <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="alumni.edit = !alumni.edit">
-                <i class="material-icons">{{alumni.edit ? 'check_circle' : 'edit'}}</i>
-              </md-button>
-            </div>
-            <md-input-container class="md-block nomargin" ng-if="alumni.edit">
-              <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
-            </md-input-container>
-          </li>
-        </ul>
+        <div ng-repeat="alumni in research.alumni.phdDissertation" class="phdDissertation {{($root.isAdmin && !alumni.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="alumni.edit ? 'unsortable' : ''">
+          <span ng-bind-html="alumni.point" ng-if="!alumni.edit"></span>
+          <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(research.alumni.phdDissertation, $index)">
+              <i class="material-icons">delete</i>
+            </md-button>
+            <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="alumni.edit = !alumni.edit">
+              <i class="material-icons">{{alumni.edit ? 'check_circle' : 'edit'}}</i>
+            </md-button>
+          </div>
+          <md-input-container class="md-block nomargin" ng-if="alumni.edit">
+            <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
+          </md-input-container>
+        </div>
       </div>
     </div>
     <hr> Click

@@ -3,15 +3,19 @@ import template from './grad.html';
 
 var researchCtrl = function (AppServices, $scope, $mdDialog) {
   var research = this;
-  $scope.loading = false;
+  $scope.loading = true;
 
   //Get the json data from the service($http)
-  AppServices.getPageData('studentData').then(function (data) {
-    data = JSON.parse(data);
-    research.gradStudents = data.research.gradStudents;
-    research.visitingScholar = data.research.visitingScholar;
-    research.alumni = data.research.alumni;
-  });
+  AppServices.getPageData('studentData')
+    .then(function (data) {
+      data = JSON.parse(data);
+      research.gradStudents = data.research.gradStudents;
+      research.visitingScholar = data.research.visitingScholar;
+      research.alumni = data.research.alumni;
+    })
+    .finally(function (data) {
+      $scope.loading = false;
+    });
 
   $scope.sortingOptionsResearch = {
     'ui-floating': true,
@@ -26,7 +30,7 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
   };
 
   $scope.deletePoint = function (model, index) {
-    if (!model[index].point || model[index].point == '' ) {
+    if (!model[index].point || model[index].point == '') {
       model.splice(index, 1);
     } else {
       var confirm = $mdDialog.confirm()
@@ -52,7 +56,7 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
       research.alumni.phdDissertation,
       research.visitingScholar
     ];
-    models.forEach(function(element) {
+    models.forEach(function (element) {
       element.map(function (x) { x.edit = false; return x });
     }, this);
     AppServices.updateData('studentData', { 'research': research })
