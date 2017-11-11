@@ -6,7 +6,7 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
   $scope.loading = false;
 
   //Get the json data from the service($http)
-  AppServices.getStudentData().then(function (data) {
+  AppServices.getPageData('studentData').then(function (data) {
     data = JSON.parse(data);
     research.gradStudents = data.research.gradStudents;
     research.visitingScholar = data.research.visitingScholar;
@@ -46,18 +46,20 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
     research.alumni.mastersProject.map(function (x) { x.edit = false; return x });
     research.alumni.phdDissertation.map(function (x) { x.edit = false; return x });
     research.visitingScholar.map(function (x) { x.edit = false; return x });
-    AppServices.updateResearch({ 'research': research }).then(function (data) {
-      if (data.updated) {
-        $mdDialog.show(
-          $mdDialog.alert()
-            .clickOutsideToClose(true)
-            .title('Research Updated')
-            .ok('OK')
-        );
-      }
-    }).finally(function (data) {
-      $scope.loading = false;
-    });
+    AppServices.updateData('studentData', { 'research': research })
+      .then(function (data) {
+        if (data.updated) {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('Research Updated')
+              .ok('OK')
+          );
+        }
+      })
+      .finally(function (data) {
+        $scope.loading = false;
+      });
   };
 
   /*-- Scroll to link --*/

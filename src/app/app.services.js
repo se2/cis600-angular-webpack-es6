@@ -1,6 +1,14 @@
 export default function ($http) {
   var dataURL = 'http://www.cis.umassd.edu/~dluong1/csel-test/data/';
   return {
+    getPageData: function (file) {
+      return $http.post(dataURL + 'getPageData.php', { 'file': file })
+        .then(function (response) {
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
+    },
     getHomeData: function () {
       return $http.get(dataURL + 'getHomeData.php')
         .then(function (response) {
@@ -11,14 +19,6 @@ export default function ($http) {
     },
     getPubData: function () {
       return $http.get(dataURL + 'getPubData.php')
-        .then(function (response) {
-          return response.data;
-        }, function (response) {
-          return response.data;
-        });
-    },
-    getStudentData: function () {
-      return $http.get(dataURL + 'getStudentData.php')
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -116,9 +116,10 @@ export default function ($http) {
           return response.data;
         });
     },
-    updateResearch: function (research) {
-      return $http.post(dataURL + 'updateResearch.php', {
-        'data': research
+    updateData: function (file, data) {
+      return $http.post(dataURL + 'updateData.php', {
+        'file': file,
+        'data': data
       })
         .then(function (response) {
           return response.data;

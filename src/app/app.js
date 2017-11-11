@@ -144,17 +144,18 @@ export default angular.module('csel', [
         });
       });
 
-      $window.onload = function () {
-        $('#navTabs').animate({
-          opacity: 1
-        }, 300);
-        $('#viewContainer').css({
-          "display": "block"
-        });
-        $('#viewContainer').animate({
-          opacity: 1
-        }, 300);
-      };
+      $('#navTabs').animate({
+        opacity: 1
+      }, 300);
+      $('#viewContainer').css({
+        "display": "block"
+      });
+      $('#viewContainer').animate({
+        opacity: 1
+      }, 300);
+
+      // $window.onload = function () {
+      // };
 
     }])
   .name;

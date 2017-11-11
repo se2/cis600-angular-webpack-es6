@@ -1,7 +1,33 @@
 <div id="grantActivitiesContainer">
-    <h2>Funding and Grant Activities</h2>
-    </br>
-    <div style="list-style: none;" ng-repeat="grantActivity in grantActivities.data">
-        <li class="grantPara" ng-bind-html="grantActivity.point"></li>
+    <div layout="row" layout-sm="column" layout-align="space-around" class="loading-icon" ng-show="loading">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
-  </div>
+    <h2 class="pos-rel">
+        Funding and Grant Activities
+        <div class="edit-item" style="padding:8px 0;" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button class="md-raised md-primary" ng-click="saveActs()">Save Changes</md-button>
+            <md-button aria-label="Add New" class="md-icon-button nopadding nomargin" ng-if="$root.isAdmin" ng-click="addPoint(grantActivities.data)">
+                <i class="material-icons">add_circle</i>
+            </md-button>
+        </div>
+    </h2>
+    </br>
+    <div ng-model="grantActivities.data" ui-sortable class="grad-thesis" style="min-height:84px;">
+        <ul ng-repeat="grantAct in grantActivities.data">
+            <li class="grantPara {{($root.isAdmin && !grantAct.edit) ? 'drag' : 'unsortable'}} pos-rel item-admin-edit" ng-class="grantAct.edit ? 'unsortable' : ''">
+                <span ng-bind-html="grantAct.point" ng-if="!grantAct.edit"></span>
+                <div class="edit-item" ng-if="$root.isAdmin && $root.loggedIn">
+                    <md-button aria-label="Delete" class="md-icon-button nopadding nomargin" ng-click="deletePoint(grantActivities.data, $index)">
+                        <i class="material-icons">delete</i>
+                    </md-button>
+                    <md-button aria-label="Edit" class="md-icon-button nopadding nomargin" ng-click="grantAct.edit = !grantAct.edit">
+                        <i class="material-icons">{{grantAct.edit ? 'check_circle' : 'edit'}}</i>
+                    </md-button>
+                </div>
+                <md-input-container class="md-block nomargin" ng-if="grantAct.edit">
+                    <textarea autofocus ng-model="grantAct.point" rows="3" required aria-label="Edit">{{grantAct.point}}</textarea>
+                </md-input-container>
+            </li>
+        </ul>
+    </div>
+</div>
