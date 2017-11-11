@@ -154,8 +154,15 @@ export default angular.module('csel', [
         opacity: 1
       }, 300);
 
-      // $window.onload = function () {
-      // };
+      //For Fixed Nav after offset
+      var navpos = $('#viewContainer').offset();
+      $(window).bind('scroll', function () {
+        if ($(window).scrollTop() > navpos.top - 8) {
+          $('#sideNav').addClass('fixed');
+        } else {
+          $('#sideNav').removeClass('fixed');
+        }
+      });
 
     }])
   .name;

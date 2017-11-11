@@ -26,26 +26,35 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
   };
 
   $scope.deletePoint = function (model, index) {
-    var confirm = $mdDialog.confirm()
-      .title('Are you sure you want to delete this research?')
-      .ariaLabel('Delete Research Confirmation')
-      .ok('YES')
-      .cancel('CANCEL');
-
-    $mdDialog.show(confirm).then(function () {
+    if (!model[index].point || model[index].point == '' ) {
       model.splice(index, 1);
-    }, function () { });
+    } else {
+      var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this research?')
+        .ariaLabel('Delete Research Confirmation')
+        .ok('YES')
+        .cancel('CANCEL');
+
+      $mdDialog.show(confirm).then(function () {
+        model.splice(index, 1);
+      }, function () { });
+    }
   };
 
   $scope.saveResearch = function () {
     $scope.loading = true;
-    research.gradStudents.mastersThesis.map(function (x) { x.edit = false; return x });
-    research.gradStudents.mastersProject.map(function (x) { x.edit = false; return x });
-    research.gradStudents.phdDissertation.map(function (x) { x.edit = false; return x });
-    research.alumni.mastersThesis.map(function (x) { x.edit = false; return x });
-    research.alumni.mastersProject.map(function (x) { x.edit = false; return x });
-    research.alumni.phdDissertation.map(function (x) { x.edit = false; return x });
-    research.visitingScholar.map(function (x) { x.edit = false; return x });
+    var models = [
+      research.gradStudents.mastersThesis,
+      research.gradStudents.mastersProject,
+      research.gradStudents.phdDissertation,
+      research.alumni.mastersThesis,
+      research.alumni.mastersProject,
+      research.alumni.phdDissertation,
+      research.visitingScholar
+    ];
+    models.forEach(function(element) {
+      element.map(function (x) { x.edit = false; return x });
+    }, this);
     AppServices.updateData('studentData', { 'research': research })
       .then(function (data) {
         if (data.updated) {
@@ -70,16 +79,6 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
     $('html,body').animate({
       scrollTop: $("#" + id).offset().top - 40
     }, 'normal');
-  });
-
-  //For Fixed Nav after offset
-  var navpos = $('#viewContainer').offset();
-  $(window).bind('scroll', function () {
-    if ($(window).scrollTop() > navpos.top - 8) {
-      $('#sideNav').addClass('fixed');
-    } else {
-      $('#sideNav').removeClass('fixed');
-    }
   });
 }
 

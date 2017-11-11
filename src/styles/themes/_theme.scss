@@ -960,8 +960,13 @@ li.drag {
     cursor: move;
 }
 
+md-progress-linear.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-/* workaround for iOS issue */
+/* workaround for iOS issue of mdDialog */
 
 @media #{$mobile} {
     .md-dialog-container {

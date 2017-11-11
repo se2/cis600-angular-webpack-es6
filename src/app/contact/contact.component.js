@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 var contactCtrl = function (AppServices) {
   var contactInfo = this;
-  AppServices.getHomeData().then(function (data) {
+  AppServices.getPageData('homeData').then(function (data) {
     data = JSON.parse(data);
     contactInfo.director = data.contactInfo.director;
     contactInfo.staff = data.contactInfo.staff;

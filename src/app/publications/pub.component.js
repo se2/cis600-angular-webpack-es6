@@ -1,50 +1,92 @@
 import template from './publications.html';
 import $ from 'jquery';
 
-var pubCtrl = function (AppServices) {
+var pubCtrl = function (AppServices, $scope, $mdDialog) {
   var publications = this;
+  $scope.loading = false;
+  $scope.date = new Date();
 
   // Get the json data from the service($http)
-  AppServices.getPubData().then(function (data) {
+  AppServices.getPageData('publicationData').then(function (data) {
     data = JSON.parse(data);
     publications.umd09JP = data.publications.umd09JP;
     publications.umd03JP = data.publications.umd03JP;
     publications.umd91JP = data.publications.umd91JP;
-
     publications.books = data.publications.books;
     publications.proceedings = data.publications.proceedings;
-
     publications.umd09CP = data.publications.umd09CP;
     publications.umd03CP = data.publications.umd03CP;
     publications.umd91CP = data.publications.umd91CP;
-
     publications.techReports = data.publications.techReports;
     publications.thesisProject = data.publications.thesisProject;
   });
 
-  /* -- Scroll to link -- */
+  $scope.addPoint = function (model) {
+    model.unshift({ 'edit': true, 'point': '' });
+  };
+
+  $scope.deletePoint = function (model, index) {
+    if (!model[index].point || model[index].point == '' ) {
+      model.splice(index, 1);
+    } else {
+      var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this publication?')
+        .ariaLabel('Delete Publication Confirmation')
+        .ok('YES')
+        .cancel('CANCEL');
+
+      $mdDialog.show(confirm).then(function () {
+        model.splice(index, 1);
+      }, function () { });
+    }
+  };
+
+  $scope.savePub = function () {
+    $scope.loading = true;
+    var models = [
+      publications.umd09JP,
+      publications.umd03JP,
+      publications.umd91JP,
+      publications.books,
+      publications.proceedings,
+      publications.umd09CP,
+      publications.umd03CP,
+      publications.umd91CP,
+      publications.techReports,
+      publications.thesisProject
+    ];
+    models.forEach(function(element) {
+      element.map(function (x) { x.edit = false; return x });
+    }, this);
+    AppServices.updateData('publicationData', { 'publications': publications })
+      .then(function (data) {
+        if (data.updated) {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .clickOutsideToClose(true)
+              .title('Publications Updated')
+              .ok('OK')
+          );
+        }
+      })
+      .finally(function (data) {
+        $scope.loading = false;
+      });
+  };
+
+  /*-- Scroll to link --*/
   $('.scroller-link').click(function (e) {
-    e.preventDefault(); // Don't automatically jump to the link
+    e.preventDefault(); //Don't automatically jump to the link
     var id;
-    id = $(this).attr('href').replace('#', ''); // Extract the id of the element to jump to
+    id = $(this).attr('href').replace('#', ''); //Extract the id of the element to jump to
     $('html,body').animate({
       scrollTop: $("#" + id).offset().top - 40
-    }, 'normal');
-  });
-
-  // For Fixed Nav after offset
-  var navpos = $('#viewContainer').offset();
-  $(window).bind('scroll', function () {
-    if ($(window).scrollTop() > navpos.top - 8) {
-      $('#sideNav').addClass('fixed');
-    } else {
-      $('#sideNav').removeClass('fixed');
-    }
+    }, 'slow');
   });
 }
 
 export default {
   template: template,
-  controller: ['AppServices', pubCtrl],
+  controller: ['AppServices', '$scope', '$mdDialog', pubCtrl],
   controllerAs: 'publications'
 };

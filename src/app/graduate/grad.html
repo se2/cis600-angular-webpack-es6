@@ -37,16 +37,14 @@
     </div>
   </div>
   <div id="researchContent">
-    <div layout="row" layout-sm="column" layout-align="space-around" class="loading-icon" ng-show="loading">
-      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>
     <h2 id="GSSH2" class="pos-rel">
       Current Graduate Students
       <div class="edit-item" style="padding:8px 0;" ng-if="$root.isAdmin">
         <md-button class="md-raised md-primary" ng-click="saveResearch()">Save Changes</md-button>
       </div>
     </h2>
-    <div id="GSSContainer">
+    <div id="GSSContainer" class="pos-rel">
+      <md-progress-linear class="loading" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
       <h3 id="GSSH31" class="pos-rel">
         Master's Thesis
         <div class="edit-item">
@@ -68,7 +66,7 @@
               </md-button>
             </div>
             <md-input-container class="md-block nomargin" ng-if="gradStudent.edit">
-              <textarea autofocus ng-model="gradStudent.point" rows="3" required aria-label="Edit">{{gradStudent.point}}</textarea>
+              <textarea autofocus ng-model="gradStudent.point" rows="3" aria-label="Edit">{{gradStudent.point}}</textarea>
             </md-input-container>
           </li>
         </ul>
@@ -177,7 +175,7 @@
               </md-button>
             </div>
             <md-input-container class="md-block nomargin" ng-if="alumni.edit">
-              <textarea autofocus ng-model="alumni.point" rows="3" required aria-label="Edit">{{alumni.point}}</textarea>
+              <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
             </md-input-container>
           </li>
         </ul>
@@ -203,7 +201,7 @@
               </md-button>
             </div>
             <md-input-container class="md-block nomargin" ng-if="alumni.edit">
-              <textarea autofocus ng-model="alumni.point" rows="3" required aria-label="Edit">{{alumni.point}}</textarea>
+              <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
             </md-input-container>
           </li>
         </ul>
@@ -229,7 +227,7 @@
               </md-button>
             </div>
             <md-input-container class="md-block nomargin" ng-if="alumni.edit">
-              <textarea autofocus ng-model="alumni.point" rows="3" required aria-label="Edit">{{alumni.point}}</textarea>
+              <textarea autofocus ng-model="alumni.point" rows="3" aria-label="Edit">{{alumni.point}}</textarea>
             </md-input-container>
           </li>
         </ul>

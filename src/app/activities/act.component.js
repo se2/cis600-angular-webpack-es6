@@ -15,15 +15,19 @@ var actCtrl = function (AppServices, $scope, $mdDialog) {
   };
 
   $scope.deletePoint = function (model, index) {
-    var confirm = $mdDialog.confirm()
-      .title('Are you sure you want to delete this activity?')
-      .ariaLabel('Delete Activity Confirmation')
-      .ok('YES')
-      .cancel('CANCEL');
-
-    $mdDialog.show(confirm).then(function () {
+    if (!model[index].point || model[index].point == '') {
       model.splice(index, 1);
-    }, function () { });
+    } else {
+      var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this activity?')
+        .ariaLabel('Delete Activity Confirmation')
+        .ok('YES')
+        .cancel('CANCEL');
+
+      $mdDialog.show(confirm).then(function () {
+        model.splice(index, 1);
+      }, function () {});
+    }
   };
 
   $scope.saveActs = function () {
