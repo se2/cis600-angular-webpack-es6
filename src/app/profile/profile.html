@@ -164,30 +164,76 @@
               </form>
             </md-content>
           </md-tab>
-          <md-tab label="Security" md-on-select="setAccount()" ng-if="$root.isAdmin">
+          <md-tab label="Security" md-on-select="resetMsg()" ng-if="$root.isAdmin">
             <md-content class="md-padding">
-              <form role="form" class="csel-form" id="updatePasswordForm" name="forms.updatePasswordForm" ng-submit="updatePassword(credentials)">
-                <input type="hidden" ng-model="credentials.id">
-                <md-input-container class="md-block">
-                  <label>Username</label>
-                  <input type="text" ng-model="credentials.username" required>
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Current Password</label>
-                  <input type="password" ng-model="credentials.currentPassword" required>
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>New Password</label>
-                  <input type="password" ng-model="credentials.newPassword" required>
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Confirm Password</label>
-                  <input type="password" ng-model="credentials.confirmPassword" required>
-                </md-input-container>
-                <md-button class="md-warn" md-no-ink ng-if="msg.errorUpdatePass">{{msg.errorUpdatePass}}</md-button>
-                <md-button class="md-primary" md-no-ink ng-if="msg.successUpdatePass">{{msg.successUpdatePass}}</md-button>
-                <md-button class="md-raised md-primary float-right" type="submit">Update</md-button>
-              </form>
+              <div layout="row" layout-xs="column">
+                <div flex="50" flex-xs="100">
+                  <md-card>
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">Admin Account</span>
+                      </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                      <form role="form" class="csel-form" id="updatePasswordForm" name="forms.updatePasswordForm" ng-submit="updatePassword(credentials)">
+                        <input type="hidden" ng-model="credentials.id">
+                        <md-input-container class="md-block">
+                          <label>Admin Username</label>
+                          <input type="text" ng-model="credentials.username" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>Current Admin Password</label>
+                          <input type="password" ng-model="credentials.currentPassword" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>New Admin Password</label>
+                          <input type="password" ng-model="credentials.newPassword" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>Confirm Admin Password</label>
+                          <input type="password" ng-model="credentials.confirmPassword" required>
+                        </md-input-container>
+                        <md-button class="md-warn" md-no-ink ng-if="msg.errorUpdatePass">{{msg.errorUpdatePass}}</md-button>
+                        <md-button class="md-primary" md-no-ink ng-if="msg.successUpdatePass">{{msg.successUpdatePass}}</md-button>
+                        <md-button class="md-raised md-primary float-right" type="submit">Update</md-button>
+                      </form>
+                    </md-card-content>
+                  </md-card>
+                </div>
+                <div flex="50" flex-xs="100">
+                  <md-card>
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">Common Account</span>
+                      </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                      <form role="form" class="csel-form" id="updateCommonPasswordForm" name="forms.updateCommonPasswordForm" ng-submit="updateCommonPassword(common)">
+                        <input type="hidden" ng-model="common.id">
+                        <md-input-container class="md-block">
+                          <label>Common Username</label>
+                          <input type="text" ng-model="common.username" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>Current Common Password</label>
+                          <input type="password" ng-model="common.currentPassword" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>New Common Password</label>
+                          <input type="password" ng-model="common.newPassword" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>Confirm Common Password</label>
+                          <input type="password" ng-model="common.confirmPassword" required>
+                        </md-input-container>
+                        <md-button class="md-warn" md-no-ink ng-if="msg.errorUpdateCommonPass">{{msg.errorUpdateCommonPass}}</md-button>
+                        <md-button class="md-primary" md-no-ink ng-if="msg.successUpdateCommonPass">{{msg.successUpdateCommonPass}}</md-button>
+                        <md-button class="md-raised md-primary float-right" type="submit">Update</md-button>
+                      </form>
+                    </md-card-content>
+                  </md-card>
+                </div>
+              </div>
             </md-content>
           </md-tab>
         </md-tabs>

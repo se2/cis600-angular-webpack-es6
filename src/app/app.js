@@ -76,7 +76,8 @@ export default angular.module('csel', [
     function ($rootScope, $location, $scope, $compile, $window, $state) {
 
       // check logged-in state
-      if (sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '') {
+      if ((sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '')
+        && (sessionStorage.getItem('csel-account') && sessionStorage.getItem('csel-account') != '')) {
         $rootScope.loggedIn = true;
         $rootScope.account = JSON.parse(sessionStorage.getItem('csel-account'));
         if ($rootScope.account && $rootScope.account.role == 'admin') {
@@ -108,6 +109,7 @@ export default angular.module('csel', [
         $rootScope.loggedIn = false;
         $rootScope.isEdit = false;
         // reset sessionStorage
+        sessionStorage.removeItem('csel-common');
         sessionStorage.removeItem('csel-account');
         sessionStorage.removeItem('csel-users');
         if ($state.current.name == 'profile') {

@@ -13,15 +13,21 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   $scope.isEdit = false;
   $scope.formdata = {};
   $scope.credentials = {};
-  $scope.forms = {};
+  $scope.common = {},
+    $scope.forms = {};
   $scope.msg = {};
   $scope.users = [];
   $scope.ids = {};
   $scope.formdata = $scope.defaultForm;
 
   // check logged-in state
-  if (sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '') {
+  if ((sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '')
+    && (sessionStorage.getItem('csel-account') && sessionStorage.getItem('csel-account') != '')) {
     if ($rootScope.isAdmin) {
+      $scope.credentials = $rootScope.account;
+      if (sessionStorage.getItem('csel-common') && sessionStorage.getItem('csel-common') != '') {
+        $scope.common = JSON.parse(sessionStorage.getItem('csel-common'));
+      }
       AppServices.getUsersData().then(function (result) {
         $scope.users = result;
         $scope.ids = result.map(function (item) { return item["id"]; });
@@ -52,6 +58,9 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
     $scope.msg = {};
     AppServices.login($scope.credentials.username, $scope.credentials.password).then(function (result) {
       if (result.found) {
+        if (result.common && result.common != {}) {
+          $scope.common = result.common;
+        }
         $rootScope.loggedIn = true;
         $rootScope.account = result.account;
         $rootScope.isAdmin = (result.account.role == 'admin') ? true : false;
@@ -59,6 +68,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
         $scope.users = result.users;
         $scope.ids = result.users.map(function (item) { return item["id"]; });
         sessionStorage.setItem('csel-account', JSON.stringify(result.account));
+        sessionStorage.setItem('csel-common', JSON.stringify(result.common));
         sessionStorage.setItem('csel-users', JSON.stringify($scope.ids));
       } else {
         $rootScope.loggedIn = false;
@@ -163,11 +173,6 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
       });
   };
 
-  $scope.setAccount = function () {
-    $scope.resetMsg();
-    $scope.credentials = $rootScope.account;
-  };
-
   $scope.updatePassword = function (credentials) {
     if ($scope.credentials.newPassword == $scope.credentials.confirmPassword) {
       AppServices.updatePass($scope.credentials)
@@ -177,7 +182,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
             $scope.credentials = $rootScope.account = result.account;
             sessionStorage.setItem('csel-account', JSON.stringify($scope.credentials));
             $scope.msg.errorUpdatePass = '';
-            $scope.msg.successUpdatePass = 'Password updated';
+            $scope.msg.successUpdatePass = 'Account updated';
             $scope.forms.updatePasswordForm.$setPristine();
             $scope.forms.updatePasswordForm.$setUntouched();
           } else {
@@ -187,11 +192,33 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
           }
         });
     } else {
-      $scope.msg.errorUpdatePass = "Confirm password mismatch";
+      $scope.msg.errorUpdatePass = "Confirm password mismatch.";
     }
   };
 
-  $scope.searchUser = function() {
+  $scope.updateCommonPassword = function (common) {
+    if ($scope.common.newPassword == $scope.common.confirmPassword) {
+      AppServices.updatePass($scope.common)
+        .then(function (result) {
+          if (result.updated) {
+            delete result.account.hashed;
+            $scope.common = result.account;
+            sessionStorage.setItem('csel-common', JSON.stringify($scope.common));
+            $scope.msg.errorUpdateCommonPass = '';
+            $scope.msg.successUpdateCommonPass = 'Account updated';
+            $scope.forms.updateCommonPasswordForm.$setPristine();
+            $scope.forms.updateCommonPasswordForm.$setUntouched();
+          } else {
+            $scope.msg.successUpdateCommonPass = '';
+            $scope.msg.errorUpdateCommonPass = result.error;
+          }
+        });
+    } else {
+      $scope.msg.errorUpdateCommonPass = "Confirm password mismatch.";
+    }
+  }
+
+  $scope.searchUser = function () {
     if (!$rootScope.isAdmin) {
       AppServices.getSearchUser($scope.formdata.searchInput.toLowerCase())
         .then(function (result) {
@@ -211,10 +238,12 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
     // reset formdata
     $scope.formdata = $scope.defaultForm;
     $scope.credentials.username = {};
+    $scope.common = {};
     // reset messages
     $scope.msg = {};
     // reset sessionStorage
     sessionStorage.removeItem('csel-account');
+    sessionStorage.removeItem('csel-common');
     sessionStorage.removeItem('csel-users');
   };
 }

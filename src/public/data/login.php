@@ -28,9 +28,19 @@
     if (hash_equals(crypt($inputUsername.$inputPassword, $account->hashed), $account->hashed)) {
       $found = true;
       $users = array();
+      $common = array();
       if ($account->role == 'admin') {
         foreach ( glob( $dir . '/*.*' ) as $file ) {
           $users[] = $json->decode(file_get_contents($file));
+        }
+        foreach ($accounts as $key => $acc) {
+          if ($acc->role == 'common') {
+            $common = array(
+              'id' => $acc->id,
+              'username' => $acc->username
+            );
+            break;
+          }
         }
       }
       echo $json->encode(
@@ -41,6 +51,7 @@
             'username' => $account->username,
             'role' => $account->role
           ),
+          'common' => $common,
           'users' => $users
         )
       );
