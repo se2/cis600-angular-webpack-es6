@@ -31,7 +31,7 @@
       <h1>Login</h1>
       <md-input-container class="md-block">
         <label>Username</label>
-        <input ng-model="credentials.username" required type="text">
+        <input ng-model="credentials.username" required type="text" autofocus>
       </md-input-container>
       <md-input-container class="md-block">
         <label>Password</label>
@@ -47,7 +47,7 @@
       <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
           <md-tab label="{{$root.isAdmin ? 'Users List' : 'Search'}}" md-on-select="resetMsg()">
-            <md-content class="md-padding">
+            <md-content class="md-padding form-wrapper">
               <form ng-submit="searchUser()" role="form" class="csel-form" id="searchForm" name="forms.searchForm">
                 <div layout="row" layout-xs="column">
                   <md-input-container flex="66" flex-xs="0"></md-input-container>
@@ -165,7 +165,7 @@
             </md-content>
           </md-tab>
           <md-tab label="Security" md-on-select="resetMsg()" ng-if="$root.isAdmin">
-            <md-content class="md-padding">
+            <md-content class="md-padding form-wrapper">
               <div layout="row" layout-xs="column">
                 <div flex="50" flex-xs="100">
                   <md-card>
@@ -229,6 +229,59 @@
                         <md-button class="md-warn" md-no-ink ng-if="msg.errorUpdateCommonPass">{{msg.errorUpdateCommonPass}}</md-button>
                         <md-button class="md-primary" md-no-ink ng-if="msg.successUpdateCommonPass">{{msg.successUpdateCommonPass}}</md-button>
                         <md-button class="md-raised md-primary float-right" type="submit">Update</md-button>
+                      </form>
+                    </md-card-content>
+                  </md-card>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Emails" md-on-select="resetMsg()" ng-if="$root.isAdmin">
+            <md-content class="md-padding form-wrapper">
+              <div layout="column">
+                <div flex="100">
+                  <md-card>
+                    <md-card-title>
+                      <span class="md-headline">Users List</span>
+                    </md-card-title>
+                    <md-card-content>
+                      <div layout="row" layout-wrap flex>
+                        <div flex-xs flex="100">
+                          <md-checkbox aria-label="Select All" ng-checked="isChecked()" md-indeterminate="isIndeterminate()" ng-click="toggleAll()">
+                            <b><span ng-if="isChecked()">Un-</span>Select All</b>
+                          </md-checkbox>
+                        </div>
+                        <div class="select-all-checkboxes" flex="25" ng-repeat="user in users">
+                          <md-checkbox ng-checked="exists(user, selected)" ng-click="toggle(user, selected)">
+                            {{user.fullname}}
+                          </md-checkbox>
+                        </div>
+                      </div>
+                    </md-card-content>
+                  </md-card>
+                </div>
+                <div flex="100">
+                  <md-card>
+                    <md-card-title>
+                      <span class="md-headline">Email Content</span>
+                    </md-card-title>
+                    <md-card-content>
+                      <form role="form" class="csel-form" id="emailForm" name="forms.emailForm">
+                        <md-input-container class="md-block">
+                          <label>Receiving Email</label>
+                          <input type="email" ng-model="email.receivingEmail" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                          <label>Email Subject</label>
+                          <input type="text" ng-model="email.subject" autofocus required>
+                        </md-input-container>
+                        <span class="md-subhead">Email Body</span>
+                        <md-input-container class="md-block">
+                            <textarea ui-tinymce="tinymceOptions" ng-model="email.body" required></textarea>
+                        </md-input-container>
+                        <md-button class="md-primary" ng-if="msg.successSentEmail">{{msg.successSentEmail}}</md-button>
+                        <md-button class="md-warn" ng-if="msg.errorNoEmail">{{msg.errorNoEmail}}</md-button>
+                        <md-button class="md-raised md-primary float-right" ng-click="sendEmailForm(email)">Send Email</md-button>
                       </form>
                     </md-card-content>
                   </md-card>

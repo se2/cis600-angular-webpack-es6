@@ -130,6 +130,20 @@ export default function ($http) {
         }, function (response) {
           return response.data;
         });
+    },
+    sendEmail: function (email, selected) {
+      return $http.post(dataURL + 'sendEmail.php', {
+        'receivingEmail': email.receivingEmail,
+        'selected': selected,
+        'subject': email.subject,
+        'body': email.body
+      })
+        .then(function (response) {
+          console.log(response);
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
     }
   };
 }

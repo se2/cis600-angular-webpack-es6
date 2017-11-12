@@ -164,6 +164,10 @@ angular-ui-sortable@^0.17.2:
   version "0.17.2"
   resolved "https://registry.yarnpkg.com/angular-ui-sortable/-/angular-ui-sortable-0.17.2.tgz#8c4426cad306c7cdd1c30b454af85b2d15818cdc"
 
+angular-ui-tinymce@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/angular-ui-tinymce/-/angular-ui-tinymce-0.0.19.tgz#6a613675a1265e415c9c21944053ac9bab9578e9"
+
 angular@*, "angular@>=1.2.26 <=1.6", angular@^1.6.0:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
@@ -6075,6 +6079,10 @@ timers-browserify@^2.0.2:
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.4.tgz#96ca53f4b794a5e7c0e1bd7cc88a372298fa01e6"
   dependencies:
     setimmediate "^1.0.4"
+
+tinymce@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-4.7.2.tgz#24bf64ff1d1e68190e15461a658dc257a426c5ee"
 
 title-case@^2.1.0:
   version "2.1.1"

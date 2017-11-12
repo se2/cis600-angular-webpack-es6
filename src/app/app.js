@@ -1,4 +1,6 @@
 /* global process */
+import 'tinymce/tinymce.js';
+import 'tinymce/themes/modern/theme.js';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';
@@ -12,9 +14,12 @@ import filter from 'angular-filter';
 import $ from 'jquery';
 import 'jquery-ui-bundle';
 import uiSortable from 'angular-ui-sortable';
+import uiTinymce from 'angular-ui-tinymce';
 
 import '../styles/main.scss';
 import 'angular-material/angular-material.css';
+import 'tinymce/skins/lightgray/skin.min.css';
+import 'tinymce/skins/lightgray/content.min.css';
 
 import config from 'app.config';
 
@@ -41,6 +46,7 @@ export default angular.module('csel', [
   ngFileUpload,
   uiRouter,
   'ui.sortable',
+  'ui.tinymce',
   filter
 ])
   .config(appConfig)

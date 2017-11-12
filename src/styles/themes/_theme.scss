@@ -76,6 +76,7 @@ body {
     background-color: #F6F6F6;
     color: $primary-text-color;
     position: relative;
+    height: auto;
 }
 
 .boxShadow {
@@ -989,6 +990,14 @@ button.md-button.md-icon-button {
 .ng-cloak,
 .x-ng-cloak {
     display: none !important;
+}
+
+.legend {
+    color: $primary-color;
+}
+
+.select-all-checkboxes {
+    padding-left: 30px;
 }
 
 

@@ -1,7 +1,7 @@
 import template from './profile.html';
 import $ from 'jquery';
 
-var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
+var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdDialog) {
   $scope.defaultAvatar = "images/noimage.png";
   $scope.defaultForm = {
     avatar: $scope.defaultAvatar,
@@ -13,11 +13,17 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
   $scope.isEdit = false;
   $scope.formdata = {};
   $scope.credentials = {};
-  $scope.common = {},
-    $scope.forms = {};
+  $scope.common = {};
+  $scope.forms = {};
   $scope.msg = {};
   $scope.users = [];
   $scope.ids = {};
+  $scope.selected = [];
+  $scope.email = {
+    receivingEmail: 'hxu@umassd.edu',
+    subject: 'CSEL Update',
+    body: ''
+  }
   $scope.formdata = $scope.defaultForm;
 
   // check logged-in state
@@ -246,6 +252,67 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload) {
     sessionStorage.removeItem('csel-common');
     sessionStorage.removeItem('csel-users');
   };
+
+  $scope.sendEmailForm = function (email) {
+    if ($scope.selected.length && $scope.selected.length > 0) {
+      $scope.msg = {};
+      var confirm = $mdDialog.confirm()
+        .title('Sending email to ' + $scope.selected.length + ' ' + (($scope.selected.length == 1) ? 'person' : 'people') + '?')
+        .ok('YES')
+        .cancel('CANCEL');
+
+      $mdDialog.show(confirm).then(function () {
+        AppServices.sendEmail($scope.email, $scope.selected)
+          .then(function (resp) {
+            if (resp.sent) {
+              $scope.msg = {};
+              $scope.msg.successSentEmail = 'Email Sent';
+            }
+          });
+      }, function () { });
+    } else {
+      $scope.msg.errorNoEmail = 'No Recipient To Send';
+    }
+  };
+
+  $scope.tinymceOptions = {
+    height: 300,
+    inline: false,
+    skin: 'lightgray',
+    theme: 'modern'
+  };
+
+  // email checkboxes functions
+  $scope.toggle = function (item, list) {
+    var idx = list.indexOf(item);
+    if (idx > -1) {
+      list.splice(idx, 1);
+    }
+    else {
+      list.push(item);
+    }
+  };
+
+  $scope.exists = function (item, list) {
+    return list.indexOf(item) > -1;
+  };
+
+  $scope.isIndeterminate = function () {
+    return ($scope.selected.length !== 0 &&
+      $scope.selected.length !== $scope.users.length);
+  };
+
+  $scope.isChecked = function () {
+    return $scope.selected.length === $scope.users.length;
+  };
+
+  $scope.toggleAll = function () {
+    if ($scope.selected.length === $scope.users.length) {
+      $scope.selected = [];
+    } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
+      $scope.selected = $scope.users.slice(0);
+    }
+  };
 }
 
 export default {
@@ -256,6 +323,7 @@ export default {
     '$scope',
     '$http',
     'Upload',
+    '$mdDialog',
     profileCtrl
   ],
   controllerAs: 'profile'

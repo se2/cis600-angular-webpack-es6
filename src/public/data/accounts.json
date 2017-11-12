@@ -1,14 +1,14 @@
 [
   {
     "id": "000",
-    "username": "dluong",
-    "hashed": "$1$RaFMnpIl$zxETlYCAio51o2ID2ByUl.",
+    "username": "admin",
+    "hashed": "$1$EjtaHBDv$oACq1JdG4fC0SW3RdD82C\/",
     "role": "admin"
   },
   {
     "id": "001",
     "username": "user",
-    "hashed": "$1$SrlHeCCF$ib4arkGLtq\/FJn8ElZOoo1",
+    "hashed": "$1$EjYmDZcW$hIpgSzS6P1m6IgLiNGOKQ1",
     "role": "common"
   }
 ]
