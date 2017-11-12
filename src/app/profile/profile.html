@@ -242,7 +242,7 @@
                 <div flex="100">
                   <md-card>
                     <md-card-title>
-                      <span class="md-headline">Users List</span>
+                      <span class="md-headline">Email List</span>
                     </md-card-title>
                     <md-card-content>
                       <div layout="row" layout-wrap flex>
@@ -251,7 +251,7 @@
                             <b><span ng-if="isChecked()">Un-</span>Select All</b>
                           </md-checkbox>
                         </div>
-                        <div class="select-all-checkboxes" flex="25" ng-repeat="user in users">
+                        <div class="select-all-checkboxes" flex="33" flex-sm="50" flex-xs="100" ng-repeat="user in users | toArray:false | orderBy:['fullname']">
                           <md-checkbox ng-checked="exists(user, selected)" ng-click="toggle(user, selected)">
                             {{user.fullname}}
                           </md-checkbox>
