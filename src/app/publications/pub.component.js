@@ -82,6 +82,46 @@ var pubCtrl = function (AppServices, $scope, $mdDialog) {
       });
   };
 
+  $scope.revert = function () {
+    var confirm = $mdDialog.confirm()
+      .title('Are you sure you want to revert data?')
+      .ok('YES')
+      .cancel('CANCEL');
+
+    $mdDialog.show(confirm)
+      .then(function () {
+        $scope.loading = true;
+        AppServices.revertData('publicationData')
+          .then(function (revertResp) {
+            if (revertResp.revert) {
+              AppServices.getPageData('publicationData')
+                .then(function (data) {
+                  data = JSON.parse(data);
+                  publications.umd09JP = data.publications.umd09JP;
+                  publications.umd03JP = data.publications.umd03JP;
+                  publications.umd91JP = data.publications.umd91JP;
+                  publications.books = data.publications.books;
+                  publications.proceedings = data.publications.proceedings;
+                  publications.umd09CP = data.publications.umd09CP;
+                  publications.umd03CP = data.publications.umd03CP;
+                  publications.umd91CP = data.publications.umd91CP;
+                  publications.techReports = data.publications.techReports;
+                  publications.thesisProject = data.publications.thesisProject;
+                })
+                .finally(function (data) {
+                  $mdDialog.show(
+                    $mdDialog.alert()
+                      .clickOutsideToClose(true)
+                      .title('Publications Reverted')
+                      .ok('OK')
+                  );
+                  $scope.loading = false;
+                });
+            }
+          });
+      }, function () { });
+  };
+
   /*-- Scroll to link --*/
   $('.scroller-link').click(function (e) {
     e.preventDefault(); //Don't automatically jump to the link

@@ -57,6 +57,37 @@ var actCtrl = function (AppServices, $scope, $mdDialog) {
         }
       });
   };
+
+  $scope.revert = function () {
+    var confirm = $mdDialog.confirm()
+      .title('Are you sure you want to revert data?')
+      .ok('YES')
+      .cancel('CANCEL');
+
+    $mdDialog.show(confirm)
+      .then(function () {
+        $scope.loading = true;
+        AppServices.revertData('grantActivities')
+          .then(function (revertResp) {
+            if (revertResp.revert) {
+              AppServices.getPageData('grantActivities')
+                .then(function (data) {
+                  data = JSON.parse(data);
+                  grantActivities.data = data.grantActivities;
+                })
+                .finally(function (data) {
+                  $mdDialog.show(
+                    $mdDialog.alert()
+                      .clickOutsideToClose(true)
+                      .title('Activities Reverted')
+                      .ok('OK')
+                  );
+                  $scope.loading = false;
+                });
+            }
+          });
+      }, function () { });
+  };
 }
 
 export default {

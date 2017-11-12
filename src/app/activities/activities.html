@@ -3,6 +3,7 @@
     <h2 class="pos-rel">
         Funding and Grant Activities
         <div class="edit-item" style="display:flex;align-items:center;" ng-if="$root.isAdmin && $root.loggedIn">
+            <md-button class="flat md-warn" ng-click="revert()">Revert</md-button>
             <md-button aria-label="Add New" class="md-icon-button nopadding nomargin" ng-if="$root.isAdmin" ng-click="addPoint(grantActivities.data)">
                 <i class="material-icons">add_circle</i>
             </md-button>

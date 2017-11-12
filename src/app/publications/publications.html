@@ -51,6 +51,7 @@
             Journal Papers (1990-2017) [{{publications.umd09JP.length + publications.umd03JP.length + publications.umd91JP.length}}]
             <div class="edit-item" style="padding:8px 0;" ng-if="$root.isAdmin && $root.loggedIn">
                 <md-button class="md-raised md-primary" ng-click="savePub()">Save Changes</md-button>
+                <md-button class="flat md-warn" ng-click="revert()">Revert</md-button>
             </div>
         </h2>
         <div id="JPContainer" class="pos-rel">
