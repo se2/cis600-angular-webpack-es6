@@ -37,19 +37,24 @@ var actCtrl = function (AppServices, $scope, $mdDialog) {
   $scope.saveActs = function () {
     $scope.loading = true;
     grantActivities.data.map(function (x) { x.edit = false; return x });
-    AppServices.updateData('grantActivities', { 'grantActivities': grantActivities.data })
-      .then(function (data) {
-        if (data.updated) {
-          $mdDialog.show(
-            $mdDialog.alert()
-              .clickOutsideToClose(true)
-              .title('Grant Activities Updated')
-              .ok('OK')
-          );
+    AppServices.backupData('grantActivities')
+      .then(function (backupResponse) {
+        if (backupResponse.backup) {
+          AppServices.updateData('grantActivities', { 'grantActivities': grantActivities.data })
+            .then(function (data) {
+              if (data.updated) {
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Grant Activities Updated')
+                    .ok('OK')
+                );
+              }
+            })
+            .finally(function (data) {
+              $scope.loading = false;
+            });
         }
-      })
-      .finally(function (data) {
-        $scope.loading = false;
       });
   };
 }

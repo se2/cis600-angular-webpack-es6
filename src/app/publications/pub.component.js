@@ -61,19 +61,24 @@ var pubCtrl = function (AppServices, $scope, $mdDialog) {
     models.forEach(function (element) {
       element.map(function (x) { x.edit = false; return x });
     }, this);
-    AppServices.updateData('publicationData', { 'publications': publications })
-      .then(function (data) {
-        if (data.updated) {
-          $mdDialog.show(
-            $mdDialog.alert()
-              .clickOutsideToClose(true)
-              .title('Publications Updated')
-              .ok('OK')
-          );
+    AppServices.backupData('publicationData')
+      .then(function (backupResp) {
+        if (backupResp.backup) {
+          AppServices.updateData('publicationData', { 'publications': publications })
+            .then(function (data) {
+              if (data.updated) {
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Publications Updated')
+                    .ok('OK')
+                );
+              }
+            })
+            .finally(function (data) {
+              $scope.loading = false;
+            });
         }
-      })
-      .finally(function (data) {
-        $scope.loading = false;
       });
   };
 

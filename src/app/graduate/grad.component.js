@@ -59,20 +59,58 @@ var researchCtrl = function (AppServices, $scope, $mdDialog) {
     models.forEach(function (element) {
       element.map(function (x) { x.edit = false; return x });
     }, this);
-    AppServices.updateData('studentData', { 'research': research })
-      .then(function (data) {
-        if (data.updated) {
-          $mdDialog.show(
-            $mdDialog.alert()
-              .clickOutsideToClose(true)
-              .title('Research Updated')
-              .ok('OK')
-          );
+    AppServices.backupData('studentData')
+      .then(function (backupResp) {
+        if (backupResp.backup) {
+          AppServices.updateData('studentData', { 'research': research })
+            .then(function (data) {
+              if (data.updated) {
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Research Updated')
+                    .ok('OK')
+                );
+              }
+            })
+            .finally(function (data) {
+              $scope.loading = false;
+            });
         }
-      })
-      .finally(function (data) {
-        $scope.loading = false;
       });
+  };
+
+  $scope.revert = function () {
+    var confirm = $mdDialog.confirm()
+      .title('Are you sure you want to revert data?')
+      .ok('YES')
+      .cancel('CANCEL');
+
+    $mdDialog.show(confirm)
+      .then(function () {
+        $scope.loading = true;
+        AppServices.revertData('studentData')
+          .then(function (revertResp) {
+            if (revertResp.revert) {
+              AppServices.getPageData('studentData')
+                .then(function (data) {
+                  data = JSON.parse(data);
+                  research.gradStudents = data.research.gradStudents;
+                  research.visitingScholar = data.research.visitingScholar;
+                  research.alumni = data.research.alumni;
+                })
+                .finally(function (data) {
+                  $mdDialog.show(
+                    $mdDialog.alert()
+                      .clickOutsideToClose(true)
+                      .title('Research Reverted')
+                      .ok('OK')
+                  );
+                  $scope.loading = false;
+                });
+            }
+          });
+      }, function () { });
   };
 
   /*-- Scroll to link --*/

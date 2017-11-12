@@ -110,6 +110,26 @@ export default function ($http) {
         }, function (response) {
           return response.data;
         });
+    },
+    backupData: function (file) {
+      return $http.post(dataURL + 'backupData.php', {
+        'file': file
+      })
+        .then(function (response) {
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
+    },
+    revertData: function (file) {
+      return $http.post(dataURL + 'revertData.php', {
+        'file': file
+      })
+        .then(function (response) {
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
     }
   };
 }
