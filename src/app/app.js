@@ -59,6 +59,16 @@ export default angular.module('csel', [
       }
     }
   })
+  .directive('autofocus', ['$timeout', function ($timeout) {
+    return {
+      restrict: 'A',
+      link: function ($scope, $element) {
+        $timeout(function () {
+          $element[0].focus();
+        });
+      }
+    }
+  }])
   .component('home', homeComponent)
   .component('publications', pubComponent)
   .component('research', researchComponent)

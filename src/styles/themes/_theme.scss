@@ -677,6 +677,8 @@ footer {
 #mobileMenuContainer {
     display: none;
     @media #{$responsive} {
+        text-align: center;
+        color: white;
         display: block;
         margin: 0 auto;
         padding: 0 15px 15px;
@@ -698,7 +700,7 @@ footer {
 }
 
 #navTabs {
-    display: block;
+    // display: block;
     margin: 0 auto;
     max-width: 1000px;
     padding: 0 15px;
@@ -707,12 +709,14 @@ footer {
     transition: all 0.2s;
     @media #{$responsive} {
         padding: 0;
-        display: none;
+        max-height: 0;
+        overflow: hidden; // display: none;
     }
 }
 
 #navTabs.displayBlock {
-    display: block;
+    // display: block;
+    max-height: 500px;
 }
 
 #navTabs a {
@@ -759,8 +763,8 @@ footer {
 }
 
 #navTabs {
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
     opacity: 0;
 }
 
@@ -892,7 +896,6 @@ button.details-btn {
     right: 0;
     bottom: 0;
     z-index: 9;
-
     button {
         float: right;
     }
@@ -912,7 +915,6 @@ button.details-btn {
     position: absolute;
     left: 0;
     right: 0;
-
     &:after {
         content: "";
         position: absolute;
@@ -969,11 +971,26 @@ md-progress-linear.loading {
 
 md-dialog.person-dialog {
     max-width: 800px;
-
     @media #{$responsive} {
         max-width: 90%;
     }
 }
+
+button.md-button.md-icon-button {
+    width: 30px;
+    height: 36px;
+}
+
+// prevent data flashing
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}
+
 
 /* workaround for iOS issue of mdDialog */
 
