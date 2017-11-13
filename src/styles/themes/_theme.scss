@@ -76,7 +76,10 @@ body {
     background-color: #F6F6F6;
     color: $primary-text-color;
     position: relative;
-    height: auto;
+}
+
+body {
+    height: auto !important;
 }
 
 .boxShadow {
@@ -571,10 +574,12 @@ footer {
         }
         li {
             color: $primary-text-color;
-            padding: 14px 20px;
+            padding: 10px 15px;
             border-bottom: 1px solid lightgrey;
             -webkit-transition: all 0.1s;
             transition: all 0.1s;
+            display: flex;
+            align-items: center;
         }
         .subUL li {
             color: $secondary-text-color;
@@ -661,10 +666,6 @@ footer {
             display: block;
         }
     }
-}
-
-#publicationsContainer #sideNavContainer li {
-    padding: 10px 20px;
 }
 
 // Seperate Styles from V2
