@@ -15,6 +15,9 @@
   $userId =  $request->userId;
 
   if (file_exists("users/" . $userId . ".json")) {
+    if (!isset($user->firstlast) || $user->firstlast == NULL) {
+      $user->firstlast = $user->firstname . ' ' . $user->lastname;
+    }
     $user = $json->decode(file_get_contents("users/" . $userId . ".json"));
     $found = true;
     echo $json->encode(array('found' => $found, 'user' => $user));

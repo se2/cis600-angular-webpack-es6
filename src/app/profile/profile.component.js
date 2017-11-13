@@ -3,12 +3,24 @@ import $ from 'jquery';
 
 var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdDialog) {
   $scope.defaultAvatar = "images/noimage.png";
+  $scope.loading = false;
   $scope.defaultForm = {
     avatar: $scope.defaultAvatar,
     type: 'graduate',
     year: 2016,
     school: 'UMass Dartmouth'
-  }
+  };
+  $scope.prefixes = [
+    'NONE',
+    'Mr.',
+    'Mrs.',
+    'Ms.',
+    'Prof.',
+    'Dr.',
+    'Chan.',
+    'Dean',
+    'Sir'
+  ];
   // $scope variables
   $scope.isEdit = false;
   $scope.formdata = {};
@@ -100,6 +112,8 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
 
   $scope.register = function () {
     $scope.formdata.avatar = $scope.defaultAvatar;
+    $scope.formdata.firstlast = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
+    $scope.formdata.prefix = ($scope.formdata.prefix == 'NONE') ? '' : $scope.formdata.prefix;
     if ($scope.formdata.middlename && $scope.formdata.middlename != '') {
       $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.middlename + '. ' + $scope.formdata.lastname;
     } else {
@@ -152,6 +166,8 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   };
 
   $scope.studentSubmit = function () {
+    $scope.formdata.firstlast = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
+    $scope.formdata.prefix = ($scope.formdata.prefix == 'NONE') ? '' : $scope.formdata.prefix;
     if ($scope.formdata.middlename && $scope.formdata.middlename != '') {
       $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.middlename + '. ' + $scope.formdata.lastname;
     } else {
@@ -229,9 +245,12 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
       AppServices.getSearchUser($scope.formdata.searchInput.toLowerCase())
         .then(function (result) {
           $scope.msg = {};
-          $scope.users = result;
-          if ($scope.users.length == 0) {
-            $scope.msg.searchNotFound = 'User Not Found. Please Register!'
+          if (result.length == 0) {
+            $scope.msg.searchNotFound = 'User Not Found. Please Register!';
+          } else if (result.length == 1) {
+            $scope.users = result;
+          } else if (result.length > 1) {
+            $scope.msg.searchNotFound = 'Please Provide Full Name';
           }
         });
     }
@@ -255,21 +274,25 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
 
   $scope.sendEmailForm = function (email) {
     if ($scope.selected.length && $scope.selected.length > 0) {
-      $scope.msg = {};
-      var confirm = $mdDialog.confirm()
-        .title('Sending email to ' + $scope.selected.length + ' ' + (($scope.selected.length == 1) ? 'person' : 'people') + '?')
-        .ok('YES')
-        .cancel('CANCEL');
+      if ($scope.email.body && $scope.email.body != '') {
+        $scope.msg = {};
+        var confirm = $mdDialog.confirm()
+          .title('Sending email to ' + $scope.selected.length + ' ' + (($scope.selected.length == 1) ? 'person' : 'people') + '?')
+          .ok('YES')
+          .cancel('CANCEL');
 
-      $mdDialog.show(confirm).then(function () {
-        AppServices.sendEmail($scope.email, $scope.selected)
-          .then(function (resp) {
-            if (resp.sent) {
-              $scope.msg = {};
-              $scope.msg.successSentEmail = 'Email Sent';
-            }
-          });
-      }, function () { });
+        $mdDialog.show(confirm).then(function () {
+          AppServices.sendEmail($scope.email, $scope.selected)
+            .then(function (resp) {
+              if (resp.sent) {
+                $scope.msg = {};
+                $scope.msg.successSentEmail = 'Email Sent';
+              }
+            });
+        }, function () { });
+      } else {
+        $scope.msg.errorNoEmail = 'Empty Message';
+      }
     } else {
       $scope.msg.errorNoEmail = 'No Recipient To Send';
     }

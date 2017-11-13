@@ -16,7 +16,11 @@
   $users = array();
 
   foreach ( glob( $dir . '/*.*' ) as $file ) {
-    $users[] = $json->decode(file_get_contents($file));
+    $user = $json->decode(file_get_contents($file));
+    if (!isset($user->firstlast) || $user->firstlast == NULL) {
+      $user->firstlast = $user->firstname . ' ' . $user->lastname;
+    }
+    $users[] = $user;
   }
 
   echo $json->encode($users);

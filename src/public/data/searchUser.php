@@ -25,8 +25,12 @@
     if ($search == strtolower($user->firstname)
     || $search == strtolower($user->lastname)
     || $search == strtolower($user->fullname)
+    || $search == strtolower($user->firstname . ' ' . $user->lastname)
     || $search == strtolower($user->email)
     || (isset($user->email2) && $search == strtolower($user->email2))) {
+      if (!isset($user->firstlast) || $user->firstlast == NULL) {
+        $user->firstlast = $user->firstname . ' ' . $user->lastname;
+      }
       $users[] = $user;
     }
   }
