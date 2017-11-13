@@ -170,6 +170,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   };
 
   $scope.studentSubmit = function () {
+    $scope.loading = true;
     $scope.formdata.firstlast = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
     $scope.formdata.prefix = ($scope.formdata.prefix == 'NONE') ? '' : $scope.formdata.prefix;
     if ($scope.formdata.middlename && $scope.formdata.middlename != '') {
@@ -187,6 +188,9 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
           $scope.users[updatedIndex] = $scope.formdata;
           $scope.msg.successUpdate = 'Information updated';
         }
+      })
+      .finally(function (data) {
+        $scope.loading = false;
       });
   };
 
@@ -298,7 +302,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
         $scope.msg.errorNoEmail = 'Empty Message';
       }
     } else {
-      $scope.msg.errorNoEmail = 'No Recipient To Send';
+      $scope.msg.errorNoEmail = 'No Recipients To Send';
     }
   };
 
