@@ -14,6 +14,7 @@
 
   $json = new Services_JSON();
   $baseUrl = 'users/';
+  $dup = false;
 
   // get input data
   $postdata = file_get_contents("php://input");
@@ -23,15 +24,33 @@
   $id = randomString(10);
 
   // to save data
-  $user = $request->data;
+  $newUser = $request->data;
 
-  if (!file_exists($id . '.json') && $user != NULL) {
-    $user->id = $id;
-    // save to user file
-    file_put_contents($baseUrl . $id . ".json", $json->encode($user));
-    echo $json->encode($user);
-  } else {
-    echo $json->encode(array());
+  foreach ( glob( $baseUrl . '*.*' ) as $file ) {
+    $user = $json->decode(file_get_contents($file));
+    if ($newUser->email == $user->email
+      || (isset($user->email2) && $newUser->email == $user->email2)) {
+      $dup = true;
+      break;
+    }
+    if (isset($newUser->email2)) {
+      if ($newUser->email2 == $user->email || (isset($user->email2) && $newUser->email2 == $user->email2)) {
+        $dup = true;
+        break;
+      }
+    }
   }
 
+  if ($dup) {
+    echo $json->encode(array());
+  } else {
+    if (!file_exists($id . '.json') && $newUser != NULL) {
+      $newUser->id = $id;
+      // save to user file
+      file_put_contents($baseUrl . $id . ".json", $json->encode($newUser));
+      echo $json->encode($newUser);
+    } else {
+      echo $json->encode(array());
+    }
+  }
 ?>

@@ -111,6 +111,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   }
 
   $scope.register = function () {
+    $scope.loading = true;
     $scope.formdata.avatar = $scope.defaultAvatar;
     $scope.formdata.firstlast = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
     $scope.formdata.prefix = ($scope.formdata.prefix == 'NONE') ? '' : $scope.formdata.prefix;
@@ -135,8 +136,11 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
           $scope.msg.successRegister = 'Registered Successfully';
         } else {
           $scope.msg = {};
-          // $scope.msg.errorRegister = 'Email already exists!';
+          $scope.msg.errorRegister = 'Email already exists!';
         }
+      })
+      .finally(function (data) {
+        $scope.loading = false;
       });
   }
 

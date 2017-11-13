@@ -41,7 +41,8 @@
       <md-button class="md-warn" ng-if="msg.error">{{msg.error}}</md-button>
     </form>
   </div>
-  <div id="researchScope" ng-if="$root.loggedIn">
+  <div id="researchScope" ng-if="$root.loggedIn" class="pos-rel">
+    <md-progress-linear class="loading" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
     <!-- Listing section -->
     <div ng-cloak ng-if="$root.loggedIn && !isEdit">
       <md-content>
