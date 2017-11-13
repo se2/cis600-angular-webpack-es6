@@ -16,10 +16,10 @@ import 'jquery-ui-bundle';
 import uiSortable from 'angular-ui-sortable';
 import uiTinymce from 'angular-ui-tinymce';
 
-import '../styles/main.scss';
-import 'angular-material/angular-material.css';
 import 'tinymce/skins/lightgray/skin.min.css';
 import 'tinymce/skins/lightgray/content.min.css';
+import '../styles/main.scss';
+import 'angular-material/angular-material.css';
 
 import config from 'app.config';
 
