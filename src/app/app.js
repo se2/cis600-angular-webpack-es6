@@ -1,6 +1,6 @@
 /* global process */
-import 'tinymce/tinymce.js';
-import 'tinymce/themes/modern/theme.js';
+import 'tinymce/tinymce.min.js';
+import 'tinymce/themes/modern/theme.min.js';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import ngAria from 'angular-aria';

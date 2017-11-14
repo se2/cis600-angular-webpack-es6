@@ -49,6 +49,7 @@
           'account' => array(
             'id' => $account->id,
             'username' => $account->username,
+            'email' => $account->email,
             'role' => $account->role
           ),
           'common' => $common,

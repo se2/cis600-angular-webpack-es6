@@ -131,15 +131,16 @@ export default function ($http) {
           return response.data;
         });
     },
-    sendEmail: function (email, selected) {
+    sendEmail: function (account, email, selected) {
       return $http.post(dataURL + 'sendEmail.php', {
+        'account': account,
         'receivingEmail': email.receivingEmail,
         'selected': selected,
+        'from': email.from,
         'subject': email.subject,
         'body': email.body
       })
         .then(function (response) {
-          console.log(response);
           return response.data;
         }, function (response) {
           return response.data;

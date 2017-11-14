@@ -23,15 +23,15 @@
     <![endif]-->
 
   <header>
-    <div ng-cloak id="headerRow1">
+    <div id="headerRow1">
       <div class="container">
         <div class="info">
           Computer & Information Sciences, UMass Dartmouth
         </div>
-        <div class="info login-header" ng-if="!$root.loggedIn">
+        <div ng-cloak class="info login-header" ng-if="!$root.loggedIn">
           <a ui-sref="profile">Login</a>
         </div>
-        <div class="info login-header" ng-if="$root.loggedIn">
+        <div ng-cloak class="info login-header" ng-if="$root.loggedIn">
           <a ng-click="logout()" href="#">Logout</a>
         </div>
       </div>

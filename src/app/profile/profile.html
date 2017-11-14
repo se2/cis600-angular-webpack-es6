@@ -1,5 +1,5 @@
 <div id="accountContainer">
-  <div class="xuInfoCard" ng-if="$root.loggedIn && isEdit">
+  <div class="xuInfoCard" ng-if="$root.loggedIn && isEdit" style="margin-right:30px;">
     <div class="xuImg profile-page">
       <img ng-src="{{formdata.avatar}}">
     </div>
@@ -276,6 +276,10 @@
                       <input type="email" ng-model="email.receivingEmail" required>
                     </md-input-container>
                     <md-input-container class="md-block">
+                      <label>Email From</label>
+                      <input type="text" ng-model="email.from" autofocus required>
+                    </md-input-container>
+                    <md-input-container class="md-block">
                       <label>Email Subject</label>
                       <input type="text" ng-model="email.subject" autofocus required>
                     </md-input-container>
@@ -397,5 +401,6 @@
         </md-tabs>
       </md-content>
     </div>
+    <md-progress-linear class="loading loading-bottom" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
   </div>
 </div>

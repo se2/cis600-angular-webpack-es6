@@ -1,7 +1,7 @@
 <md-dialog aria-label="{{$root.selectedUser.id}}" flex layout="column" class="person-dialog">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>{{$root.selectedUser.firstname}} {{$root.selectedUser.lastname}}</h2>
+      <h2>{{$root.selectedUser.prefix ? $root.selectedUser.prefix + ' ' : ''}}{{$root.selectedUser.fullname}}</h2>
       <span flex></span>
       <md-button class="md-icon-button" ng-click="cancel()">
         <i class="material-icons">close</i>
@@ -13,7 +13,7 @@
       <md-card md-theme="'default'">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">{{$root.selectedUser.firstname}} {{$root.selectedUser.lastname}}</span>
+            <span class="md-headline">{{$root.selectedUser.prefix ? $root.selectedUser.prefix + ' ' : ''}}{{$root.selectedUser.fullname}}</span>
             <span class="md-subhead" ng-if="$root.selectedUser.position && $root.selectedUser.employer">{{$root.selectedUser.position}} at {{$root.selectedUser.employer}}</span>
           </md-card-title-text>
           <md-card-title-media>
@@ -21,6 +21,20 @@
           </md-card-title-media>
         </md-card-title>
         <md-card-content>
+          <p ng-cloak ng-if="$root.selectedUser.school && $root.selectedUser.type == 'graduate'">
+            {{$root.selectedUser.fullname}} is a graduate student at {{$root.selectedUser.school}}.
+          </p>
+          <p ng-cloak ng-if="$root.selectedUser.school && $root.selectedUser.type == 'alumni'">
+            {{$root.selectedUser.fullname}} is graduated from {{$root.selectedUser.school}} in {{$root.selectedUser.year}}.
+          </p>
+          <p ng-cloak ng-if="$root.selectedUser.school && $root.selectedUser.type == 'scholar'">
+            {{$root.selectedUser.fullname}} is from {{$root.selectedUser.school}}.
+          </p>
+          <p ng-cloak ng-if="$root.selectedUser.bio">
+            <br>
+            <br>
+            <b>Biography</b>
+          </p>
           <p ng-bind-html="$root.selectedUser.bio"></p>
         </md-card-content>
       </md-card>

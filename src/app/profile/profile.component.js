@@ -32,7 +32,8 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   $scope.ids = {};
   $scope.selected = [];
   $scope.email = {
-    receivingEmail: 'hxu@umassd.edu',
+    receivingEmail: ($rootScope.account && $rootScope.account.email) ? $rootScope.account.email : 'hxu@umassd.edu',
+    from: 'CSEL Website',
     subject: 'CSEL Update',
     body: ''
   }
@@ -290,12 +291,18 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
           .cancel('CANCEL');
 
         $mdDialog.show(confirm).then(function () {
-          AppServices.sendEmail($scope.email, $scope.selected)
+          $scope.loading = true;
+          AppServices.sendEmail($rootScope.account, $scope.email, $scope.selected)
             .then(function (resp) {
               if (resp.sent) {
+                $scope.email.receivingEmail = $rootScope.account.email = (resp.email) ? resp.email : 'hxu@umassd.edu';
+                sessionStorage.setItem('csel-account', JSON.stringify($rootScope.account));
                 $scope.msg = {};
                 $scope.msg.successSentEmail = 'Email Sent';
               }
+            })
+            .finally(function (resp) {
+              $scope.loading = false;
             });
         }, function () { });
       } else {

@@ -1,14 +1,1 @@
-[
-  {
-    "id": "000",
-    "username": "admin",
-    "hashed": "$1$EjtaHBDv$oACq1JdG4fC0SW3RdD82C\/",
-    "role": "admin"
-  },
-  {
-    "id": "001",
-    "username": "user",
-    "hashed": "$1$EjYmDZcW$hIpgSzS6P1m6IgLiNGOKQ1",
-    "role": "common"
-  }
-]
+[{"id":"000","username":"admin","hashed":"$1$EjtaHBDv$oACq1JdG4fC0SW3RdD82C\/","role":"admin","email":"dluong1@gmail.com"},{"id":"001","username":"user","hashed":"$1$EjYmDZcW$hIpgSzS6P1m6IgLiNGOKQ1","role":"common"}]

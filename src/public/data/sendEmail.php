@@ -20,17 +20,20 @@
   $request = $json->decode($postdata);
 
   // extract data
+  $account = $request->account;
   $receivingEmail = $request->receivingEmail;
   $selected = $request->selected;
+  $from = $request->from;
   $subject = $request->subject;
   $body = $request->body;
 
   $message = $body;
-  $headers = 'From: CSEL <' . $receivingEmail . '>' . PHP_EOL . 'X-Mailer: PHP/' . phpversion();
+  $headers = 'From: ' . $from . ' <' . $receivingEmail . '>' . PHP_EOL . 'X-Mailer: PHP/' . phpversion();
   $headers .= "Reply-To: ". strip_tags($receivingEmail) . "\r\n";
   $headers .= "MIME-Version: 1.0\r\n";
   $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
+  // send emails
   foreach ($selected as $key => $user) {
     if (isset($user->email) && $user->email !== NULL) {
       mail($user->email, $subject, $message, $headers);
@@ -40,8 +43,19 @@
     }
   }
 
+  // update receiving email for account
+  $accounts = $json->decode(file_get_contents('accounts.json'));
+  foreach ($accounts as $key => $acc) {
+    if ($account->id == $acc->id && $account->role == 'admin') {
+      $acc->email = $receivingEmail;
+    }
+  }
+
+  unlink('accounts.json');
+  file_put_contents('accounts.json', $json->encode($accounts));
+
   $sent = true;
 
-  echo $json->encode(array('sent' => $sent));
+  echo $json->encode(array('sent' => $sent, 'email' => $receivingEmail));
 
 ?>
