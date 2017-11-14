@@ -314,10 +314,13 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   };
 
   $scope.tinymceOptions = {
-    height: 300,
+    height: 450,
     inline: false,
     skin: 'lightgray',
-    theme: 'modern'
+    theme: 'modern',
+    plugins: "textcolor link image colorpicker preview insertdatetime",
+    menubar: 'file edit view insert format',
+    toolbar: 'fontselect undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image insertdatetime | preview'
   };
 
   // email checkboxes functions

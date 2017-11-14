@@ -25,10 +25,10 @@
             {{$root.selectedUser.fullname}} is a graduate student at {{$root.selectedUser.school}}.
           </p>
           <p ng-cloak ng-if="$root.selectedUser.school && $root.selectedUser.type == 'alumni'">
-            {{$root.selectedUser.fullname}} is graduated from {{$root.selectedUser.school}} in {{$root.selectedUser.year}}.
+            {{$root.selectedUser.prefix ? $root.selectedUser.prefix + ' ' : ''}}{{$root.selectedUser.fullname}} graduated from {{$root.selectedUser.school}} in {{$root.selectedUser.year}}.
           </p>
           <p ng-cloak ng-if="$root.selectedUser.school && $root.selectedUser.type == 'scholar'">
-            {{$root.selectedUser.fullname}} is from {{$root.selectedUser.school}}.
+            {{$root.selectedUser.prefix ? $root.selectedUser.prefix + ' ' : ''}}{{$root.selectedUser.fullname}} is from {{$root.selectedUser.school}}.
           </p>
           <p ng-cloak ng-if="$root.selectedUser.bio">
             <br>

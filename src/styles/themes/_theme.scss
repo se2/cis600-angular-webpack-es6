@@ -1006,6 +1006,10 @@ button.md-button.md-icon-button {
     padding-left: 30px;
 }
 
+md-checkbox.md-checked .md-icon {
+    background: $primary-color;
+}
+
 
 /* workaround for iOS issue of mdDialog */
 
