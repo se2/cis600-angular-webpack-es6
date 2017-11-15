@@ -14,19 +14,24 @@
   $userId = $_POST['userId'];
 
   $baseUrl = 'users/';
+  $imgDir = 'data/images/';
 
   if (isset($_FILES["file"]["name"])) {
 
-    move_uploaded_file($_FILES["file"]["tmp_name"], 'images/' . $_FILES["file"]["name"]);
+    $user = $json->decode(file_get_contents($baseUrl . $userId . ".json"));
+    $temp = explode(".", $_FILES["file"]["name"]);
+    $newfilename =  str_replace(' ', '', $user->firstname . $user->lastname) . '-' . date('Y-m-d') . '.' . end($temp);
+
+    if (file_exists($user->avatar)) {
+      unlink($user->avatar);
+    }
+
+    move_uploaded_file($_FILES["file"]["tmp_name"], 'images/' . $newfilename);
 
     if (file_exists($baseUrl . $userId . '.json')) {
-
-      $user = $json->decode(file_get_contents($baseUrl . $userId . ".json"));
-      $user->avatar = 'data/images/' . $_FILES["file"]['name'];
-
+      $user->avatar = $imgDir . $newfilename;
       unlink($baseUrl . $userId . '.json');
       file_put_contents($baseUrl . $userId . ".json", $json->encode($user));
-
       echo $json->encode($user);
     } else {
       echo $json->encode(array());
