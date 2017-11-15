@@ -313,6 +313,20 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
     }
   };
 
+  $scope.download = function () {
+    $scope.loading = true;
+    AppServices.downloadData($rootScope.account)
+      .then(function (resp) {
+        if (resp.download) {
+          $scope.msg.downloadFile = resp.file;
+          window.location = 'http://www.cis.umassd.edu/~dluong1/csel-test/' + resp.file;
+        }
+      })
+      .finally(function (resp) {
+        $scope.loading = false;
+      });
+  }
+
   $scope.tinymceOptions = {
     height: 450,
     inline: false,

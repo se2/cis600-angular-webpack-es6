@@ -14,7 +14,7 @@ var peopleCtrl = function (AppServices, $rootScope, $scope, $mdDialog) {
     var idx = people.data.findIndex(x => x.id == userId);
     $rootScope.selectedUser = people.data[idx];
     $mdDialog.show({
-      controller: ['$rootScope', '$scope', '$mdDialog', DialogController],
+      controller: ['$rootScope', '$scope', DialogController],
       template: dialog,
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -23,7 +23,7 @@ var peopleCtrl = function (AppServices, $rootScope, $scope, $mdDialog) {
     })
   };
 
-  var DialogController = function ($rootScope, $scope, $mdDialog) {
+  var DialogController = function ($rootScope, $scope) {
     $scope.hide = function () {
       $mdDialog.hide();
     };

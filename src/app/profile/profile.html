@@ -3,7 +3,7 @@
     <div class="xuImg profile-page">
       <img ng-src="{{formdata.avatar}}">
     </div>
-    <div class="name">{{formdata.fullname}}</div>
+    <div class="name">{{formdata.prefix && formdata.prefix != 'NONE' ? formdata.prefix + ' ' : ''}}{{formdata.fullname}}</div>
     <div class="dept">
       <form name="forms.avatarForm" id="avatarForm">
         <label>Upload avatar (max: 5MB, square)</label>
@@ -16,13 +16,9 @@
         <md-button class="md-raised md-primary" ng-click="changeAvatar()">Update Avatar</md-button>
       </form>
     </div>
-    <!-- <div class="dept" ng-if="$root.loggedIn">
-      <h4>Department:</h4>
-      <p>Computer & Information Sciences</p>
-    </div> -->
     <div class="univ" ng-if="$root.loggedIn && formdata.school">
       <h4>University:</h4>
-      <p>{{formdata.school}}</p>
+      <p ng-bind="formdata.school"></p>
     </div>
   </div>
   <!-- Login section -->
@@ -295,18 +291,34 @@
               </div>
             </md-content>
           </md-tab>
+          <md-tab label="Download Data" md-on-select="resetMsg()" ng-if="$root.isAdmin">
+            <md-content class="md-padding form-wrapper" style="text-align:center;">
+              <md-button class="md-raised md-primary" ng-click="download()">Download Data</md-button>
+              <p ng-cloak ng-if="msg.downloadFile">
+                <br><br>
+                If the browser does not automatically download file, please download manually at
+                <a href="http://www.cis.umassd.edu/~dluong1/csel-test/{{msg.downloadFile}}">this link</a>
+              </p>
+            </md-content>
+          </md-tab>
         </md-tabs>
       </md-content>
     </div>
-    <!-- Profile section -->
-    <div class="ng-cloak" ng-if="$root.loggedIn && isEdit">
+    <!-- Edit User Section -->
+    <div ng-cloak ng-if="$root.loggedIn && isEdit">
       <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
           <md-tab label="General" md-on-select="resetMsg()">
             <md-content class="md-padding">
               <form role="form" class="csel-form" id="infoForm" name="infoForm">
                 <div layout="row" layout-xs="column">
-                  <md-input-container flex="40" flex-xs="100">
+                  <md-input-container flex="15" flex-xs="33">
+                    <label>Title</label>
+                    <md-select name="type" ng-model="formdata.prefix">
+                      <md-option ng-repeat="prefix in prefixes" value="{{prefix}}">{{prefix}}</md-option>
+                    </md-select>
+                  </md-input-container>
+                  <md-input-container flex="30" flex-xs="100">
                     <label>First Name</label>
                     <input ng-model="formdata.firstname" required type="text" name="firstname">
                     <div ng-messages="infoForm.firstname.$error">
@@ -317,7 +329,7 @@
                     <label>Middle Name</label>
                     <input ng-model="formdata.middlename" type="text" name="middlename" maxlength="1">
                   </md-input-container>
-                  <md-input-container flex="40" flex-xs="100">
+                  <md-input-container flex="35" flex-xs="100">
                     <label>Last Name</label>
                     <input ng-model="formdata.lastname" required type="text" name="lastname">
                     <div ng-messages="infoForm.lastname.$error">
@@ -401,6 +413,6 @@
         </md-tabs>
       </md-content>
     </div>
-    <md-progress-linear class="loading loading-bottom" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
+    <!-- <md-progress-linear class="loading loading-bottom" ng-show="loading" md-mode="indeterminate"></md-progress-linear> -->
   </div>
 </div>

@@ -145,6 +145,16 @@ export default function ($http) {
         }, function (response) {
           return response.data;
         });
+    },
+    downloadData: function (account) {
+      return $http.post('http://www.cis.umassd.edu/~dluong1/csel-test/downloadData.php', {
+        'account': account
+      })
+        .then(function (response) {
+          return response.data;
+        }, function (response) {
+          return response.data;
+        });
     }
   };
 }

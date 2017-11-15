@@ -4242,6 +4242,12 @@ ng-annotate@1.2.1:
     stringset "~0.2.1"
     tryor "~0.1.2"
 
+ng-device-detector@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/ng-device-detector/-/ng-device-detector-4.0.3.tgz#965a59f11afd62edc2e177e87a81d5309bfe3628"
+  dependencies:
+    re-tree "~0.0.2"
+
 ng-file-upload@^12.2.13:
   version "12.2.13"
   resolved "https://registry.yarnpkg.com/ng-file-upload/-/ng-file-upload-12.2.13.tgz#01800f3872e526f95310f8477e99e4f12d0d8d14"
@@ -5138,6 +5144,10 @@ rc@^1.1.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+re-tree@~0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/re-tree/-/re-tree-0.0.2.tgz#229f01d81db8582c6e038fea959ed04f785a158b"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
