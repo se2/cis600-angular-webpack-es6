@@ -152,22 +152,30 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   }
 
   $scope.upload = function (file) {
+    $scope.msg = {};
     Upload.upload({
       url: 'http://www.cis.umassd.edu/~dluong1/csel-test/data/changeAvatar.php',
       data: { file: file, 'userId': $scope.formdata.id }
-    }).then(function (resp) {
-      console.log('Success ' + resp.config.data.file.name + ' uploaded.');
-      $scope.formdata.file = '';
-      $scope.formdata.avatar = resp.data.avatar;
-      delete resp.data.password;
-      sessionStorage.setItem('csel-user', JSON.stringify(resp.data));
-    }, function (resp) {
-      console.log('Error status: ' + resp.status);
-    }, function (evt) {
-      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      $scope.msg.uploadProgress = progressPercentage;
-      console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-    });
+    })
+      .then(function (resp) {
+        if (resp.data.uploaded) {
+          console.log('Success ' + resp.config.data.file.name + ' uploaded.');
+          $scope.formdata.file = '';
+          $scope.formdata.avatar = resp.data.user.avatar;
+          delete resp.data.user.password;
+          sessionStorage.setItem('csel-user', JSON.stringify(resp.data.user));
+        } else {
+          $scope.msg.uploadProgress = '';
+          $scope.msg.uploadFail = 'Upload Failed. Please try another.'
+        }
+      }, function (resp) {
+        console.log('Error status: ' + resp.status);
+      }, function (evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        $scope.msg.uploadFail = '';
+        $scope.msg.uploadProgress = progressPercentage;
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
   };
 
   $scope.studentSubmit = function () {

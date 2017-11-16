@@ -318,6 +318,20 @@ footer {
                 position: relative;
                 top: 28px;
             }
+            .profile-img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                margin: 0 auto;
+                display: block;
+                border: 3px solid #f6f6f6;
+                position: relative;
+                top: 28px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-color: $primary-color;
+            }
         }
         .name {
             font-size: 20px;
@@ -1008,6 +1022,14 @@ button.md-button.md-icon-button {
 
 md-checkbox.md-checked .md-icon {
     background: $primary-color;
+}
+
+.success-msg {
+    color: $primary-color;
+}
+
+.error-msg {
+    color: $accent-color;
 }
 
 

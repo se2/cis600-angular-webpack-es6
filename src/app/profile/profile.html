@@ -1,7 +1,8 @@
 <div id="accountContainer">
   <div class="xuInfoCard" ng-if="$root.loggedIn && isEdit" style="margin-right:30px;">
     <div class="xuImg profile-page">
-      <img ng-src="{{formdata.avatar}}">
+      <!-- <img ng-src="{{formdata.avatar}}"> -->
+      <div class="profile-img" style="background-image:url('{{formdata.avatar}}')"></div>
     </div>
     <div class="name">{{formdata.prefix && formdata.prefix != 'NONE' ? formdata.prefix + ' ' : ''}}{{formdata.fullname}}</div>
     <div class="dept">
@@ -9,8 +10,12 @@
         <label>Upload avatar (max: 5MB, square)</label>
         <md-button class="md-primary md-no-ink" ngf-select ng-model="formdata.file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'"
           ngf-max-size="5MB" ngf-multiple="false">Browse</md-button>
-        <div ng-if="msg.uploadProgress">Uploaded: {{msg.uploadProgress}}%</div>
+        <div ng-if="msg.uploadProgress">
+          <md-progress-linear ng-if="msg.uploadProgress < 100" md-mode="determinate" value="{{msg.uploadProgress}}"></md-progress-linear>
+          <i ng-if="!msg.uploadFail && msg.uploadProgress == 100" class="success-msg">Avatar Updated</i>
+        </div>
         <div>
+          <i ng-if="msg.uploadFail" class="error-msg">{{msg.uploadFail}}</i>
           <i ng-show="forms.avatarForm.file.$error.maxSize">File too large max 5MB</i>
         </div>
         <md-button class="md-raised md-primary" ng-click="changeAvatar()">Update Avatar</md-button>
@@ -413,6 +418,5 @@
         </md-tabs>
       </md-content>
     </div>
-    <!-- <md-progress-linear class="loading loading-bottom" ng-show="loading" md-mode="indeterminate"></md-progress-linear> -->
   </div>
 </div>
