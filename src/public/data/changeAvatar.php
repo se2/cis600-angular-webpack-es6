@@ -21,7 +21,7 @@
 
     $user = $json->decode(file_get_contents($baseUrl . $userId . ".json"));
     $temp = explode(".", $_FILES["file"]["name"]);
-    $newfilename =  str_replace(' ', '', $user->firstname . $user->lastname) . '-' . date('Y-m-d') . '.' . end($temp);
+    $newfilename =  str_replace(' ', '', $user->firstname . $user->lastname) . '-' . date('Y-m-d-h-m-s') . '.' . end($temp);
 
     if (move_uploaded_file($_FILES["file"]["tmp_name"], 'images/' . $newfilename)) {
       $uploaded = true;
