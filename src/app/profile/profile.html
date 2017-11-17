@@ -1,7 +1,6 @@
 <div id="accountContainer">
   <div class="xuInfoCard" ng-if="$root.loggedIn && isEdit" style="margin-right:30px;">
     <div class="xuImg profile-page">
-      <!-- <img ng-src="{{formdata.avatar}}"> -->
       <div class="profile-img" style="background-image:url('{{formdata.avatar}}')"></div>
     </div>
     <div class="name">{{formdata.prefix && formdata.prefix != 'NONE' ? formdata.prefix + ' ' : ''}}{{formdata.fullname}}</div>
@@ -64,8 +63,7 @@
                 <md-tooltip md-direction="top" ng-if="users.length > 0">Select to edit</md-tooltip>
                 <md-list-item flex="50" flex-xs="100" ng-repeat="user in users | toArray:false | filter: formdata.searchInput | orderBy:['firstname', 'lastname']"
                   ng-click="editUser(user.id)">
-                  <img alt="{{user.email}}" ng-src="{{user.avatar ? user.avatar : defaultAvatar}}" err-src="{{defaultAvatar}}" class="md-avatar"
-                  />
+                  <div class="md-avatar bg-cover" style="background-image:url('{{user.avatar ? user.avatar : defaultAvatar}}')"></div>
                   <div class="md-list-item-text">
                     <h3>{{user.prefix ? user.prefix + ' ' : ''}}{{user.fullname}}</h3>
                     <p>{{user.email}}</p>

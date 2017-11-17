@@ -50,7 +50,9 @@ $primary-color-text: #FFFFFF;
 $accent-color: #FF4081;
 $primary-text-color: #212121;
 $secondary-text-color: #727272;
-$divider-color: #B6B6B6; //Blue & Orange
+$divider-color: #B6B6B6;
+$colors: $primary-color $accent-color $secondary-text-color #FF5252 #00BCD4 #2196F3 #FF9800;
+//Blue & Orange
 //$primary-color-dark:   #1976D2;
 //$primary-color:        #2196F3;
 //$primary-color-light:  #BBDEFB;
@@ -1030,6 +1032,22 @@ md-checkbox.md-checked .md-icon {
 
 .error-msg {
     color: $accent-color;
+}
+
+.bg-cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+md-list {
+    @for $i from 1 through 20 {
+        md-list-item:nth-child(#{length($colors)}n+#{$i}) {
+            div.md-avatar {
+                background-color: nth($colors, random(length($colors)));
+            }
+        }
+    }
 }
 
 
