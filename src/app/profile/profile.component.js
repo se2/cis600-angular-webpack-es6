@@ -2,6 +2,7 @@ import template from './profile.html';
 import $ from 'jquery';
 
 var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdDialog) {
+  var rootURL = 'http://www.cis.umassd.edu/~dluong1/csel-test';
   $scope.defaultAvatar = "images/noimage.png";
   $scope.loading = false;
   $scope.defaultForm = {
@@ -33,7 +34,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   $scope.selected = [];
   $scope.email = {
     receivingEmail: ($rootScope.account && $rootScope.account.email) ? $rootScope.account.email : 'hxu@umassd.edu',
-    from: 'CSEL Website',
+    from: 'Haiping Xu',
     subject: 'CSEL Update',
     body: ''
   }
@@ -154,7 +155,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   $scope.upload = function (file) {
     $scope.msg = {};
     Upload.upload({
-      url: 'http://www.cis.umassd.edu/~dluong1/csel-test/data/changeAvatar.php',
+      url: rootURL + '/data/changeAvatar.php',
       data: { file: file, 'userId': $scope.formdata.id }
     })
       .then(function (resp) {
@@ -327,7 +328,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
       .then(function (resp) {
         if (resp.download) {
           $scope.msg.downloadFile = resp.file;
-          window.location = 'http://www.cis.umassd.edu/~dluong1/csel-test/' + resp.file;
+          window.location = rootURL + '/' + resp.file;
         }
       })
       .finally(function (resp) {

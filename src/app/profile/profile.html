@@ -271,11 +271,11 @@
                   <span class="md-headline" style="display:block;padding-bottom:16px;">Email Content</span>
                   <form role="form" class="csel-form" id="emailForm" name="forms.emailForm">
                     <md-input-container class="md-block">
-                      <label>Receiving Email</label>
+                      <label>Sender Email</label>
                       <input type="email" ng-model="email.receivingEmail" required>
                     </md-input-container>
                     <md-input-container class="md-block">
-                      <label>Email From</label>
+                      <label>Sender Name</label>
                       <input type="text" ng-model="email.from" autofocus required>
                     </md-input-container>
                     <md-input-container class="md-block">
@@ -297,11 +297,6 @@
           <md-tab label="Download Data" md-on-select="resetMsg()" ng-if="$root.isAdmin">
             <md-content class="md-padding form-wrapper" style="text-align:center;">
               <md-button class="md-raised md-primary" ng-click="download()">Download Data</md-button>
-              <p ng-cloak ng-if="msg.downloadFile">
-                <br><br>
-                If the browser does not automatically download file, please download manually at
-                <a href="http://www.cis.umassd.edu/~dluong1/csel-test/{{msg.downloadFile}}" target="_blank">this link</a>
-              </p>
             </md-content>
           </md-tab>
         </md-tabs>
