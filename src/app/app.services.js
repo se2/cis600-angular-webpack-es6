@@ -137,6 +137,7 @@ export default function ($http) {
         'receivingEmail': email.receivingEmail,
         'selected': selected,
         'from': email.from,
+        'cc': email.cc,
         'subject': email.subject,
         'body': email.body
       })

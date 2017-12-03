@@ -24,13 +24,14 @@
   $receivingEmail = $request->receivingEmail;
   $selected = $request->selected;
   $from = $request->from;
+  $cc = $request->cc;
   $subject = $request->subject;
   $body = $request->body;
 
   $message = $body;
   $headers = 'From: ' . $from . ' <' . $receivingEmail . '>' . PHP_EOL . 'X-Mailer: PHP/' . phpversion();
   $headers .= "Reply-To: ". strip_tags($receivingEmail) . "\r\n";
-  $headers .= 'CC: '. $receivingEmail . "\r\n";
+  $headers .= 'CC: '. $cc . "\r\n";
   $headers .= "MIME-Version: 1.0\r\n";
   $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 

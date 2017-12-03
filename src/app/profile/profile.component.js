@@ -35,6 +35,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   $scope.email = {
     receivingEmail: ($rootScope.account && $rootScope.account.email) ? $rootScope.account.email : 'hxu@umassd.edu',
     from: 'Haiping Xu',
+    cc: 'hxu@umassd.edu',
     subject: 'CSEL Update',
     body: ''
   }
@@ -346,7 +347,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
     toolbar: 'fontselect undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image insertdatetime | preview'
   };
 
-  // email checkboxes functions
+  // email users list checkboxes functions
   $scope.toggle = function (item, list) {
     var idx = list.indexOf(item);
     if (idx > -1) {
