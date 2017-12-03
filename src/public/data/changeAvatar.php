@@ -13,27 +13,36 @@
   $json = new Services_JSON();
   $userId = $_POST['userId'];
   $uploaded = false;
+  $found = false;
 
   $baseUrl = 'users/';
   $imgDir = 'data/images/';
 
   if (isset($_FILES["file"]["name"])) {
-
-    $user = $json->decode(file_get_contents($baseUrl . $userId . ".json"));
-    $temp = explode(".", $_FILES["file"]["name"]);
-    $newfilename =  str_replace(' ', '', $user->firstname . $user->lastname) . '-' . date('Y-m-d-h-m-s') . '.' . end($temp);
-
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], 'images/' . $newfilename)) {
-      $uploaded = true;
-      if (file_exists($baseUrl . $userId . '.json')) {
-        $user->avatar = $imgDir . $newfilename;
-        unlink($baseUrl . $userId . '.json');
-        file_put_contents($baseUrl . $userId . ".json", $json->encode($user));
-        echo $json->encode(array('uploaded' => $uploaded, 'user' => $user));
-      } else {
-        echo $json->encode(array('uploaded' => $uploaded, 'user' => array()));
+    foreach ( glob( $baseUrl . '*.*' ) as $file ) {
+      $user = $json->decode(file_get_contents($file));
+      if ($user->id == $userId) {
+        $found = true;
+        $temp = explode(".", $_FILES["file"]["name"]);
+        $newfilename =  str_replace(' ', '', ($user->firstname . $user->lastname)) . '-' . date('Y-m-d-h-m-s') . '.' . end($temp);
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], 'images/' . $newfilename)) {
+          $uploaded = true;
+          $fileName = str_replace(' ', '', ($user->firstname . $user->lastname)) . $user->year;
+          if (file_exists($baseUrl . $fileName . '.json')) {
+            $user->avatar = $imgDir . $newfilename;
+            unlink($baseUrl . $fileName . '.json');
+            file_put_contents($baseUrl . $fileName . ".json", $json->encode($user));
+            echo $json->encode(array('uploaded' => $uploaded, 'user' => $user));
+          } else {
+            echo $json->encode(array('uploaded' => $uploaded, 'user' => array()));
+          }
+        } else {
+          echo $json->encode(array('uploaded' => $uploaded, 'user' => array()));
+        }
+        break;
       }
-    } else {
+    }
+    if (!$found) {
       echo $json->encode(array('uploaded' => $uploaded, 'user' => array()));
     }
   }

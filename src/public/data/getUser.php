@@ -7,21 +7,21 @@
 
   $json = new Services_JSON();
   $found = false;
-
+  $dir = "users";
+  $returnUser = array();
   // get input data
   $postdata = file_get_contents("php://input");
   $request = $json->decode($postdata);
-
   $userId =  $request->userId;
-
-  if (file_exists("users/" . $userId . ".json")) {
-    if (!isset($user->firstlast) || $user->firstlast == NULL) {
-      $user->firstlast = $user->firstname . ' ' . $user->lastname;
+  foreach ( glob( $dir . '/*.*' ) as $file ) {
+    $user = $json->decode(file_get_contents($file));
+    if ($user->id == $userId) {
+      $found = true;
+      if (!isset($user->firstlast) || $user->firstlast == NULL) {
+        $user->firstlast = $user->firstname . ' ' . $user->lastname;
+      }
+      $returnUser = $user;
     }
-    $user = $json->decode(file_get_contents("users/" . $userId . ".json"));
-    $found = true;
-    echo $json->encode(array('found' => $found, 'user' => $user));
-  } else {
-    echo $json->encode(array('found' => $found, 'user' => array()));
   }
+  echo $json->encode(array('found' => $found, 'user' => $returnUser));
 ?>

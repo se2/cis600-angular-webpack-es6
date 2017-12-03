@@ -102,7 +102,7 @@
                   </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
-                  <md-input-container flex="{{formdata.type == 'alumni' ? 25 : 50}}" flex-xs="100">
+                  <md-input-container flex="{{formdata.type == 'alumni' || formdata.type == 'graduate' ? 25 : 50}}" flex-xs="100">
                     <label>Student Type</label>
                     <md-select name="type" ng-model="formdata.type" required>
                       <md-option value="scholar">Visiting Scholar</md-option>
@@ -110,10 +110,10 @@
                       <md-option value="alumni">Alumni</md-option>
                     </md-select>
                   </md-input-container>
-                  <md-input-container flex="25" flex-xs="100" ng-if="formdata.type == 'alumni'">
-                    <label>Graduation Year</label>
+                  <md-input-container flex="25" flex-xs="100" ng-if="formdata.type == 'alumni' || formdata.type == 'graduate'">
+                    <label>Graduation Year<span ng-if="formdata.type == 'graduate'"> (expectation)</span></label>
                     <md-select name="type" ng-model="formdata.year" required>
-                      <md-option ng-repeat="year in range(2003, 2016) | orderBy:'-toString()'" value="{{year}}">{{year}}</md-option>
+                      <md-option ng-repeat="year in range(2003) | orderBy:'-toString()'" value="{{year}}">{{year}}</md-option>
                     </md-select>
                   </md-input-container>
                   <md-input-container flex="100" flex-xs="100">
@@ -340,7 +340,7 @@
                   </md-input-container>
                 </div>
                 <div layout="row" layout-xs="column">
-                  <md-input-container flex="{{formdata.type == 'alumni' ? 25 : 50}}" flex-xs="100">
+                  <md-input-container flex="{{formdata.type == 'alumni' || formdata.type == 'graduate' ? 25 : 50}}" flex-xs="100">
                     <label>Student Type</label>
                     <md-select name="type" ng-model="formdata.type" required>
                       <md-option value="scholar">Visiting Scholar</md-option>
@@ -348,10 +348,10 @@
                       <md-option value="alumni">Alumni</md-option>
                     </md-select>
                   </md-input-container>
-                  <md-input-container flex="25" flex-xs="100" ng-if="formdata.type == 'alumni'">
+                  <md-input-container flex="25" flex-xs="100" ng-if="formdata.type == 'alumni' || formdata.type == 'graduate'">
                     <label>Graduation Year</label>
                     <md-select name="type" ng-model="formdata.year" required>
-                      <md-option ng-repeat="year in range(2003, 2016) | orderBy:'-toString()'" value="{{year}}">{{year}}</md-option>
+                      <md-option ng-repeat="year in range(2003) | orderBy:'-toString()'" value="{{year}}">{{year}}</md-option>
                     </md-select>
                   </md-input-container>
                   <md-input-container flex="50" flex-xs="100">

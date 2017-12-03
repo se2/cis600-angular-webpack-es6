@@ -62,6 +62,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
 
   $scope.range = function (min, max, step) {
     step = step || 1;
+    max = max || (new Date()).getFullYear() + 10;
     var input = [];
     for (var i = min; i <= max; i += step) {
       input.push(i);
@@ -123,7 +124,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
     } else {
       $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
     }
-    if ($scope.formdata.type != 'alumni') {
+    if ($scope.formdata.type == 'scholar') {
       $scope.formdata.year = '';
     }
     AppServices.register($scope.formdata)
@@ -189,7 +190,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
     } else {
       $scope.formdata.fullname = $scope.formdata.firstname + ' ' + $scope.formdata.lastname;
     }
-    if ($scope.formdata.type != 'alumni') {
+    if ($scope.formdata.type == 'scholar') {
       $scope.formdata.year = '';
     }
     AppServices.updateStudent($scope.formdata)

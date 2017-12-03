@@ -44,10 +44,11 @@
   if ($dup) {
     echo $json->encode(array());
   } else {
-    if (!file_exists($id . '.json') && $newUser != NULL) {
+    $fileName = str_replace(' ', '', ($newUser->firstname . $newUser->lastname)) . $newUser->year;
+    if (!file_exists($baseUrl . $fileName . '.json') && $newUser != NULL) {
       $newUser->id = $id;
       // save to user file
-      file_put_contents($baseUrl . $id . ".json", $json->encode($newUser));
+      file_put_contents($baseUrl . $fileName . '.json', $json->encode($newUser));
       echo $json->encode($newUser);
     } else {
       echo $json->encode(array());
