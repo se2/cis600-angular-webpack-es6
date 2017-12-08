@@ -1,8 +1,7 @@
-export default function ($http) {
-  var rootURL = 'http://www.cis.umassd.edu/~dluong1/csel-test';
+export default function ($rootScope, $http) {
   return {
     getPageData: function (file) {
-      return $http.post(rootURL + '/data/getPageData.php', { 'file': file })
+      return $http.post($rootScope.baseURL + 'data/getPageData.php', { 'file': file })
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -10,7 +9,7 @@ export default function ($http) {
         });
     },
     getUsersData: function () {
-      return $http.post(rootURL + '/data/getUsers.php')
+      return $http.post($rootScope.baseURL + 'data/getUsers.php')
         .then(function (response) {
           return response.data;
         }, function (response) {
@@ -18,7 +17,7 @@ export default function ($http) {
         });
     },
     getUserData: function (userId) {
-      return $http.post(rootURL + '/data/getUser.php', {
+      return $http.post($rootScope.baseURL + 'data/getUser.php', {
         'userId': userId
       })
         .then(function (response) {
@@ -28,7 +27,7 @@ export default function ($http) {
         });
     },
     getSearchUser: function (searchInput) {
-      return $http.post(rootURL + '/data/searchUser.php', {
+      return $http.post($rootScope.baseURL + 'data/searchUser.php', {
         'search': searchInput
       })
         .then(function (response) {
@@ -38,7 +37,7 @@ export default function ($http) {
         });
     },
     login: function (username, password) {
-      return $http.post(rootURL + '/data/login.php', {
+      return $http.post($rootScope.baseURL + 'data/login.php', {
         'username': username,
         'password': password
       })
@@ -49,7 +48,7 @@ export default function ($http) {
         });
     },
     register: function (formData) {
-      return $http.post(rootURL + '/data/register.php', {
+      return $http.post($rootScope.baseURL + 'data/register.php', {
         'data': formData
       })
         .then(function (response) {
@@ -59,7 +58,7 @@ export default function ($http) {
         });
     },
     updatePass: function (credentials) {
-      return $http.post(rootURL + '/data/updatePass.php', {
+      return $http.post($rootScope.baseURL + 'data/updatePass.php', {
         'account': credentials
       })
         .then(function (response) {
@@ -69,7 +68,7 @@ export default function ($http) {
         });
     },
     resetPass: function (email) {
-      return $http.post(rootURL + '/data/resetPass.php', {
+      return $http.post($rootScope.baseURL + 'data/resetPass.php', {
         'email': email
       })
         .then(function (response) {
@@ -79,7 +78,7 @@ export default function ($http) {
         });
     },
     updateStudent: function (studentData) {
-      return $http.post(rootURL + '/data/updateStudent.php', {
+      return $http.post($rootScope.baseURL + 'data/updateStudent.php', {
         'data': studentData
       })
         .then(function (response) {
@@ -89,7 +88,7 @@ export default function ($http) {
         });
     },
     updateSocial: function (studentData) {
-      return $http.post(rootURL + '/data/updateSocial.php', {
+      return $http.post($rootScope.baseURL + 'data/updateSocial.php', {
         'userId': studentData.id,
         'facebook': studentData.facebook,
         'linkedin': studentData.linkedin
@@ -101,7 +100,7 @@ export default function ($http) {
         });
     },
     updateData: function (file, data) {
-      return $http.post(rootURL + '/data/updateData.php', {
+      return $http.post($rootScope.baseURL + 'data/updateData.php', {
         'file': file,
         'data': data
       })
@@ -112,7 +111,7 @@ export default function ($http) {
         });
     },
     backupData: function (file) {
-      return $http.post(rootURL + '/data/backupData.php', {
+      return $http.post($rootScope.baseURL + 'data/backupData.php', {
         'file': file
       })
         .then(function (response) {
@@ -122,7 +121,7 @@ export default function ($http) {
         });
     },
     revertData: function (file) {
-      return $http.post(rootURL + '/data/revertData.php', {
+      return $http.post($rootScope.baseURL + 'data/revertData.php', {
         'file': file
       })
         .then(function (response) {
@@ -132,7 +131,7 @@ export default function ($http) {
         });
     },
     sendEmail: function (account, email, selected) {
-      return $http.post(rootURL + '/data/sendEmail.php', {
+      return $http.post($rootScope.baseURL + 'data/sendEmail.php', {
         'account': account,
         'receivingEmail': email.receivingEmail,
         'selected': selected,
@@ -148,7 +147,7 @@ export default function ($http) {
         });
     },
     downloadData: function (account) {
-      return $http.post(rootURL + '/downloadData.php', {
+      return $http.post($rootScope.baseURL + 'downloadData.php', {
         'account': account
       })
         .then(function (response) {

@@ -2,7 +2,6 @@ import template from './profile.html';
 import $ from 'jquery';
 
 var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdDialog) {
-  var rootURL = 'http://www.cis.umassd.edu/~dluong1/csel-test';
   $scope.defaultAvatar = "images/noimage.png";
   $scope.loading = false;
   $scope.defaultForm = {
@@ -157,7 +156,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
   $scope.upload = function (file) {
     $scope.msg = {};
     Upload.upload({
-      url: rootURL + '/data/changeAvatar.php',
+      url: $rootScope.baseURL + 'data/changeAvatar.php',
       data: { file: file, 'userId': $scope.formdata.id }
     })
       .then(function (resp) {
@@ -330,7 +329,7 @@ var profileCtrl = function (AppServices, $rootScope, $scope, $http, Upload, $mdD
       .then(function (resp) {
         if (resp.download) {
           $scope.msg.downloadFile = resp.file;
-          window.location = rootURL + '/' + resp.file;
+          window.location = $rootScope.baseURL + resp.file;
         }
       })
       .finally(function (resp) {

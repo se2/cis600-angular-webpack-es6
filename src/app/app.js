@@ -33,7 +33,6 @@ import '../styles/main.scss';
 import 'angular-material/angular-material.css';
 
 /* app config */
-import config from 'app.config';
 import appConfig from './app.config';
 
 /* app routing and services */
@@ -64,9 +63,7 @@ export default angular.module('csel', [
 ])
   .config(appConfig)
   .config(appRoute)
-  .constant('CONFIG', config)
-  .constant('ENVIRONNEMENT', process.env.ENV_NAME)
-  .factory('AppServices', ['$http', appServices])
+  .factory('AppServices', ['$rootScope', '$http', appServices])
   .directive('errSrc', function () {
     return {
       link: function (scope, element, attrs) {
@@ -88,13 +85,6 @@ export default angular.module('csel', [
       }
     }
   }])
-  .component('home', homeComponent)
-  .component('publications', pubComponent)
-  .component('research', researchComponent)
-  .component('grantActivities', actComponent)
-  .component('contactInfo', contactComponent)
-  .component('people', peopleComponent)
-  .component('profile', profileComponent)
   .controller('AppCtrl', [
     '$rootScope',
     '$location',
@@ -103,7 +93,7 @@ export default angular.module('csel', [
     '$window',
     '$state',
     function ($rootScope, $location, $scope, $compile, $window, $state) {
-
+      $rootScope.baseURL = 'http://www.cis.umassd.edu/~dluong1/csel-test/';
       // check logged-in state
       if ((sessionStorage.getItem('csel-users') && sessionStorage.getItem('csel-users') != '')
         && (sessionStorage.getItem('csel-account') && sessionStorage.getItem('csel-account') != '')) {
@@ -196,4 +186,10 @@ export default angular.module('csel', [
       });
 
     }])
-  .name;
+  .component('home', homeComponent)
+  .component('publications', pubComponent)
+  .component('research', researchComponent)
+  .component('grantActivities', actComponent)
+  .component('contactInfo', contactComponent)
+  .component('people', peopleComponent)
+  .component('profile', profileComponent);

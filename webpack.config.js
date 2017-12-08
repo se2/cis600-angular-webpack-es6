@@ -69,10 +69,6 @@ let common = {
         'ENV_NAME': JSON.stringify(env)
       }
     }),
-
-    new CopyWebpackPlugin([
-      { from: 'src/config/i18n' }
-    ])
   ],
 
   devServer: {
@@ -107,8 +103,8 @@ if (TARGET !== undefined && TARGET.startsWith('build')) {
     output: {
       path: __dirname + '/dist',
       publicPath: '/~dluong1/csel-test/',
-      filename: '[name].[hash].js',
-      chunkFilename: '[name].[hash].js'
+      filename: '[name].js',
+      chunkFilename: '[name].js'
     },
 
     module: {
@@ -127,17 +123,7 @@ if (TARGET !== undefined && TARGET.startsWith('build')) {
       new CopyWebpackPlugin([{
         from: __dirname + '/src/public'
       }]),
-      new ExtractTextPlugin('[name].[hash].css'),
-
-      new DocsGeneratorPlugin({
-        enable       : docEnable,
-        staticContent: './docs',
-        sources      : {
-          include : 'src/app/**/**/*.js',
-          basePath: 'src/app'
-        },
-        output       : 'dist-docs'
-      })
+      new ExtractTextPlugin('[name].css'),
     ],
   });
 }
