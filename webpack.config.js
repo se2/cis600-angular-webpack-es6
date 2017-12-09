@@ -40,7 +40,7 @@ let common = {
     },
     {
       test: /\.css$/,
-      loaders: [ 'style-loader', 'css-loader?importLoaders=1', 'postcss-loader' ]
+      loaders: ['style-loader', 'css-loader?importLoaders=1', 'postcss-loader']
     },
     {
       test: /\.json$/,
@@ -48,7 +48,7 @@ let common = {
     },
     {
       test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-      loader: 'file'
+      loader: 'file?name=styles/fonts/[name].[ext]'
     }]
   },
 
@@ -65,7 +65,7 @@ let common = {
     }),
 
     new webpack.DefinePlugin({
-      'process.env':{
+      'process.env': {
         'ENV_NAME': JSON.stringify(env)
       }
     }),
@@ -88,10 +88,10 @@ if (TARGET !== undefined && TARGET.startsWith('serve')) {
   module.exports = merge.smart(common, {
     module: {
       loaders: [
-      {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader?sourceMap&importLoaders=1', 'postcss-loader', 'sass-loader?sourceMap']
-      }]
+        {
+          test: /\.scss$/,
+          loaders: ['style-loader', 'css-loader?sourceMap&importLoaders=1', 'postcss-loader', 'sass-loader?sourceMap']
+        }]
     },
     devtool: 'cheap-module-eval-source-map'
   });
@@ -103,8 +103,8 @@ if (TARGET !== undefined && TARGET.startsWith('build')) {
     output: {
       path: __dirname + '/dist',
       publicPath: '/~dluong1/csel-test/',
-      filename: '[name].js',
-      chunkFilename: '[name].js'
+      filename: 'scripts/[name].js',
+      chunkFilename: 'scripts/[name].js'
     },
 
     module: {
@@ -123,7 +123,7 @@ if (TARGET !== undefined && TARGET.startsWith('build')) {
       new CopyWebpackPlugin([{
         from: __dirname + '/src/public'
       }]),
-      new ExtractTextPlugin('[name].css'),
+      new ExtractTextPlugin('styles/[name].css'),
     ],
   });
 }
@@ -148,7 +148,8 @@ if (TARGET !== undefined && (TARGET === 'test' || TARGET === 'test-watch')) {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       }
-    ]}
+      ]
+    }
   });
 }
 
